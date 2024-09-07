@@ -1,2 +1,2 @@
 # brackey
-Brackey Game Jam - Sep 2024
+Brackeys Game Jam - Sep 2024
