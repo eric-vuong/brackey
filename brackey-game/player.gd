@@ -5,6 +5,9 @@ extends Area2D
 var can_shoot = true
 var fire_rate = .4 # Seconds of downtime between shots
 var autofire = false
+var is_sprinting = false
+var is_dodging = false
+var sprint_bonus = 2
 var screen_size
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -13,22 +16,39 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	var velocity = Vector2.ZERO # The player's movement vector.
+	
 	if Input.is_action_pressed("shoot") or autofire:
-		shoot()
+		if !is_sprinting and !is_dodging:
+			shoot()
 	if Input.is_action_just_pressed("autofire"):
 		autofire = !autofire
-	var velocity = Vector2.ZERO # The player's movement vector.
-	if Input.is_action_pressed("move_right") or Input.is_action_pressed("right"):
-		velocity.x += 1
-	if Input.is_action_pressed("move_left") or Input.is_action_pressed("left"):
-		velocity.x -= 1
-	if Input.is_action_pressed("move_down") or Input.is_action_pressed("down"):
-		velocity.y += 1
-	if Input.is_action_pressed("move_up") or Input.is_action_pressed("up"):
-		velocity.y -= 1
+
+	if !is_dodging: # Can only choose movement when not in a dodge
+		if Input.is_action_pressed("move_right"):
+			velocity.x += 1
+		if Input.is_action_pressed("move_left"):
+			velocity.x -= 1
+		if Input.is_action_pressed("move_down"):
+			velocity.y += 1
+		if Input.is_action_pressed("move_up"):
+			velocity.y -= 1
+	if Input.is_action_just_pressed("dodge"):
+		print("dodge")
+		#is_dodging = true
+		pass
+	if Input.is_action_pressed("dash"):
+		print("dash")
+		is_sprinting = true
+	else:
+		is_sprinting = false
+		
 
 	if velocity.length() > 0:
-		velocity = velocity.normalized() * speed
+		if is_sprinting:
+			velocity = velocity.normalized() * speed * sprint_bonus
+		else:
+			velocity = velocity.normalized() * speed
 		$AnimatedSprite2D.play()
 	else:
 		$AnimatedSprite2D.stop()
