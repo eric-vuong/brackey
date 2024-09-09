@@ -17,6 +17,7 @@ animations = [{
 radius = 32.0156
 
 [node name="baseEnemy" type="RigidBody2D"]
+gravity_scale = 0.0
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
