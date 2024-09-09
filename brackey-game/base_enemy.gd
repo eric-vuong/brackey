@@ -1,7 +1,5 @@
 extends Area2D
 
-signal hit
-
 @export var health = 100 
 
 
@@ -24,5 +22,4 @@ func _process(delta: float) -> void:
 
 func _on_area_entered(area: Area2D) -> void:
 	print("enemy was hit")
-	hit.emit()
 	$AnimatedSprite2D.play("hit")
