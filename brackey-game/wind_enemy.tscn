@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://dyyjp3m5vuvi6"]
+
+[ext_resource type="PackedScene" uid="uid://bvu3bliceidyk" path="res://base_enemy.tscn" id="1_fet3g"]
+[ext_resource type="Texture2D" uid="uid://codoh3oh5w43o" path="res://assets/placeholderwindenemy.png" id="2_goj0e"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wko3f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_goj0e")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2nae8"]
+radius = 22.0
+height = 84.0
+
+[node name="windEnemy" instance=ExtResource("1_fet3g")]
+position = Vector2(2, 5)
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_wko3f")
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("CapsuleShape2D_2nae8")
