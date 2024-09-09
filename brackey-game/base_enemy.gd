@@ -11,6 +11,5 @@ func _process(delta: float) -> void:
 	pass
 
 
-func _on_body_entered(body: Node) -> void:
-	pass # Replace with function body.
-	print("Hit by bullet")
+func _on_area_entered(area: Area2D) -> void:
+	print("enemy was hit")

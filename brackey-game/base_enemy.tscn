@@ -1,36 +1,32 @@
-[gd_scene load_steps=5 format=3 uid="uid://bvu3bliceidyk"]
+[gd_scene load_steps=5 format=3 uid="uid://1s17c7oi7wic"]
 
 [ext_resource type="Texture2D" uid="uid://c8cbj631edooc" path="res://icon.svg" id="1_edygs"]
 [ext_resource type="Script" path="res://base_enemy.gd" id="1_il4ef"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_q4on1"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_cugq4"]
 animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("1_edygs")
 }],
 "loop": true,
-"name": &"idle",
+"name": &"default",
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ljk4y"]
-size = Vector2(61, 60)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wsvgl"]
+size = Vector2(132, 129)
 
-[node name="baseEnemy" type="Area2D" groups=["enemy"]]
+[node name="BaseEnemy" type="Area2D"]
 collision_layer = 2
-collision_mask = 5
+collision_mask = 4
 script = ExtResource("1_il4ef")
-metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
-sprite_frames = SubResource("SpriteFrames_q4on1")
-animation = &"idle"
+sprite_frames = SubResource("SpriteFrames_cugq4")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["enemy"]]
-position = Vector2(-0.5, -1)
-shape = SubResource("RectangleShape2D_ljk4y")
-debug_color = Color(0.0884226, 0.59824, 0.693467, 0.42)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2.5)
+shape = SubResource("RectangleShape2D_wsvgl")
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

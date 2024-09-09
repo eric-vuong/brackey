@@ -23,7 +23,7 @@ func _on_timer_timeout() -> void:
 
 
 func _on_area_entered(area: Area2D) -> void:
-	print("Hit enemy")
+	print("bullet hit enemy")
 	if penetration < 1:
 		queue_free()
 	else:
