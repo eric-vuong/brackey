@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://cuucqgabqtgp6"]
+[gd_scene load_steps=7 format=3 uid="uid://cuucqgabqtgp6"]
 
 [ext_resource type="PackedScene" uid="uid://cpw5fiy31v8m6" path="res://map.tscn" id="1_dfmti"]
 [ext_resource type="Script" path="res://main.gd" id="1_eoepo"]
 [ext_resource type="PackedScene" uid="uid://bbevq5pfxujjd" path="res://player.tscn" id="2_60jih"]
 [ext_resource type="PackedScene" uid="uid://1s17c7oi7wic" path="res://base_enemy.tscn" id="4_cv8ex"]
 [ext_resource type="PackedScene" uid="uid://uo2ucidhc50q" path="res://wind_enemy.tscn" id="5_1ex0e"]
+[ext_resource type="PackedScene" uid="uid://c6tlhvh7awdj8" path="res://aura_turret.tscn" id="6_utwui"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_eoepo")
@@ -17,17 +18,8 @@ position = Vector2(35, 35)
 [node name="baseEnemy" parent="." instance=ExtResource("4_cv8ex")]
 position = Vector2(130, 99)
 
-[node name="test" parent="."]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-physics_interpolation_mode = 0
-auto_translate_mode = 0
-editor_description = ""
-script = null
-
 [node name="WindEnemy" parent="." instance=ExtResource("5_1ex0e")]
 position = Vector2(205, 274)
+
+[node name="AuraTurret" parent="." instance=ExtResource("6_utwui")]
+position = Vector2(593, 210)

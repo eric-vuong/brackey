@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://c6tlhvh7awdj8"]
+
+[ext_resource type="PackedScene" uid="uid://dvxlfwsqtp0bd" path="res://base_turret.tscn" id="1_lw5ns"]
+[ext_resource type="Texture2D" uid="uid://c8cbj631edooc" path="res://icon.svg" id="2_k0xw6"]
+[ext_resource type="PackedScene" uid="uid://djf2pj3rhskdc" path="res://base_aura.tscn" id="3_acw36"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1ba4a"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_k0xw6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="AuraTurret" instance=ExtResource("1_lw5ns")]
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_1ba4a")
+
+[node name="BaseAura" parent="AnimatedSprite2D" index="0" instance=ExtResource("3_acw36")]
+show_behind_parent = true
