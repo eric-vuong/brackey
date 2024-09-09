@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://bomrcynhtrqw0"]
+
+[ext_resource type="Script" path="res://bullet.gd" id="1_arx16"]
+[ext_resource type="Texture2D" uid="uid://c8cbj631edooc" path="res://icon.svg" id="2_d0yex"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7vwjh"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v5sin"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_d0yex")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Bullet" type="Area2D"]
+script = ExtResource("1_arx16")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_7vwjh")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_v5sin")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,15 +1,18 @@
 extends Area2D
 
-@export var speed = 100
+@export var speed = 150
+@export var bullet_scene = preload("res://bullet.tscn")
+var can_shoot = true
 var screen_size
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	screen_size = get_viewport_rect().size
-	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("shoot"):
+		shoot()
 	var velocity = Vector2.ZERO # The player's movement vector.
 	if Input.is_action_pressed("move_right") or Input.is_action_pressed("right"):
 		velocity.x += 1
@@ -37,3 +40,9 @@ func _process(delta: float) -> void:
 		pass
 		#$AnimatedSprite2D.animation = "up"
 		#$AnimatedSprite2D.flip_v = velocity.y > 0
+
+func shoot():
+	if can_shoot:
+		var b = bullet_scene.instantiate()
+		get_tree().root.add_child(b)
+		b.start_direction(self.global_position, self.global_position.direction_to(get_global_mouse_position()))
