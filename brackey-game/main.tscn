@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cuucqgabqtgp6"]
+[gd_scene load_steps=5 format=3 uid="uid://cuucqgabqtgp6"]
 
 [ext_resource type="PackedScene" uid="uid://cpw5fiy31v8m6" path="res://map.tscn" id="1_dfmti"]
 [ext_resource type="Script" path="res://main.gd" id="1_eoepo"]
 [ext_resource type="PackedScene" uid="uid://bbevq5pfxujjd" path="res://player.tscn" id="2_60jih"]
+[ext_resource type="PackedScene" uid="uid://bvu3bliceidyk" path="res://base_enemy.tscn" id="4_cv8ex"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_eoepo")
@@ -10,3 +11,5 @@ script = ExtResource("1_eoepo")
 [node name="Map" parent="." instance=ExtResource("1_dfmti")]
 
 [node name="Player" parent="." instance=ExtResource("2_60jih")]
+
+[node name="baseEnemy" parent="." instance=ExtResource("4_cv8ex")]

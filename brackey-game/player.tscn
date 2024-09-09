@@ -25,3 +25,7 @@ sprite_frames = SubResource("SpriteFrames_fy8px")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
+
+[node name="BulletTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="BulletTimer" to="." method="_on_bullet_timer_timeout"]

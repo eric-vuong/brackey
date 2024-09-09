@@ -1,5 +1,5 @@
 extends Area2D
-var speed = 200
+var speed = 300
 @export var Bullet : PackedScene
 var direction : Vector2
 var lifetime = 2
