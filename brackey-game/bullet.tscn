@@ -17,6 +17,8 @@ animations = [{
 }]
 
 [node name="Bullet" type="Area2D"]
+collision_layer = 4
+collision_mask = 2
 script = ExtResource("1_arx16")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -28,4 +30,5 @@ sprite_frames = SubResource("SpriteFrames_v5sin")
 
 [node name="Timer" type="Timer" parent="."]
 
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

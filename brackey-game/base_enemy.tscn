@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bvu3bliceidyk"]
+[gd_scene load_steps=5 format=3 uid="uid://bvu3bliceidyk"]
 
 [ext_resource type="Texture2D" uid="uid://c8cbj631edooc" path="res://icon.svg" id="1_edygs"]
+[ext_resource type="Script" path="res://base_enemy.gd" id="1_il4ef"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_q4on1"]
 animations = [{
@@ -13,11 +14,13 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_sy7tp"]
-radius = 32.0156
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ljk4y"]
+size = Vector2(61, 60)
 
-[node name="baseEnemy" type="RigidBody2D"]
-gravity_scale = 0.0
+[node name="baseEnemy" type="Area2D" groups=["enemy"]]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_il4ef")
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -25,6 +28,9 @@ scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_q4on1")
 animation = &"idle"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_sy7tp")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["enemy"]]
+position = Vector2(-0.5, -1)
+shape = SubResource("RectangleShape2D_ljk4y")
 debug_color = Color(0.0884226, 0.59824, 0.693467, 0.42)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

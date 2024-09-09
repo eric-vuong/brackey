@@ -3,7 +3,7 @@ extends Area2D
 @export var speed = 150
 @export var bullet_scene = preload("res://bullet.tscn")
 var can_shoot = true
-var fire_rate = 1 # Seconds of downtime between shots
+var fire_rate = .4 # Seconds of downtime between shots
 var autofire = false
 var screen_size
 # Called when the node enters the scene tree for the first time.
@@ -58,3 +58,8 @@ func shoot():
 
 func _on_bullet_timer_timeout() -> void:
 	can_shoot = true
+
+
+func _on_area_entered(area: Area2D) -> void:
+	pass # Replace with function body.
+	print("Player hit by enemy")
