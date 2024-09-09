@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dyyjp3m5vuvi6"]
 
-[ext_resource type="PackedScene" uid="uid://bvu3bliceidyk" path="res://base_enemy.tscn" id="1_fet3g"]
+[ext_resource type="PackedScene" uid="uid://1s17c7oi7wic" path="res://base_enemy.tscn" id="1_fet3g"]
 [ext_resource type="Texture2D" uid="uid://codoh3oh5w43o" path="res://assets/placeholderwindenemy.png" id="2_goj0e"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_wko3f"]
@@ -23,6 +23,7 @@ position = Vector2(2, 5)
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_wko3f")
+animation = &"idle"
 
 [node name="CollisionShape2D" parent="." index="1"]
 shape = SubResource("CapsuleShape2D_2nae8")
