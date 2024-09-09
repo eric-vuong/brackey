@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dt4842xoch7j3"]
+
+[ext_resource type="Script" path="res://day_night_timer.gd" id="1_j5ung"]
+
+[node name="DayNightTimer" type="Timer"]
+autostart = true
+script = ExtResource("1_j5ung")
+
+[connection signal="timeout" from="." to="." method="_on_timer_timeout"]
