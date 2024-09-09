@@ -16,6 +16,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	# Update player location for global
+	Global.player_pos = self.global_position
 	var velocity = Vector2.ZERO # The player's movement vector.
 	
 	if Input.is_action_pressed("shoot") or autofire:
@@ -34,11 +36,10 @@ func _process(delta: float) -> void:
 		if Input.is_action_pressed("move_up"):
 			velocity.y -= 1
 	if Input.is_action_just_pressed("dodge"):
-		print("dodge")
+		#print("dodge")
 		#is_dodging = true
 		pass
 	if Input.is_action_pressed("dash"):
-		print("dash")
 		is_sprinting = true
 	else:
 		is_sprinting = false

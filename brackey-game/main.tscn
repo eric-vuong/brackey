@@ -1,11 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://cuucqgabqtgp6"]
+[gd_scene load_steps=9 format=3 uid="uid://cuucqgabqtgp6"]
 
 [ext_resource type="PackedScene" uid="uid://cpw5fiy31v8m6" path="res://map.tscn" id="1_dfmti"]
 [ext_resource type="Script" path="res://main.gd" id="1_eoepo"]
 [ext_resource type="PackedScene" uid="uid://bbevq5pfxujjd" path="res://player.tscn" id="2_60jih"]
 [ext_resource type="PackedScene" uid="uid://1s17c7oi7wic" path="res://base_enemy.tscn" id="4_cv8ex"]
 [ext_resource type="PackedScene" uid="uid://uo2ucidhc50q" path="res://wind_enemy.tscn" id="5_1ex0e"]
+[ext_resource type="Script" path="res://base_enemy.gd" id="6_5e8y0"]
 [ext_resource type="PackedScene" uid="uid://c6tlhvh7awdj8" path="res://aura_turret.tscn" id="6_utwui"]
+[ext_resource type="PackedScene" uid="uid://goy66pj78olo" path="res://core.tscn" id="7_l08wi"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_eoepo")
@@ -20,6 +22,10 @@ position = Vector2(130, 99)
 
 [node name="WindEnemy" parent="." instance=ExtResource("5_1ex0e")]
 position = Vector2(205, 274)
+script = ExtResource("6_5e8y0")
 
 [node name="AuraTurret" parent="." instance=ExtResource("6_utwui")]
 position = Vector2(593, 210)
+
+[node name="Core" parent="." instance=ExtResource("7_l08wi")]
+position = Vector2(387, 360)

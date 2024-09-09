@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://uo2ucidhc50q"]
+[gd_scene load_steps=6 format=3 uid="uid://uo2ucidhc50q"]
 
 [ext_resource type="PackedScene" uid="uid://1s17c7oi7wic" path="res://base_enemy.tscn" id="1_fet3g"]
 [ext_resource type="Texture2D" uid="uid://codoh3oh5w43o" path="res://assets/placeholderwindenemy.png" id="2_goj0e"]
+[ext_resource type="Script" path="res://wind_enemy.gd" id="2_re2ha"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qat3n"]
 resource_local_to_scene = true
@@ -28,6 +29,9 @@ radius = 22.1219
 height = 98.8113
 
 [node name="WindEnemy" instance=ExtResource("1_fet3g")]
+script = ExtResource("2_re2ha")
+target = "Player"
+speed = 60
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 scale = Vector2(0.5, 0.5)
