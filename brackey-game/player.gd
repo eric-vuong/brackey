@@ -2,16 +2,22 @@ extends Area2D
 
 @export var speed = 150
 @export var bullet_scene = preload("res://bullet.tscn")
+@export var max_hp = 100
+var current_hp: int
 var can_shoot = true
 var fire_rate = .4 # Seconds of downtime between shots
 var autofire = false
 var is_sprinting = false
 var is_dodging = false
-var sprint_bonus = 2
+var sprint_bonus = 1.4
 var screen_size
+var is_hitable = true
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	screen_size = get_viewport_rect().size
+	current_hp = max_hp
+	$HpBar.max_value = max_hp
+	$HpBar.value = current_hp
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -65,6 +71,16 @@ func _process(delta: float) -> void:
 		pass
 		#$AnimatedSprite2D.animation = "up"
 		#$AnimatedSprite2D.flip_v = velocity.y > 0
+	# Take damage
+	if is_hitable:
+		var inside_player = get_overlapping_areas()
+		if inside_player:
+			# Apply damage. flat for now
+			for enemy in inside_player:
+				take_damage(10)
+			is_hitable = false
+			$DamageTimer.set_wait_time(1)
+			$DamageTimer.start()
 
 func shoot():
 	if can_shoot:
@@ -84,3 +100,13 @@ func _on_bullet_timer_timeout() -> void:
 func _on_area_entered(area: Area2D) -> void:
 	pass # Replace with function body.
 	print("Player hit by enemy")
+	
+func take_damage(dmg):
+	current_hp -= dmg
+	$HpBar.value = current_hp
+	if current_hp <= 0:
+		print("game over")
+
+
+func _on_damage_timer_timeout() -> void:
+	is_hitable = true

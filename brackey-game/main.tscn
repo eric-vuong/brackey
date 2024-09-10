@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cpw5fiy31v8m6" path="res://map.tscn" id="1_dfmti"]
 [ext_resource type="Script" path="res://main.gd" id="1_eoepo"]
 [ext_resource type="PackedScene" uid="uid://bbevq5pfxujjd" path="res://player.tscn" id="2_60jih"]
-[ext_resource type="PackedScene" uid="uid://c6tlhvh7awdj8" path="res://aura_turret.tscn" id="6_utwui"]
+[ext_resource type="PackedScene" uid="uid://dt4842xoch7j3" path="res://day_night_timer.tscn" id="5_8q024"]
 [ext_resource type="PackedScene" uid="uid://goy66pj78olo" path="res://core.tscn" id="7_l08wi"]
 
 [sub_resource type="Curve2D" id="Curve2D_8h4hw"]
@@ -20,15 +20,10 @@ script = ExtResource("1_eoepo")
 [node name="Player" parent="." instance=ExtResource("2_60jih")]
 position = Vector2(354, 256)
 
-[node name="AuraTurret" parent="." instance=ExtResource("6_utwui")]
-position = Vector2(593, 210)
-
 [node name="Core" parent="." instance=ExtResource("7_l08wi")]
 position = Vector2(387, 360)
 
 [node name="MobTimer" type="Timer" parent="."]
-wait_time = 2.0
-autostart = true
 
 [node name="MobPath" type="Path2D" parent="."]
 curve = SubResource("Curve2D_8h4hw")
@@ -37,4 +32,7 @@ curve = SubResource("Curve2D_8h4hw")
 position = Vector2(-30, -25)
 rotation = 0.00484962
 
+[node name="DayNightTimer" parent="." instance=ExtResource("5_8q024")]
+
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
+[connection signal="is_daytime" from="DayNightTimer" to="." method="_on_day_night_timer_is_daytime"]

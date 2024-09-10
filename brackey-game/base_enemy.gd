@@ -5,16 +5,16 @@ var current_hp = 1
 @export var target: String = "Core"# Player or core
 @export var speed: int = 30
 var direction: Vector2
+var burning = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	print("base readt")
-	pass # Replace with function body.
 	$Hp.max_value = health
 	$Hp.value = health
 	current_hp = health
 	var target_types = ["Player", "Core"]
 	target = target_types[randi() % 2]
-
+	#add_to_group("enemy")
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -22,12 +22,13 @@ func _process(delta: float) -> void:
 	if $AnimatedSprite2D.animation == "hit" and $AnimatedSprite2D.is_playing():
 		pass
 	elif $AnimatedSprite2D.animation != "default":
-		print('playing default animation')
+		#print('playing default animation')
 		$AnimatedSprite2D.play("default")
 		
 	# Movement
 	pathing()
 	position += direction * speed * delta
+		
 	
 	# Damage recieved calculation
 	#if check_if_hit():
@@ -48,7 +49,7 @@ func _process(delta: float) -> void:
 		
 
 func _on_area_entered(area: Area2D) -> void:
-	print("enemy was hit")
+	#print("enemy was hit")
 	if area.is_in_group("player_bullet"):
 		take_damage(Global.bullet_damage)
 	$AnimatedSprite2D.play("hit")
@@ -65,3 +66,11 @@ func take_damage(dmg):
 	$Hp.value = current_hp
 	if current_hp <= 0:
 		queue_free()
+
+func _burn():
+	burning = true
+	$BurnTimer.start()
+
+
+func _on_burn_timer_timeout() -> void:
+	take_damage(health*.25)

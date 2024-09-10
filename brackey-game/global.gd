@@ -10,6 +10,12 @@ var core_pos: Vector2
 
 # Player Bullet
 var bullet_damage: int = 10
+
+# Time
+var is_day: bool = true
+var day_duration: int
+var night_duration: int
+var current_time: int
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
