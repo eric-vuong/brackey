@@ -1,6 +1,6 @@
 extends Node
 
-var active_attacks = {}
+#var active_attacks = {}
 
 # Player values
 var player_pos: Vector2
@@ -22,5 +22,5 @@ func _process(delta: float) -> void:
 func test():
 	print("global test")
 	
-func set_active_attack(attacker_id: int, target_id: int, attack_type, attack_value):
-	active_attacks[int(target_id)] = {str(attack_type):{attacker_id:attack_value}}
+#func set_active_attack(attacker_id: int, target_id: int, attack_type, attack_value):
+	#active_attacks[int(target_id)] = {str(attack_type):{attacker_id:attack_value}}

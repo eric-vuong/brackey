@@ -24,7 +24,7 @@ func _on_timer_timeout() -> void:
 
 func _on_area_entered(area: Area2D) -> void:
 	print("bullet hit enemy")
-	Global.set_active_attack(get_instance_id(), area.get_instance_id(),'damage', 1)
+	# Global.set_active_attack(get_instance_id(), area.get_instance_id(),'damage', 1)
 	Global.test()
 	if penetration < 1:
 		queue_free()
