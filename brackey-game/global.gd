@@ -4,6 +4,9 @@ var player_pos: Vector2
 
 # Core
 var core_pos: Vector2
+
+# Player Bullet
+var bullet_damage: int = 10
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
