@@ -30,8 +30,6 @@ height = 98.8113
 
 [node name="WindEnemy" instance=ExtResource("1_fet3g")]
 script = ExtResource("2_re2ha")
-target = "Player"
-speed = 60
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 scale = Vector2(0.5, 0.5)

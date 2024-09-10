@@ -1,15 +1,19 @@
 extends Area2D
 
 @export var health = 100
-var current_hp = 100
+var current_hp = 1
 @export var target: String = "Core"# Player or core
 @export var speed: int = 30
 var direction: Vector2
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	print("base readt")
 	pass # Replace with function body.
 	$Hp.max_value = health
-	$Hp.value = current_hp
+	$Hp.value = health
+	current_hp = health
+	var target_types = ["Player", "Core"]
+	target = target_types[randi() % 2]
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

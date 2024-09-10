@@ -1,13 +1,16 @@
-[gd_scene load_steps=9 format=3 uid="uid://cuucqgabqtgp6"]
+[gd_scene load_steps=7 format=3 uid="uid://cuucqgabqtgp6"]
 
 [ext_resource type="PackedScene" uid="uid://cpw5fiy31v8m6" path="res://map.tscn" id="1_dfmti"]
 [ext_resource type="Script" path="res://main.gd" id="1_eoepo"]
 [ext_resource type="PackedScene" uid="uid://bbevq5pfxujjd" path="res://player.tscn" id="2_60jih"]
-[ext_resource type="PackedScene" uid="uid://1s17c7oi7wic" path="res://base_enemy.tscn" id="4_cv8ex"]
-[ext_resource type="PackedScene" uid="uid://uo2ucidhc50q" path="res://wind_enemy.tscn" id="5_1ex0e"]
-[ext_resource type="Script" path="res://base_enemy.gd" id="6_5e8y0"]
 [ext_resource type="PackedScene" uid="uid://c6tlhvh7awdj8" path="res://aura_turret.tscn" id="6_utwui"]
 [ext_resource type="PackedScene" uid="uid://goy66pj78olo" path="res://core.tscn" id="7_l08wi"]
+
+[sub_resource type="Curve2D" id="Curve2D_8h4hw"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -30, -25, 0, 0, 0, 0, 1001, -20, 0, 0, 0, 0, 1012, 812, 0, 0, 0, 0, -20, 810, 0, 0, 0, 0, -30, -25)
+}
+point_count = 5
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_eoepo")
@@ -15,17 +18,23 @@ script = ExtResource("1_eoepo")
 [node name="Map" parent="." instance=ExtResource("1_dfmti")]
 
 [node name="Player" parent="." instance=ExtResource("2_60jih")]
-position = Vector2(35, 35)
-
-[node name="baseEnemy" parent="." instance=ExtResource("4_cv8ex")]
-position = Vector2(130, 99)
-
-[node name="WindEnemy" parent="." instance=ExtResource("5_1ex0e")]
-position = Vector2(205, 274)
-script = ExtResource("6_5e8y0")
+position = Vector2(354, 256)
 
 [node name="AuraTurret" parent="." instance=ExtResource("6_utwui")]
 position = Vector2(593, 210)
 
 [node name="Core" parent="." instance=ExtResource("7_l08wi")]
 position = Vector2(387, 360)
+
+[node name="MobTimer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="MobPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_8h4hw")
+
+[node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath"]
+position = Vector2(-30, -25)
+rotation = 0.00484962
+
+[connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
