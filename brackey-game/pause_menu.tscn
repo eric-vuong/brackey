@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0ii4r4tb8bk1"]
+
+[ext_resource type="Script" path="res://pause_menu.gd" id="1_r1k40"]
+
+[node name="PauseMenu" type="Control"]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_r1k40")
+
+[node name="Resume" type="Button" parent="."]
+layout_mode = 0
+offset_left = 113.0
+offset_top = 242.0
+offset_right = 879.0
+offset_bottom = 610.0
+text = "RESUME"
+
+[connection signal="pressed" from="Resume" to="." method="_on_resume_pressed"]
