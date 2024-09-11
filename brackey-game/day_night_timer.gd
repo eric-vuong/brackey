@@ -15,6 +15,7 @@ func _ready() -> void:
 	current_time = START_TIME
 	cycle_count = 0
 	is_day = true
+	Global.is_day = true
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

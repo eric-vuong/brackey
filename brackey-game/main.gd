@@ -43,23 +43,26 @@ func new_game():
 	
 # temp mob spawning func
 func _on_mob_timer_timeout() -> void:
-	var mob = wind.instantiate()
-	var mob_spawn_location = $MobPath/MobSpawnLocation
-	mob_spawn_location.progress_ratio = randf()
-	mob.position = mob_spawn_location.position
-	add_child(mob)
+	if !Global.is_day:
+		var mob = wind.instantiate()
+		var mob_spawn_location = $MobPath/MobSpawnLocation
+		mob_spawn_location.progress_ratio = randf()
+		mob.position = mob_spawn_location.position
+		add_child(mob)
 
 # Signals true/false when day night changes
 func _on_day_night_timer_is_daytime(is_day: Variant) -> void:
 	pass # Replace with function body.
 	
 	if is_day: # Kill enemies, show day popup
+		Global.is_day = true
 		$MobTimer.stop()
 		print("day signal EMITTED")
 		for e in get_tree().get_nodes_in_group("enemy"):
 			e._burn()
 		$RainTileMap.hide()
 	else: # Start spawning enemies
+		Global.is_day = false
 		$MobTimer.start()
 		$RainTileMap.show()
 
