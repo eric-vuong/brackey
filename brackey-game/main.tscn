@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cuucqgabqtgp6"]
+[gd_scene load_steps=12 format=3 uid="uid://cuucqgabqtgp6"]
 
 [ext_resource type="PackedScene" uid="uid://cpw5fiy31v8m6" path="res://map.tscn" id="1_dfmti"]
 [ext_resource type="Script" path="res://main.gd" id="1_eoepo"]
@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" path="res://rain_tile_map.tscn" id="7_el2r5"]
 [ext_resource type="PackedScene" uid="uid://goy66pj78olo" path="res://core.tscn" id="7_l08wi"]
 [ext_resource type="PackedScene" uid="uid://dw4h7jgv0npky" path="res://game_over.tscn" id="8_u6yxw"]
+[ext_resource type="Texture2D" uid="uid://0cynnlvxr8oi" path="res://assets/size test.png" id="9_qeot0"]
+[ext_resource type="PackedScene" uid="uid://cktsoeaq5hnbc" path="res://demon.tscn" id="10_m3ows"]
 
 [sub_resource type="Curve2D" id="Curve2D_8h4hw"]
 _data = {
@@ -19,6 +21,7 @@ point_count = 5
 script = ExtResource("1_eoepo")
 
 [node name="Map" parent="." instance=ExtResource("1_dfmti")]
+position = Vector2(15, -21)
 
 [node name="Player" parent="." instance=ExtResource("2_60jih")]
 position = Vector2(354, 256)
@@ -42,6 +45,14 @@ rotation = 0.00484962
 [node name="RainTileMap" parent="." instance=ExtResource("7_el2r5")]
 
 [node name="GameOver" parent="." instance=ExtResource("8_u6yxw")]
+
+[node name="SizeTest" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(231, 280)
+texture = ExtResource("9_qeot0")
+
+[node name="Demon" parent="." instance=ExtResource("10_m3ows")]
+position = Vector2(221, 208)
 
 [connection signal="gameover" from="Player" to="." method="_on_player_gameover"]
 [connection signal="gameover" from="Core" to="." method="_on_core_gameover"]

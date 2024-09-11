@@ -28,7 +28,7 @@ func take_damage(dmg):
 	if core_hp <= 0:
 		gameover.emit()
 func _on_area_entered(area: Area2D) -> void:
-	pass # Replace with function body.
+	return # Replace with function body.
 	print("core entered")
 	if area.is_in_group("enemy"):
 		pass

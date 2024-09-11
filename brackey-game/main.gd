@@ -1,5 +1,10 @@
 extends Node2D
 var wind = preload("res://wind_enemy.tscn")
+var demon = preload("res://demon.tscn")
+var genie = preload("res://demon.tscn")
+var witch = preload("res://demon.tscn")
+
+var enemy_list = [wind, demon, genie, witch]
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -44,7 +49,8 @@ func new_game():
 # temp mob spawning func
 func _on_mob_timer_timeout() -> void:
 	if !Global.is_day:
-		var mob = wind.instantiate()
+		# Spawn random normal mob
+		var mob = enemy_list[randi() % len(enemy_list)].instantiate()
 		var mob_spawn_location = $MobPath/MobSpawnLocation
 		mob_spawn_location.progress_ratio = randf()
 		mob.position = mob_spawn_location.position

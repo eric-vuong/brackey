@@ -21,8 +21,9 @@ Global="*res://global.gd"
 
 [display]
 
-window/size/viewport_width=1000
-window/size/viewport_height=800
+window/size/viewport_width=960
+window/size/viewport_height=720
+window/size/resizable=false
 
 [global_group]
 
@@ -108,3 +109,9 @@ gameoverdebug={
 2d_physics/layer_2="enemy"
 2d_physics/layer_3="bullet"
 2d_physics/layer_4="core"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"

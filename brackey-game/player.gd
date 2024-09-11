@@ -2,7 +2,7 @@ extends Area2D
 signal gameover
 @export var speed = 150
 @export var bullet_scene = preload("res://bullet.tscn")
-@export var max_hp = 20
+@export var max_hp = 40
 var current_hp: int
 var can_shoot = true
 var fire_rate = .4 # Seconds of downtime between shots
@@ -22,7 +22,6 @@ func _ready() -> void:
 	global_position = Vector2(200,200)
 	is_dead = false
 	is_hitable = true
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

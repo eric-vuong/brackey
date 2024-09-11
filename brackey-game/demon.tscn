@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://cktsoeaq5hnbc"]
+
+[ext_resource type="PackedScene" uid="uid://1s17c7oi7wic" path="res://base_enemy.tscn" id="1_rfkua"]
+[ext_resource type="Script" path="res://demon.gd" id="2_vvsu3"]
+[ext_resource type="Texture2D" uid="uid://bmn1dvkcilc8j" path="res://assets/demon.png" id="2_xb0kg"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rhxgt"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_xb0kg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_xb0kg")
+}],
+"loop": false,
+"name": &"hit",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rtfdb"]
+resource_local_to_scene = true
+size = Vector2(25, 30.5)
+
+[node name="Demon" instance=ExtResource("1_rfkua")]
+script = ExtResource("2_vvsu3")
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_rhxgt")
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(-0.5, 0.25)
+shape = SubResource("RectangleShape2D_rtfdb")
+
+[node name="Hp" parent="." index="2"]
+offset_left = -37.0
+offset_top = 18.0
+offset_right = 36.0
+offset_bottom = 45.0

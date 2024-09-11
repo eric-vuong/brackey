@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://dlr8nvww1dcom"]
+
+[ext_resource type="PackedScene" uid="uid://1s17c7oi7wic" path="res://base_enemy.tscn" id="1_xauxg"]
+[ext_resource type="Script" path="res://witch.gd" id="2_0emed"]
+[ext_resource type="Texture2D" uid="uid://dlbi0qqv2pqcj" path="res://assets/witch.png" id="3_2uuii"]
+[ext_resource type="Texture2D" uid="uid://djpq7j6kjv34r" path="res://assets/witch_magic.png" id="4_gmv46"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qyga3"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 6.0,
+"texture": ExtResource("3_2uuii")
+}, {
+"duration": 2.0,
+"texture": ExtResource("4_gmv46")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_2uuii")
+}],
+"loop": false,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_84w80"]
+resource_local_to_scene = true
+size = Vector2(25, 29.5)
+
+[node name="Witch" instance=ExtResource("1_xauxg")]
+script = ExtResource("2_0emed")
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_qyga3")
+animation = &"new_animation"
+frame_progress = 1.0
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(0.5, 0.25)
+shape = SubResource("RectangleShape2D_84w80")

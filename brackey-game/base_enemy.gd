@@ -2,7 +2,7 @@ extends Area2D
 
 @export var health = 100
 var current_hp = 1
-@export var target: String = "Core"# Player or core
+@export var target: String# Player or core
 @export var speed: int = 30
 var direction: Vector2
 var burning = false
@@ -12,7 +12,8 @@ func _ready() -> void:
 	$Hp.value = health
 	current_hp = health
 	var target_types = ["Player", "Core"]
-	target = target_types[randi() % 2]
+	if target != "Player" and target != "Core":
+		target = target_types[randi() % 2]
 	#add_to_group("enemy")
 	
 
