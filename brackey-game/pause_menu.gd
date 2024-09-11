@@ -1,4 +1,4 @@
-extends Control
+extends CanvasLayer
 var parent = null
 var can_resume = false 
 
@@ -24,3 +24,8 @@ func pause():
 	parent.get_tree().paused = true
 func _on_resume_pressed() -> void:
 	resume()
+
+
+func _on_new_game_pressed() -> void:
+	resume()
+	owner.new_game()

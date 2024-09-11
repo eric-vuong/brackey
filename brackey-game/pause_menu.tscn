@@ -2,20 +2,26 @@
 
 [ext_resource type="Script" path="res://pause_menu.gd" id="1_r1k40"]
 
-[node name="PauseMenu" type="Control"]
+[node name="PauseMenu" type="CanvasLayer"]
 process_mode = 2
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
 script = ExtResource("1_r1k40")
 
 [node name="Resume" type="Button" parent="."]
-layout_mode = 0
-offset_left = 113.0
-offset_top = 242.0
-offset_right = 879.0
-offset_bottom = 610.0
+offset_left = 408.0
+offset_top = 313.0
+offset_right = 585.0
+offset_bottom = 415.0
+size_flags_horizontal = 8
 text = "RESUME"
 
+[node name="NewGame" type="Button" parent="."]
+offset_left = 408.0
+offset_top = 434.0
+offset_right = 585.0
+offset_bottom = 536.0
+size_flags_horizontal = 8
+text = "Restart
+"
+
 [connection signal="pressed" from="Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="NewGame" to="." method="_on_new_game_pressed"]

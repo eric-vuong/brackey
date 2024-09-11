@@ -12,6 +12,9 @@ func _ready() -> void:
 	# Pass time info to global
 	Global.day_duration = DAY_DURATION
 	Global.night_duration = NIGHT_DURATION
+	current_time = START_TIME
+	cycle_count = 0
+	is_day = true
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

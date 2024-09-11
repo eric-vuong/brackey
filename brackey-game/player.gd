@@ -1,8 +1,8 @@
 extends Area2D
-
+signal gameover
 @export var speed = 150
 @export var bullet_scene = preload("res://bullet.tscn")
-@export var max_hp = 100
+@export var max_hp = 20
 var current_hp: int
 var can_shoot = true
 var fire_rate = .4 # Seconds of downtime between shots
@@ -12,16 +12,22 @@ var is_dodging = false
 var sprint_bonus = 1.4
 var screen_size
 var is_hitable = true
+var is_dead = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	screen_size = get_viewport_rect().size
 	current_hp = max_hp
 	$HpBar.max_value = max_hp
 	$HpBar.value = current_hp
+	global_position = Vector2(200,200)
+	is_dead = false
+	is_hitable = true
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if is_dead: # Stop processing if not alive
+		return
 	# Update player location for global
 	Global.player_pos = self.global_position
 	var velocity = Vector2.ZERO # The player's movement vector.
@@ -105,7 +111,9 @@ func take_damage(dmg):
 	current_hp -= dmg
 	$HpBar.value = current_hp
 	if current_hp <= 0:
-		print("game over")
+		is_dead = true
+		gameover.emit()
+		
 
 
 func _on_damage_timer_timeout() -> void:

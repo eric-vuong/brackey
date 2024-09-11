@@ -1,12 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://cuucqgabqtgp6"]
+[gd_scene load_steps=10 format=3 uid="uid://cuucqgabqtgp6"]
 
 [ext_resource type="PackedScene" uid="uid://cpw5fiy31v8m6" path="res://map.tscn" id="1_dfmti"]
 [ext_resource type="Script" path="res://main.gd" id="1_eoepo"]
 [ext_resource type="PackedScene" uid="uid://bbevq5pfxujjd" path="res://player.tscn" id="2_60jih"]
 [ext_resource type="PackedScene" uid="uid://dt4842xoch7j3" path="res://day_night_timer.tscn" id="5_8q024"]
 [ext_resource type="PackedScene" uid="uid://c0ii4r4tb8bk1" path="res://pause_menu.tscn" id="6_axkk1"]
-[ext_resource type="PackedScene" uid="uid://cccvnvv4prnv4" path="res://rain_tile_map.tscn" id="7_el2r5"]
+[ext_resource type="PackedScene" path="res://rain_tile_map.tscn" id="7_el2r5"]
 [ext_resource type="PackedScene" uid="uid://goy66pj78olo" path="res://core.tscn" id="7_l08wi"]
+[ext_resource type="PackedScene" uid="uid://dw4h7jgv0npky" path="res://game_over.tscn" id="8_u6yxw"]
 
 [sub_resource type="Curve2D" id="Curve2D_8h4hw"]
 _data = {
@@ -40,5 +41,9 @@ rotation = 0.00484962
 
 [node name="RainTileMap" parent="." instance=ExtResource("7_el2r5")]
 
+[node name="GameOver" parent="." instance=ExtResource("8_u6yxw")]
+
+[connection signal="gameover" from="Player" to="." method="_on_player_gameover"]
+[connection signal="gameover" from="Core" to="." method="_on_core_gameover"]
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
 [connection signal="is_daytime" from="DayNightTimer" to="." method="_on_day_night_timer_is_daytime"]

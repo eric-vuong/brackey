@@ -1,15 +1,14 @@
 extends Area2D
+signal gameover
 var core_max = 1000
 @export var core_hp = 1000
 var is_hitable = true # Switches to false after being hit for a brief period
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
 	Global.core_pos = self.position
+	core_hp = core_max
 	$CoreHp.max_value = core_max
 	$CoreHp.value = core_hp
-
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -27,8 +26,7 @@ func take_damage(dmg):
 	core_hp -= dmg
 	$CoreHp.value = core_hp
 	if core_hp <= 0:
-		print("game over")
-		
+		gameover.emit()
 func _on_area_entered(area: Area2D) -> void:
 	pass # Replace with function body.
 	print("core entered")

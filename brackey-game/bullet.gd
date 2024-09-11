@@ -26,7 +26,7 @@ func _on_area_entered(area: Area2D) -> void:
 	#print("bullet hit enemy")
 	# Global.set_active_attack(get_instance_id(), area.get_instance_id(),'damage', 1)
 	#Global.test()
-	if penetration < 1:
+	if penetration < 1: # enemy can only be hit by same bullet once
 		queue_free()
 	else:
 		penetration -= 1
