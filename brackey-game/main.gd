@@ -1,8 +1,8 @@
 extends Node2D
 var wind = preload("res://wind_enemy.tscn")
 var demon = preload("res://demon.tscn")
-var genie = preload("res://demon.tscn")
-var witch = preload("res://demon.tscn")
+var genie = preload("res://genie.tscn")
+var witch = preload("res://witch.tscn")
 
 var enemy_list = [wind, demon, genie, witch]
 # Called when the node enters the scene tree for the first time.
