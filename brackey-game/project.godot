@@ -29,6 +29,8 @@ window/size/resizable=false
 
 enemy=""
 player_bullet=""
+shop_items=""
+player=""
 
 [input]
 

@@ -75,6 +75,11 @@ func _process(delta: float) -> void:
 		pass
 		#$AnimatedSprite2D.animation = "up"
 		#$AnimatedSprite2D.flip_v = velocity.y > 0
+	# show back when moving up
+	if velocity.y < 0:
+		$AnimatedSprite2D.animation = "back"
+	else:
+		$AnimatedSprite2D.animation = "default"
 	# Take damage
 	if is_hitable:
 		var inside_player = get_overlapping_areas()

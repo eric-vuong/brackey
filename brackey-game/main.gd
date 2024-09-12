@@ -3,8 +3,9 @@ var wind = preload("res://wind_enemy.tscn")
 var demon = preload("res://demon.tscn")
 var genie = preload("res://genie.tscn")
 var witch = preload("res://witch.tscn")
+var skeleton = preload("res://skeleton.tscn")
 
-var enemy_list = [wind, demon, genie, witch]
+var enemy_list = [wind, demon, genie, witch, skeleton]
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -48,12 +49,12 @@ func new_game():
 	# Mob timer should start when it becomes night
 	$DayNightTimer._ready() # Resets start time
 	$DayNightTimer.start()
-	$Core/CollisionShape2D.disabled = false # Enable hitboxes
-	$Core/CollisionShape2D.disabled = false
 	$GameOver.hide()
 	# Kill all enemies
 	for e in get_tree().get_nodes_in_group("enemy"):
 		e.queue_free()
+	$Core/CollisionShape2D.disabled = false # Enable hitboxes
+	$Core/CollisionShape2D.disabled = false
 	# Reset global
 	Global._ready()
 	# Reset player
@@ -61,6 +62,10 @@ func new_game():
 	# Reset core
 	$Core._ready()
 	$RainTileMap.hide()
+	# Reset shop
+	for s in get_tree().get_nodes_in_group("shop_items"):
+		#print(s)
+		s._ready()
 
 func open_shop():
 	$Shop.show()

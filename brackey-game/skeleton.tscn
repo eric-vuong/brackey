@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://hty4n1fqrri8"]
+
+[ext_resource type="PackedScene" uid="uid://1s17c7oi7wic" path="res://base_enemy.tscn" id="1_lltvj"]
+[ext_resource type="Script" path="res://skeleton.gd" id="2_wdh3l"]
+[ext_resource type="Texture2D" uid="uid://deaxhx532e7av" path="res://assets/skeleton.png" id="3_frk12"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l45yq"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_frk12")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.4,
+"texture": null
+}],
+"loop": false,
+"name": &"hit",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vudgp"]
+resource_local_to_scene = true
+size = Vector2(20, 29.25)
+
+[node name="Skeleton" instance=ExtResource("1_lltvj")]
+script = ExtResource("2_wdh3l")
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_l45yq")
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(1, 0.625)
+shape = SubResource("RectangleShape2D_vudgp")
