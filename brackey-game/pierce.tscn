@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3oaxt8wq44cd"]
+
+[ext_resource type="PackedScene" uid="uid://c4qhphxraw14n" path="res://shop_item.tscn" id="1_kmuco"]
+[ext_resource type="Script" path="res://pierce.gd" id="2_7gd4t"]
+
+[node name="Pierce" groups=["shop_items"] instance=ExtResource("1_kmuco")]
+script = ExtResource("2_7gd4t")

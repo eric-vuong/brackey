@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://bahfsvl6ghut2"]
+
+[ext_resource type="PackedScene" uid="uid://c4qhphxraw14n" path="res://shop_item.tscn" id="1_nme16"]
+[ext_resource type="Script" path="res://move_speed.gd" id="2_uvwno"]
+
+[node name="MoveSpeed" groups=["shop_items"] instance=ExtResource("1_nme16")]
+script = ExtResource("2_uvwno")

@@ -1,0 +1,9 @@
+extends "res://shop_item.gd"
+func _ready() -> void:
+	item_name = "Move Speed"
+	level_max = 10
+	upgrade_cost = [1,2,3,4,5,6,7,8,9,10] # List of cost per level
+	currency = "blue"
+	description = "How fast you can move"
+	base_stat = Global.player_move_speed
+	super()

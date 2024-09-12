@@ -29,7 +29,7 @@ func _process(delta: float) -> void:
 	# Movement
 	pathing()
 	position += direction * speed * delta
-	
+		
 	
 	# Damage recieved calculation
 	#if check_if_hit():
@@ -75,4 +75,3 @@ func _burn():
 
 func _on_burn_timer_timeout() -> void:
 	take_damage(health*.25)
-	

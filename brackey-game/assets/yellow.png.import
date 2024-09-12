@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://btlgssyen4g3a"
-path="res://.godot/imported/orbtower.png-4e42647050513a986b40c56f2658c6a2.ctex"
+uid="uid://ljwwbtwugvlc"
+path="res://.godot/imported/yellow.png-efd92db3b71a250ff8ddf15099975817.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/orbtower.png"
-dest_files=["res://.godot/imported/orbtower.png-4e42647050513a986b40c56f2658c6a2.ctex"]
+source_file="res://assets/yellow.png"
+dest_files=["res://.godot/imported/yellow.png-efd92db3b71a250ff8ddf15099975817.ctex"]
 
 [params]
 

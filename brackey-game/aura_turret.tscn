@@ -1,16 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://c6tlhvh7awdj8"]
+[gd_scene load_steps=5 format=3 uid="uid://c6tlhvh7awdj8"]
 
 [ext_resource type="PackedScene" uid="uid://dvxlfwsqtp0bd" path="res://base_turret.tscn" id="1_lw5ns"]
-[ext_resource type="Texture2D" uid="uid://btlgssyen4g3a" path="res://assets/orbtower.png" id="2_5slcd"]
+[ext_resource type="Texture2D" uid="uid://c8cbj631edooc" path="res://icon.svg" id="2_k0xw6"]
 [ext_resource type="PackedScene" uid="uid://djf2pj3rhskdc" path="res://base_aura.tscn" id="3_acw36"]
-[ext_resource type="Script" path="res://turret_aura.gd" id="4_xdbmv"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1ba4a"]
 resource_local_to_scene = true
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_5slcd")
+"texture": ExtResource("2_k0xw6")
 }],
 "loop": true,
 "name": &"default",
@@ -18,19 +17,9 @@ animations = [{
 }]
 
 [node name="AuraTurret" instance=ExtResource("1_lw5ns")]
-collision_layer = 0
-collision_mask = 0
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_1ba4a")
 
-[node name="TurretAura" parent="." index="1" groups=["turret_aura"] instance=ExtResource("3_acw36")]
+[node name="BaseAura" parent="AnimatedSprite2D" index="0" instance=ExtResource("3_acw36")]
 show_behind_parent = true
-collision_layer = 16
-collision_mask = 2
-script = ExtResource("4_xdbmv")
-
-[node name="PulseTimer" type="Timer" parent="." index="2"]
-autostart = true
-
-[connection signal="timeout" from="PulseTimer" to="TurretAura" method="_on_pulse_timer_timeout"]

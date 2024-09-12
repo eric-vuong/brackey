@@ -1,0 +1,36 @@
+[gd_scene load_steps=8 format=3 uid="uid://c0fr7tencajh7"]
+
+[ext_resource type="Script" path="res://shop.gd" id="1_f3r13"]
+[ext_resource type="PackedScene" uid="uid://5g01mbfv0k4t" path="res://attack.tscn" id="2_brw4i"]
+[ext_resource type="PackedScene" uid="uid://bu7h3b0qpw5xi" path="res://attack_speed.tscn" id="3_mn1el"]
+[ext_resource type="PackedScene" uid="uid://bahfsvl6ghut2" path="res://move_speed.tscn" id="4_cjq3t"]
+[ext_resource type="PackedScene" uid="uid://cpjsf1awd7exl" path="res://multi_shot.tscn" id="5_xhwry"]
+[ext_resource type="PackedScene" uid="uid://cm1kwy1s232vv" path="res://health.tscn" id="6_e8oy0"]
+[ext_resource type="PackedScene" uid="uid://d3oaxt8wq44cd" path="res://pierce.tscn" id="7_w3lpy"]
+
+[node name="Shop" type="CanvasLayer"]
+script = ExtResource("1_f3r13")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 488.0
+offset_right = 532.0
+offset_bottom = 23.0
+text = "SHOP"
+
+[node name="MoveSpeed" parent="." instance=ExtResource("4_cjq3t")]
+position = Vector2(768, 384)
+
+[node name="MultiShot" parent="." instance=ExtResource("5_xhwry")]
+position = Vector2(448, 384)
+
+[node name="Health" parent="." instance=ExtResource("6_e8oy0")]
+position = Vector2(768, 128)
+
+[node name="Pierce" parent="." instance=ExtResource("7_w3lpy")]
+position = Vector2(128, 384)
+
+[node name="AttackSpeed" parent="." instance=ExtResource("3_mn1el")]
+position = Vector2(448, 128)
+
+[node name="Attack" parent="." instance=ExtResource("2_brw4i")]
+position = Vector2(128, 128)
