@@ -11,7 +11,7 @@ var sprint_bonus = 1.4
 var screen_size
 var is_hitable = true
 var is_dead = false
-var spread = 0.015 # radians or 8.6 deg
+var spread = 0.15 # radians or 8.6 deg
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	screen_size = get_viewport_rect().size
@@ -98,15 +98,19 @@ func shoot():
 			create_bullet(0) # fire straight
 			shots = (shots - 1) * 0.5
 			while shots > 0:
+				print("odd", shots)
 				create_bullet(spread*shots)
 				create_bullet(-spread*shots)
+				shots -= 1
 		else: # even bullets
 			shots = shots * 0.5
 			while shots > 0:
 				create_bullet(spread*shots - spread*0.5)
 				create_bullet(-spread*shots + spread*0.5)
+				shots -= 1
 
 func create_bullet(offset):
+	print("fire,",offset)
 	var b = bullet_scene.instantiate()
 	get_tree().root.add_child(b)
 	b.start_direction(self.global_position, self.global_position.direction_to(get_global_mouse_position()).rotated(offset))

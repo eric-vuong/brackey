@@ -15,8 +15,17 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("pause"):
-		# PAUSE GAME
-		$PauseMenu.pause()
+		if shop_visible():
+			close_shop()
+		else:
+			# PAUSE GAME
+			$PauseMenu.pause()
+	if Input.is_action_just_pressed("interact"):
+		if Global.can_shop and !shop_visible():
+			open_shop()
+		elif shop_visible(): # Hitting key twice closes shop if open
+			close_shop()
+		
 	# DEBUG
 	if Input.is_action_just_pressed("time"):
 		$DayNightTimer.current_time = 1
@@ -49,6 +58,13 @@ func new_game():
 	# Reset core
 	$Core._ready()
 	$RainTileMap.hide()
+
+func open_shop():
+	$Shop.show()
+func close_shop():
+	$Shop.hide()
+func shop_visible():
+	return $Shop.visible
 	
 # temp mob spawning func
 func _on_mob_timer_timeout() -> void:

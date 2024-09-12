@@ -66,6 +66,7 @@ func take_damage(dmg):
 	current_hp -= dmg
 	$Hp.value = current_hp
 	if current_hp <= 0:
+		Global.score += 1
 		queue_free()
 
 func _burn():

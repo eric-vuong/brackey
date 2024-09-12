@@ -16,8 +16,13 @@ func _process(delta: float) -> void:
 		var inside_core = get_overlapping_areas()
 		if inside_core:
 			# Apply damage. flat for now
+			var just_player = true # Ignore if its ONLY the player in here
 			for enemy in inside_core:
-				take_damage(10)
+				if enemy.is_in_group("enemy"):
+					take_damage(10)
+					just_player = false
+			if just_player:
+				return
 			is_hitable = false
 			$DamageTimer.set_wait_time(1)
 			$DamageTimer.start()
@@ -27,14 +32,18 @@ func take_damage(dmg):
 	$CoreHp.value = core_hp
 	if core_hp <= 0:
 		gameover.emit()
+		
+# Detect player to open shop
 func _on_area_entered(area: Area2D) -> void:
-	return # Replace with function body.
-	print("core entered")
-	if area.is_in_group("enemy"):
-		pass
-	var x = self.get_overlapping_areas()
-	print(x)
+	if area.is_in_group("player"):
+		Global.can_shop = true
 
 
 func _on_damage_timer_timeout() -> void:
 	is_hitable = true
+
+
+func _on_area_exited(area: Area2D) -> void:
+	if area.is_in_group("player"):
+		Global.can_shop = false
+		owner.close_shop()
