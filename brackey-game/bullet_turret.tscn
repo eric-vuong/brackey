@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://deoc2ku5hddk0"]
+
+[ext_resource type="PackedScene" uid="uid://dvxlfwsqtp0bd" path="res://base_turret.tscn" id="1_ehqxm"]
+[ext_resource type="Texture2D" uid="uid://c8cbj631edooc" path="res://icon.svg" id="2_50jyb"]
+[ext_resource type="Script" path="res://bullet_turret.gd" id="2_57rvm"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_him18"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_50jyb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="BulletTurret" instance=ExtResource("1_ehqxm")]
+script = ExtResource("2_57rvm")
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_him18")
+
+[node name="BulletTimer" type="Timer" parent="." index="1"]
+
+[connection signal="timeout" from="BulletTimer" to="." method="_on_bullet_timer_timeout"]
