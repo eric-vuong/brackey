@@ -13,9 +13,8 @@ func _process(delta: float) -> void:
 
 func _on_pulse_timer_timeout() -> void:
 	var inside_aura = get_overlapping_areas()
-	print('timeout', inside_aura)
 	if inside_aura:
-		print('area overlapping enemy')
 		for area in inside_aura:
 			if area.is_in_group("enemy"):
+				print('turret aura damaging enemy')
 				area.take_damage(5)
