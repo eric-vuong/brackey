@@ -29,6 +29,7 @@ window/size/resizable=false
 
 enemy=""
 player_bullet=""
+turret_aura=""
 
 [input]
 
@@ -109,6 +110,7 @@ gameoverdebug={
 2d_physics/layer_2="enemy"
 2d_physics/layer_3="bullet"
 2d_physics/layer_4="core"
+2d_physics/layer_5="turret_aura"
 
 [rendering]
 

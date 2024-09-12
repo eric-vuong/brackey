@@ -16,13 +16,14 @@ animations = [{
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3ryrl"]
 resource_local_to_scene = true
-size = Vector2(256.5, 256.5)
+size = Vector2(128, 128)
 
 [node name="BaseAura" type="Area2D"]
+collision_layer = 0
+collision_mask = 0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 self_modulate = Color(1, 1, 1, 0.498039)
-scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_7gw22")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
