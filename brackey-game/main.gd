@@ -40,6 +40,7 @@ func game_over():
 	$DayNightTimer.stop() # Stop time
 	$Core/CollisionShape2D.disabled = true # Stop core from being hit
 	$Core/CollisionShape2D.disabled = true # Stop player from being hit
+	$GameOver.set_score()
 	$GameOver.show()
 # Reset day counter and timer, clear enemies, clear towers, reset core hp, reset player and position
 func new_game():
@@ -53,6 +54,8 @@ func new_game():
 	# Kill all enemies
 	for e in get_tree().get_nodes_in_group("enemy"):
 		e.queue_free()
+	# Reset global
+	Global._ready()
 	# Reset player
 	$Player._ready()
 	# Reset core

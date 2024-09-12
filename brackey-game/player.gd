@@ -98,7 +98,6 @@ func shoot():
 			create_bullet(0) # fire straight
 			shots = (shots - 1) * 0.5
 			while shots > 0:
-				print("odd", shots)
 				create_bullet(spread*shots)
 				create_bullet(-spread*shots)
 				shots -= 1
@@ -110,7 +109,6 @@ func shoot():
 				shots -= 1
 
 func create_bullet(offset):
-	print("fire,",offset)
 	var b = bullet_scene.instantiate()
 	get_tree().root.add_child(b)
 	b.start_direction(self.global_position, self.global_position.direction_to(get_global_mouse_position()).rotated(offset))

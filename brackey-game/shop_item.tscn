@@ -40,7 +40,7 @@ text = "x3"
 offset_left = -86.0
 offset_top = 104.0
 offset_right = 100.0
-offset_bottom = 127.0
+offset_bottom = 175.0
 text = "desc"
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
