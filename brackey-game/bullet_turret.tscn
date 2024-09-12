@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://deoc2ku5hddk0"]
+[gd_scene load_steps=6 format=3 uid="uid://deoc2ku5hddk0"]
 
 [ext_resource type="PackedScene" uid="uid://dvxlfwsqtp0bd" path="res://base_turret.tscn" id="1_ehqxm"]
 [ext_resource type="Texture2D" uid="uid://c8cbj631edooc" path="res://icon.svg" id="2_50jyb"]
@@ -16,12 +16,22 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_qvrkd"]
+radius = 128.016
+
 [node name="BulletTurret" instance=ExtResource("1_ehqxm")]
+collision_layer = 0
+collision_mask = 2
 script = ExtResource("2_57rvm")
 
 [node name="AnimatedSprite2D" parent="." index="0"]
+scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_him18")
 
 [node name="BulletTimer" type="Timer" parent="." index="1"]
+autostart = true
+
+[node name="TurretRange" type="CollisionShape2D" parent="." index="2"]
+shape = SubResource("CircleShape2D_qvrkd")
 
 [connection signal="timeout" from="BulletTimer" to="." method="_on_bullet_timer_timeout"]
