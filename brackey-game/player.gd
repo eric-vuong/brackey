@@ -1,11 +1,9 @@
 extends Area2D
 signal gameover
-@export var speed = 150
 @export var bullet_scene = preload("res://bullet.tscn")
 @export var max_hp = 40
 var current_hp: int
 var can_shoot = true
-var fire_rate = .4 # Seconds of downtime between shots
 var autofire = false
 var is_sprinting = false
 var is_dodging = false
@@ -13,6 +11,7 @@ var sprint_bonus = 1.4
 var screen_size
 var is_hitable = true
 var is_dead = false
+var spread = 0.015 # radians or 8.6 deg
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	screen_size = get_viewport_rect().size
@@ -58,9 +57,9 @@ func _process(delta: float) -> void:
 
 	if velocity.length() > 0:
 		if is_sprinting:
-			velocity = velocity.normalized() * speed * sprint_bonus
+			velocity = velocity.normalized() * Global.player_move_speed * sprint_bonus
 		else:
-			velocity = velocity.normalized() * speed
+			velocity = velocity.normalized() * Global.player_move_speed
 		$AnimatedSprite2D.play()
 	else:
 		$AnimatedSprite2D.stop()
@@ -90,13 +89,27 @@ func _process(delta: float) -> void:
 func shoot():
 	if can_shoot:
 		can_shoot = false
-		var b = bullet_scene.instantiate()
-		get_tree().root.add_child(b)
-		b.start_direction(self.global_position, self.global_position.direction_to(get_global_mouse_position()))
 		# Wait
-		$BulletTimer.set_wait_time(fire_rate)
+		$BulletTimer.set_wait_time(Global.fire_rate)
 		$BulletTimer.start()
+		# Fire odd number of bullets
+		var shots = Global.multi_shot
+		if shots % 2 == 1: # odd
+			create_bullet(0) # fire straight
+			shots = (shots - 1) * 0.5
+			while shots > 0:
+				create_bullet(spread*shots)
+				create_bullet(-spread*shots)
+		else: # even bullets
+			shots = shots * 0.5
+			while shots > 0:
+				create_bullet(spread*shots - spread*0.5)
+				create_bullet(-spread*shots + spread*0.5)
 
+func create_bullet(offset):
+	var b = bullet_scene.instantiate()
+	get_tree().root.add_child(b)
+	b.start_direction(self.global_position, self.global_position.direction_to(get_global_mouse_position()).rotated(offset))
 
 func _on_bullet_timer_timeout() -> void:
 	can_shoot = true
@@ -107,7 +120,7 @@ func _on_area_entered(area: Area2D) -> void:
 	print("Player hit by enemy")
 	
 func take_damage(dmg):
-	current_hp -= dmg
+	current_hp -= (dmg * (100 - Global.player_defense) * 0.01)
 	$HpBar.value = current_hp
 	if current_hp <= 0:
 		is_dead = true

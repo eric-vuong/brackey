@@ -4,12 +4,16 @@ extends Node
 
 # Player values
 var player_pos: Vector2
-
+var player_move_speed: int
+var player_defense: int
 # Core
 var core_pos: Vector2
 
 # Player Bullet
-var bullet_damage: int = 10
+var bullet_damage: int
+var pierce: int
+var fire_rate: float
+var multi_shot: int
 
 # Time
 var is_day: bool = true
@@ -18,7 +22,12 @@ var night_duration: int
 var current_time: int
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	player_move_speed = 150
+	player_defense = 0
+	bullet_damage = 10
+	pierce = 0
+	fire_rate = 0.75
+	multi_shot = 1
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

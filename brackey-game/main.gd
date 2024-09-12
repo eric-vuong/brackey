@@ -17,8 +17,12 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("pause"):
 		# PAUSE GAME
 		$PauseMenu.pause()
+	# DEBUG
+	if Input.is_action_just_pressed("time"):
+		$DayNightTimer.current_time = 1
 	if Input.is_action_just_pressed("gameoverdebug"):
 		$Core.take_damage(999)
+	
 		
 # Stop mob spawning, day night, show score, stop player
 func game_over():
