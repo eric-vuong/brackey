@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dpk0n5eh7cgq6"]
+[gd_scene load_steps=7 format=3 uid="uid://77xm0phc17xq"]
 
 [ext_resource type="PackedScene" uid="uid://1s17c7oi7wic" path="res://base_enemy.tscn" id="1_uc0r0"]
 [ext_resource type="Script" path="res://charge_enemy.gd" id="2_52dhc"]
@@ -50,8 +50,10 @@ shape = SubResource("CircleShape2D_4s81n")
 debug_color = Color(0.947358, 3.56168e-06, 0.583463, 0.42)
 
 [node name="ChargeTimer" type="Timer" parent="." index="5"]
+one_shot = true
 
 [node name="ChargeCooldownTimer" type="Timer" parent="." index="6"]
+one_shot = true
 
 [connection signal="timeout" from="ChargeTimer" to="." method="_on_charge_timer_timeout"]
 [connection signal="timeout" from="ChargeCooldownTimer" to="." method="_on_charge_cooldown_timer_timeout"]

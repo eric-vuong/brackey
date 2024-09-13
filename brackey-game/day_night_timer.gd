@@ -1,6 +1,6 @@
 extends Timer
 signal is_daytime(is_day)
-var DAY_DURATION = 3 #seconds
+var DAY_DURATION = 2 #seconds
 var NIGHT_DURATION = 99
 var START_TIME = DAY_DURATION + NIGHT_DURATION
 var current_time = START_TIME
