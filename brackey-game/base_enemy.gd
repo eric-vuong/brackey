@@ -42,6 +42,7 @@ func _process(delta: float) -> void:
 	#Global.active_attacks.erase(get_instance_id())
 
 func hit_animation():
+	return
 	# example https://forum.godotengine.org/t/want-enemy-to-play-hurt-animation-when-hit/59639/3
 	if $AnimatedSprite2D.animation == "hit" and $AnimatedSprite2D.is_playing():
 		pass
@@ -53,7 +54,7 @@ func _on_area_entered(area: Area2D) -> void:
 	#print("enemy was hit")
 	if area.is_in_group("player_bullet"):
 		take_damage(Global.bullet_damage)
-	$AnimatedSprite2D.play("hit")
+	#$AnimatedSprite2D.play("hit")
 
 # Move toward target position
 func pathing(delta):
