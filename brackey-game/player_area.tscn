@@ -1,15 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://bbevq5pfxujjd"]
+[gd_scene load_steps=6 format=3 uid="uid://bn0206n4aejgv"]
 
-[ext_resource type="Script" path="res://player.gd" id="1_ylha0"]
-[ext_resource type="Texture2D" uid="uid://b0n21xmgmcbbq" path="res://assets/PlayerCharacter2.png" id="2_2q6hd"]
-[ext_resource type="Texture2D" uid="uid://dbij4ucwxhk3k" path="res://assets/PlayerCharacter.png" id="3_kvo6q"]
-[ext_resource type="PackedScene" uid="uid://do6hmna8ldk07" path="res://night_effect.tscn" id="4_klnlm"]
+[ext_resource type="Texture2D" uid="uid://b0n21xmgmcbbq" path="res://assets/PlayerCharacter2.png" id="2_r85ch"]
+[ext_resource type="Texture2D" uid="uid://dbij4ucwxhk3k" path="res://assets/PlayerCharacter.png" id="3_hxfqq"]
+[ext_resource type="PackedScene" uid="uid://do6hmna8ldk07" path="res://night_effect.tscn" id="4_xv0ww"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fy8px"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_2q6hd")
+"texture": ExtResource("2_r85ch")
 }],
 "loop": true,
 "name": &"back",
@@ -17,7 +16,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_kvo6q")
+"texture": ExtResource("3_hxfqq")
 }],
 "loop": true,
 "name": &"default",
@@ -27,9 +26,8 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_83srx"]
 size = Vector2(35, 46)
 
-[node name="Player" type="Area2D" groups=["player"]]
+[node name="PlayerArea" type="Area2D" groups=["player"]]
 collision_mask = 2
-script = ExtResource("1_ylha0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_fy8px")
@@ -41,7 +39,7 @@ shape = SubResource("RectangleShape2D_83srx")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="NightEffect" parent="Camera2D" instance=ExtResource("4_klnlm")]
+[node name="NightEffect" parent="Camera2D" instance=ExtResource("4_xv0ww")]
 
 [node name="BulletTimer" type="Timer" parent="."]
 

@@ -1,8 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://cuucqgabqtgp6"]
+[gd_scene load_steps=13 format=3 uid="uid://cuucqgabqtgp6"]
 
 [ext_resource type="PackedScene" uid="uid://cpw5fiy31v8m6" path="res://map.tscn" id="1_dfmti"]
 [ext_resource type="Script" path="res://main.gd" id="1_eoepo"]
-[ext_resource type="PackedScene" uid="uid://bbevq5pfxujjd" path="res://player.tscn" id="2_60jih"]
+[ext_resource type="PackedScene" uid="uid://b3ebp1bga3qoa" path="res://player_body.tscn" id="3_18i0j"]
 [ext_resource type="PackedScene" uid="uid://dt4842xoch7j3" path="res://day_night_timer.tscn" id="5_8q024"]
 [ext_resource type="PackedScene" uid="uid://c0ii4r4tb8bk1" path="res://pause_menu.tscn" id="6_axkk1"]
 [ext_resource type="PackedScene" uid="uid://cccvnvv4prnv4" path="res://rain_tile_map.tscn" id="7_el2r5"]
@@ -17,14 +17,17 @@ _data = {
 }
 point_count = 5
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_layj4"]
+size = Vector2(32, 162)
+
 [node name="Main" type="Node2D"]
 script = ExtResource("1_eoepo")
 
 [node name="Map" parent="." instance=ExtResource("1_dfmti")]
 position = Vector2(-26, -368)
 
-[node name="Player" parent="." instance=ExtResource("2_60jih")]
-position = Vector2(388, 205)
+[node name="PlayerBody" parent="." instance=ExtResource("3_18i0j")]
+position = Vector2(229, 114)
 
 [node name="Core" parent="." instance=ExtResource("7_l08wi")]
 position = Vector2(379, 368)
@@ -47,14 +50,18 @@ rotation = 0.00484962
 visible = false
 
 [node name="GameOver" parent="." instance=ExtResource("8_u6yxw")]
+visible = false
 
 [node name="Shop" parent="." instance=ExtResource("9_oa4go")]
 
 [node name="HUD" parent="." instance=ExtResource("10_hdhff")]
 
-[connection signal="gameover" from="Player" to="." method="_on_player_gameover"]
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(447, 137)
+shape = SubResource("RectangleShape2D_layj4")
+
 [connection signal="gameover" from="Core" to="." method="_on_core_gameover"]
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
 [connection signal="is_daytime" from="DayNightTimer" to="." method="_on_day_night_timer_is_daytime"]
-
-[editable path="Player"]

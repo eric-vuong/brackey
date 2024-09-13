@@ -1,4 +1,4 @@
-extends Area2D
+extends CharacterBody2D
 signal gameover
 @export var bullet_scene = preload("res://bullet.tscn")
 @export var max_hp = 40
@@ -16,8 +16,8 @@ var spread = 0.15 # radians or 8.6 deg
 func _ready() -> void:
 	screen_size = get_viewport_rect().size
 	current_hp = max_hp
-	$HpBar.max_value = max_hp
-	$HpBar.value = current_hp
+	$PlayerArea/HpBar.max_value = max_hp
+	$PlayerArea/HpBar.value = current_hp
 	global_position = Vector2(200,200)
 	is_dead = false
 	is_hitable = true
@@ -60,11 +60,11 @@ func _process(delta: float) -> void:
 			velocity = velocity.normalized() * Global.player_move_speed * sprint_bonus
 		else:
 			velocity = velocity.normalized() * Global.player_move_speed
-		$AnimatedSprite2D.play()
+		$PlayerArea/AnimatedSprite2D.play()
 	else:
-		$AnimatedSprite2D.stop()
+		$PlayerArea/AnimatedSprite2D.stop()
 	position += velocity * delta
-	position = position.clamp(Vector2.ZERO, screen_size)
+	#position = position.clamp(Vector2.ZERO, screen_size)
 	if velocity.x != 0:
 		pass
 		#$AnimatedSprite2D.animation = "walk"
@@ -77,26 +77,29 @@ func _process(delta: float) -> void:
 		#$AnimatedSprite2D.flip_v = velocity.y > 0
 	# show back when moving up
 	if velocity.y < 0:
-		$AnimatedSprite2D.animation = "back"
+		$PlayerArea/AnimatedSprite2D.animation = "back"
 	else:
-		$AnimatedSprite2D.animation = "default"
+		$PlayerArea/AnimatedSprite2D.animation = "default"
 	# Take damage
 	if is_hitable:
-		var inside_player = get_overlapping_areas()
+		var inside_player = $PlayerArea.get_overlapping_areas()
 		if inside_player:
 			# Apply damage. flat for now
 			for enemy in inside_player:
 				take_damage(10)
 			is_hitable = false
-			$DamageTimer.set_wait_time(1)
-			$DamageTimer.start()
+			$PlayerArea/DamageTimer.set_wait_time(1)
+			$PlayerArea/DamageTimer.start()
+	
+	#physics collisions
+	move_and_slide()
 
 func shoot():
 	if can_shoot:
 		can_shoot = false
 		# Wait
-		$BulletTimer.set_wait_time(Global.fire_rate)
-		$BulletTimer.start()
+		$PlayerArea/BulletTimer.set_wait_time(Global.fire_rate)
+		$PlayerArea/BulletTimer.start()
 		# Fire odd number of bullets
 		var shots = Global.multi_shot
 		if shots % 2 == 1: # odd
@@ -122,13 +125,13 @@ func _on_bullet_timer_timeout() -> void:
 	can_shoot = true
 
 
-func _on_area_entered(area: Area2D) -> void:
-	pass # Replace with function body.
-	print("Player hit by enemy")
+#func _on_area_entered(area: Area2D) -> void:
+	#pass # Replace with function body.
+	#print("Player hit by enemy")
 	
 func take_damage(dmg):
 	current_hp -= (dmg * (100 - Global.player_defense) * 0.01)
-	$HpBar.value = current_hp
+	$PlayerArea/HpBar.value = current_hp
 	if current_hp <= 0:
 		is_dead = true
 		gameover.emit()
@@ -137,3 +140,8 @@ func take_damage(dmg):
 
 func _on_damage_timer_timeout() -> void:
 	is_hitable = true
+
+
+func _on_player_area_area_entered(area: Area2D) -> void:
+	pass # Replace with function body.
+	print("Player hit by enemy")
