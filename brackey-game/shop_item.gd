@@ -58,7 +58,7 @@ func upgrade():
 		$Name.set_text(item_name + ": " + str(Global.multi_shot))
 	elif item_name == "Defense":
 		Global.player_defense += 15
-		$Name.set_text(item_name + ": " + str(Global.player_defense))
+		$Name.set_text(item_name + ": " + str(Global.player_defense) + "%")
 	elif item_name == "Move Speed":
 		Global.player_move_speed += 5
 		$Name.set_text(item_name + ": " + str(Global.player_move_speed))

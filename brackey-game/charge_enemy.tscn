@@ -14,14 +14,6 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 5.0
-}, {
-"frames": [{
-"duration": 0.4,
-"texture": null
-}],
-"loop": false,
-"name": &"hit",
-"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nu55n"]
