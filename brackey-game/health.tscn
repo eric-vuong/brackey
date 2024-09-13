@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://cm1kwy1s232vv"]
+[gd_scene load_steps=4 format=3 uid="uid://cm1kwy1s232vv"]
 
 [ext_resource type="PackedScene" uid="uid://c4qhphxraw14n" path="res://shop_item.tscn" id="1_0o7ms"]
+[ext_resource type="Texture2D" uid="uid://b7h0cn6rhqewn" path="res://assets/def.png" id="2_2d6ws"]
 [ext_resource type="Script" path="res://health.gd" id="2_fpnk5"]
 
 [node name="Health" groups=["shop_items"] instance=ExtResource("1_0o7ms")]
+texture = ExtResource("2_2d6ws")
 script = ExtResource("2_fpnk5")

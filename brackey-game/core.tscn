@@ -30,6 +30,7 @@ shape = SubResource("RectangleShape2D_8dlyo")
 sprite_frames = SubResource("SpriteFrames_fyi4h")
 
 [node name="CoreHp" type="ProgressBar" parent="."]
+visible = false
 offset_left = -60.0
 offset_top = 69.0
 offset_right = 59.0

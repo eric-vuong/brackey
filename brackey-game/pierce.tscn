@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://d3oaxt8wq44cd"]
+[gd_scene load_steps=4 format=3 uid="uid://d3oaxt8wq44cd"]
 
 [ext_resource type="PackedScene" uid="uid://c4qhphxraw14n" path="res://shop_item.tscn" id="1_kmuco"]
 [ext_resource type="Script" path="res://pierce.gd" id="2_7gd4t"]
+[ext_resource type="Texture2D" uid="uid://k0p2trc46ry7" path="res://assets/pierce.png" id="2_n7ku6"]
 
 [node name="Pierce" groups=["shop_items"] instance=ExtResource("1_kmuco")]
+texture = ExtResource("2_n7ku6")
 script = ExtResource("2_7gd4t")

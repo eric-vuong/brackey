@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://cpjsf1awd7exl"]
+[gd_scene load_steps=4 format=3 uid="uid://cpjsf1awd7exl"]
 
 [ext_resource type="PackedScene" uid="uid://c4qhphxraw14n" path="res://shop_item.tscn" id="1_f6siu"]
+[ext_resource type="Texture2D" uid="uid://hxpqvwmbh7b" path="res://assets/multi.png" id="2_cffiq"]
 [ext_resource type="Script" path="res://multi_shot.gd" id="2_lfv67"]
 
 [node name="MultiShot" groups=["shop_items"] instance=ExtResource("1_f6siu")]
+texture = ExtResource("2_cffiq")
 script = ExtResource("2_lfv67")

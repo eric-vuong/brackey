@@ -18,14 +18,15 @@ animations = [{
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vudgp"]
 resource_local_to_scene = true
-size = Vector2(20, 29.25)
+size = Vector2(27, 54)
 
 [node name="Skeleton" instance=ExtResource("1_lltvj")]
 script = ExtResource("2_wdh3l")
 
 [node name="AnimatedSprite2D" parent="." index="0"]
+scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_l45yq")
 
 [node name="CollisionShape2D" parent="." index="1"]
-position = Vector2(1, 0.625)
+position = Vector2(3.5, 1)
 shape = SubResource("RectangleShape2D_vudgp")

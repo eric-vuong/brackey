@@ -9,7 +9,8 @@ var player_defense: int
 var can_shop: bool
 # Core
 var core_pos: Vector2
-
+var core_max_hp = 1000
+var core_hp: int
 # Player Bullet
 var bullet_damage: int
 var pierce: int
@@ -49,6 +50,8 @@ func _ready() -> void:
 	yellow = 1000
 	red = 1000
 	blue = 1000
+	
+	core_hp = core_max_hp
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

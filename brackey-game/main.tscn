@@ -21,13 +21,13 @@ point_count = 5
 script = ExtResource("1_eoepo")
 
 [node name="Map" parent="." instance=ExtResource("1_dfmti")]
-position = Vector2(15, -21)
+position = Vector2(-26, -368)
 
 [node name="Player" parent="." instance=ExtResource("2_60jih")]
-position = Vector2(354, 256)
+position = Vector2(388, 205)
 
 [node name="Core" parent="." instance=ExtResource("7_l08wi")]
-position = Vector2(387, 360)
+position = Vector2(379, 368)
 
 [node name="MobTimer" type="Timer" parent="."]
 wait_time = 1.5
@@ -44,6 +44,7 @@ rotation = 0.00484962
 [node name="PauseMenu" parent="." instance=ExtResource("6_axkk1")]
 
 [node name="RainTileMap" parent="." instance=ExtResource("7_el2r5")]
+visible = false
 
 [node name="GameOver" parent="." instance=ExtResource("8_u6yxw")]
 

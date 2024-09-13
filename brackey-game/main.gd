@@ -18,6 +18,8 @@ var enemy_list = [wind, demon, genie, witch, skeleton, charge_enemy]
 func _ready() -> void:
 	pass # Replace with function body.
 	$PauseMenu.parent = self
+	# Connect core hurt signal
+	$Core.connect("core_hurt", _core_hurt)
 	new_game()
 
 
@@ -78,6 +80,7 @@ func new_game():
 	for i in get_tree().get_nodes_in_group("items"):
 		i.queue_free()
 	update_money()
+	$HUD._ready()
 
 func open_shop():
 	$Shop.show()
@@ -95,7 +98,8 @@ func spawn_money(currency, pos):
 	if currency == "blue":
 		c = blue.instantiate()
 	c.global_position = pos
-	add_child(c)
+	call_deferred("add_child", c)
+	#add_child(c)
 
 func update_money():
 	$HUD.update_count()
@@ -134,4 +138,6 @@ func _on_player_gameover() -> void:
 func _on_core_gameover() -> void:
 	$Player.is_dead = true
 	game_over()
-	
+
+func _core_hurt():
+	$HUD.update_core()

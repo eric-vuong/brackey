@@ -12,25 +12,25 @@
 script = ExtResource("1_f3r13")
 
 [node name="Label" type="Label" parent="."]
-offset_left = 488.0
-offset_right = 532.0
+offset_left = 312.0
+offset_right = 356.0
 offset_bottom = 23.0
-text = "SHOP"
+text = "Upgrades"
 
 [node name="MoveSpeed" parent="." instance=ExtResource("4_cjq3t")]
-position = Vector2(768, 384)
+position = Vector2(496, 202)
 
 [node name="MultiShot" parent="." instance=ExtResource("5_xhwry")]
-position = Vector2(448, 384)
+position = Vector2(288, 202)
 
 [node name="Health" parent="." instance=ExtResource("6_e8oy0")]
-position = Vector2(768, 128)
+position = Vector2(496, 68)
 
 [node name="Pierce" parent="." instance=ExtResource("7_w3lpy")]
-position = Vector2(128, 384)
+position = Vector2(80, 202)
 
 [node name="AttackSpeed" parent="." instance=ExtResource("3_mn1el")]
-position = Vector2(448, 128)
+position = Vector2(288, 68)
 
 [node name="Attack" parent="." instance=ExtResource("2_brw4i")]
-position = Vector2(128, 128)
+position = Vector2(80, 68)

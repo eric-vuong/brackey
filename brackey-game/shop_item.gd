@@ -21,7 +21,7 @@ func _ready() -> void:
 	$ProgressBar.value = 0
 	$Description.set_text(description)
 	if len(upgrade_cost) > 0:
-		$Cost.set_text(str(upgrade_cost[upgrade_level]))
+		$Cost.set_text("x" + str(upgrade_cost[upgrade_level]))
 	else:
 		print("Error: No upgrade costs given")
 	if currency == "yellow":
@@ -53,7 +53,8 @@ func upgrade():
 		$Name.set_text(item_name + ": " + str(Global.pierce))
 	elif item_name == "Attack Speed":
 		Global.fire_rate *= 0.9
-		$Name.set_text(item_name + ": " + str(Global.fire_rate))
+		var fire_rate_rounded = round(Global.fire_rate * 100) * 0.01
+		$Name.set_text(item_name + ": " + str(fire_rate_rounded))
 	elif item_name == "Multishot":
 		Global.multi_shot += 1
 		$Name.set_text(item_name + ": " + str(Global.multi_shot))
@@ -69,7 +70,7 @@ func upgrade():
 	# Update store elements
 	$ProgressBar.value += 1
 	if upgrade_level < len(upgrade_cost):
-		$Cost.set_text(str(upgrade_cost[upgrade_level]))
+		$Cost.set_text("x" + str(upgrade_cost[upgrade_level]))
 		$Level.set_text(str(upgrade_level) + "/" + str(level_max))
 	else:
 		# Max upgrade

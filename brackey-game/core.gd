@@ -1,14 +1,17 @@
 extends Area2D
 signal gameover
-var core_max = 1000
-@export var core_hp = 1000
+signal core_hurt # Hud will update health bar and show warning
+#var core_max = 1000
+#@export var core_hp = 1000
 var is_hitable = true # Switches to false after being hit for a brief period
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Global.core_pos = self.position
-	core_hp = core_max
-	$CoreHp.max_value = core_max
-	$CoreHp.value = core_hp
+	# Core hp moved to global
+	
+	#core_hp = core_max
+	#$CoreHp.max_value = core_max
+	#$CoreHp.value = core_hp
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -28,9 +31,12 @@ func _process(delta: float) -> void:
 			$DamageTimer.start()
 
 func take_damage(dmg):
-	core_hp -= dmg
-	$CoreHp.value = core_hp
-	if core_hp <= 0:
+	Global.core_hp -= dmg
+	#$CoreHp.value = core_hp
+	
+	# Emit signal
+	core_hurt.emit()
+	if Global.core_hp <= 0:
 		gameover.emit()
 		
 # Detect player to open shop
