@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=3 uid="uid://hgv1rjvbngwy"]
+
+[ext_resource type="Script" path="res://hud.gd" id="1_cqr1a"]
+[ext_resource type="Texture2D" uid="uid://ljwwbtwugvlc" path="res://assets/yellow.png" id="1_jtdms"]
+[ext_resource type="Texture2D" uid="uid://blqjvl4k2cxoe" path="res://assets/red.png" id="2_2ryyd"]
+[ext_resource type="Texture2D" uid="uid://c5i2u4ct2sk4m" path="res://assets/blue.png" id="3_uxii5"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_cqr1a")
+
+[node name="Yellow" type="Sprite2D" parent="."]
+position = Vector2(72, 53)
+texture = ExtResource("1_jtdms")
+
+[node name="YellowCount" type="Label" parent="Yellow"]
+offset_left = -11.0
+offset_top = 39.0
+offset_right = 29.0
+offset_bottom = 62.0
+text = "0
+"
+
+[node name="Red" type="Sprite2D" parent="."]
+position = Vector2(239, 54)
+texture = ExtResource("2_2ryyd")
+
+[node name="RedCount" type="Label" parent="Red"]
+offset_left = -20.0
+offset_top = 45.0
+offset_right = 20.0
+offset_bottom = 68.0
+text = "0
+"
+
+[node name="Blue" type="Sprite2D" parent="."]
+position = Vector2(397, 53)
+texture = ExtResource("3_uxii5")
+
+[node name="BlueCount" type="Label" parent="Blue"]
+offset_left = -21.0
+offset_top = 44.0
+offset_right = 19.0
+offset_bottom = 67.0
+text = "0
+"

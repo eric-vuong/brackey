@@ -1,18 +1,29 @@
-[gd_scene load_steps=5 format=3 uid="uid://bomrcynhtrqw0"]
+[gd_scene load_steps=6 format=3 uid="uid://bomrcynhtrqw0"]
 
 [ext_resource type="Script" path="res://bullet.gd" id="1_arx16"]
-[ext_resource type="Texture2D" uid="uid://c8cbj631edooc" path="res://icon.svg" id="2_d0yex"]
+[ext_resource type="Texture2D" uid="uid://baorvvun31jgv" path="res://assets/fire.png" id="2_ctok2"]
+[ext_resource type="Texture2D" uid="uid://cpvyrcmp0lsq8" path="res://assets/bluefire.png" id="3_82nne"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7vwjh"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ac2hs"]
+radius = 4.5
+height = 16.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_v5sin"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_d0yex")
+"texture": ExtResource("2_ctok2")
 }],
 "loop": true,
 "name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_82nne")
+}],
+"loop": true,
+"name": &"upgraded",
 "speed": 5.0
 }]
 
@@ -22,10 +33,12 @@ collision_mask = 2
 script = ExtResource("1_arx16")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_7vwjh")
+position = Vector2(0, 0.5)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_ac2hs")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.1, 0.1)
+rotation = -1.5708
 sprite_frames = SubResource("SpriteFrames_v5sin")
 
 [node name="Timer" type="Timer" parent="."]

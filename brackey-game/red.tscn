@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://2heg1gt8edb0"]
+
+[ext_resource type="PackedScene" uid="uid://drxnehl8hegs3" path="res://item_drop.tscn" id="1_lgayb"]
+[ext_resource type="Texture2D" uid="uid://blqjvl4k2cxoe" path="res://assets/red.png" id="2_arn75"]
+[ext_resource type="Script" path="res://red.gd" id="2_prbxs"]
+
+[node name="Red" instance=ExtResource("1_lgayb")]
+script = ExtResource("2_prbxs")
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_arn75")

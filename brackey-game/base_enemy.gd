@@ -1,11 +1,12 @@
 extends Area2D
-
 @export var health = 100
 var current_hp = 1
 @export var target: String# Player or core
 @export var speed: int = 30
 var direction: Vector2
 var burning = false
+var drops = null
+var droprate = 5 # as in 1 in 5
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$Hp.max_value = health
@@ -15,7 +16,9 @@ func _ready() -> void:
 	if target != "Player" and target != "Core":
 		target = target_types[randi() % 2]
 	#add_to_group("enemy")
-	
+	# Set random drop type if not defined
+	if drops == null:
+		drops = ["yellow", "red", "blue"][randi() % 3]
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -70,6 +73,10 @@ func take_damage(dmg):
 	$Hp.value = current_hp
 	if current_hp <= 0:
 		Global.score += 1
+		# Spawn money
+		if randi() % droprate == 0:
+			# Tell main to load money at this position
+			get_parent().spawn_money(drops, self.global_position)
 		queue_free()
 
 func _burn():

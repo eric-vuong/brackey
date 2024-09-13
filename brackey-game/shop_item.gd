@@ -42,6 +42,7 @@ func _on_upgrade_pressed() -> void:
 	pass
 
 func upgrade():
+	get_tree().current_scene.update_money()
 	upgrade_level += 1
 	# UPGRADE SPECIFIC STAT
 	if item_name == "Attack":

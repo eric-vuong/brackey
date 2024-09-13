@@ -1,4 +1,10 @@
 extends Node2D
+
+# Currency
+var yellow = preload("res://yellow.tscn")
+var red = preload("res://red.tscn")
+var blue = preload("res://blue.tscn")
+
 var wind = preload("res://wind_enemy.tscn")
 var demon = preload("res://demon.tscn")
 var genie = preload("res://genie.tscn")
@@ -68,6 +74,10 @@ func new_game():
 	for s in get_tree().get_nodes_in_group("shop_items"):
 		#print(s)
 		s._ready()
+	# Handle money stuff
+	for i in get_tree().get_nodes_in_group("items"):
+		i.queue_free()
+	update_money()
 
 func open_shop():
 	$Shop.show()
@@ -75,6 +85,20 @@ func close_shop():
 	$Shop.hide()
 func shop_visible():
 	return $Shop.visible
+	
+func spawn_money(currency, pos):
+	var c
+	if currency == "yellow":
+		c = yellow.instantiate()
+	if currency == "red":
+		c = red.instantiate()
+	if currency == "blue":
+		c = blue.instantiate()
+	c.global_position = pos
+	add_child(c)
+
+func update_money():
+	$HUD.update_count()
 	
 # temp mob spawning func
 func _on_mob_timer_timeout() -> void:
@@ -110,3 +134,4 @@ func _on_player_gameover() -> void:
 func _on_core_gameover() -> void:
 	$Player.is_dead = true
 	game_over()
+	

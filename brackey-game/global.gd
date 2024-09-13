@@ -27,6 +27,15 @@ var score = 0
 var yellow = 0
 var red = 0
 var blue = 0
+
+# Modifiers
+var bullet_size_mod = 1
+var accuracy = 1
+var run_and_gun = false
+var reverse_shots = false
+var life_time_mod = 1
+var multi_bonus = 0
+var bullet_damage_mod = 1
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	player_move_speed = 150

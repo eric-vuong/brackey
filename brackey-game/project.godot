@@ -34,6 +34,7 @@ player_bullet=""
 turret_aura=""
 shop_items=""
 player=""
+items=""
 
 [input]
 
@@ -125,6 +126,7 @@ interact={
 2d_physics/layer_3="bullet"
 2d_physics/layer_4="core"
 2d_physics/layer_5="turret_aura"
+2d_physics/layer_6="item"
 
 [rendering]
 
