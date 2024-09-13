@@ -19,17 +19,10 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	# example https://forum.godotengine.org/t/want-enemy-to-play-hurt-animation-when-hit/59639/3
-	if $AnimatedSprite2D.animation == "hit" and $AnimatedSprite2D.is_playing():
-		pass
-	elif $AnimatedSprite2D.animation != "default":
-		#print('playing default animation')
-		$AnimatedSprite2D.play("default")
+	hit_animation()
 		
 	# Movement
-	pathing()
-	position += direction * speed * delta
-		
+	pathing(delta)
 	
 	# Damage recieved calculation
 	#if check_if_hit():
@@ -47,7 +40,14 @@ func _process(delta: float) -> void:
 			#for attacker_id in Global.active_attacks[get_instance_id()][attack_type].keys():
 				#print("attack type: ", attack_type," attacker id: ", attacker_id, " attack value: ", Global.active_attacks[get_instance_id()][attack_type][attacker_id])
 	#Global.active_attacks.erase(get_instance_id())
-		
+
+func hit_animation():
+	# example https://forum.godotengine.org/t/want-enemy-to-play-hurt-animation-when-hit/59639/3
+	if $AnimatedSprite2D.animation == "hit" and $AnimatedSprite2D.is_playing():
+		pass
+	elif $AnimatedSprite2D.animation != "default":
+		#print('playing default animation')
+		$AnimatedSprite2D.play("default")
 
 func _on_area_entered(area: Area2D) -> void:
 	#print("enemy was hit")
@@ -56,11 +56,13 @@ func _on_area_entered(area: Area2D) -> void:
 	$AnimatedSprite2D.play("hit")
 
 # Move toward target position
-func pathing():
+func pathing(delta):
 	if target == "Player":
 		direction = self.global_position.direction_to(Global.player_pos)
 	elif target == "Core":
 		direction = self.global_position.direction_to(Global.core_pos)
+	position += direction * speed * delta
+	
 # Reduce hp
 func take_damage(dmg):
 	current_hp -= dmg

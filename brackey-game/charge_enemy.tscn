@@ -1,0 +1,57 @@
+[gd_scene load_steps=7 format=3 uid="uid://dpk0n5eh7cgq6"]
+
+[ext_resource type="PackedScene" uid="uid://1s17c7oi7wic" path="res://base_enemy.tscn" id="1_uc0r0"]
+[ext_resource type="Script" path="res://charge_enemy.gd" id="2_52dhc"]
+[ext_resource type="Texture2D" uid="uid://c8cbj631edooc" path="res://icon.svg" id="2_yiy6i"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x3b7i"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_yiy6i")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.4,
+"texture": null
+}],
+"loop": false,
+"name": &"hit",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nu55n"]
+resource_local_to_scene = true
+size = Vector2(96, 96)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4s81n"]
+radius = 184.003
+
+[node name="charge_enemy" instance=ExtResource("1_uc0r0")]
+script = ExtResource("2_52dhc")
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+scale = Vector2(0.75, 0.75)
+sprite_frames = SubResource("SpriteFrames_x3b7i")
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(0, 0)
+shape = SubResource("RectangleShape2D_nu55n")
+
+[node name="TargetRange" type="Area2D" parent="." index="4"]
+collision_layer = 0
+
+[node name="TargetRangeDetection" type="CollisionShape2D" parent="TargetRange" index="0"]
+shape = SubResource("CircleShape2D_4s81n")
+debug_color = Color(0.947358, 3.56168e-06, 0.583463, 0.42)
+
+[node name="ChargeTimer" type="Timer" parent="." index="5"]
+
+[node name="ChargeCooldownTimer" type="Timer" parent="." index="6"]
+
+[connection signal="timeout" from="ChargeTimer" to="." method="_on_charge_timer_timeout"]
+[connection signal="timeout" from="ChargeCooldownTimer" to="." method="_on_charge_cooldown_timer_timeout"]

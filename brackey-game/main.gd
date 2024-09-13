@@ -4,8 +4,9 @@ var demon = preload("res://demon.tscn")
 var genie = preload("res://genie.tscn")
 var witch = preload("res://witch.tscn")
 var skeleton = preload("res://skeleton.tscn")
+var charge_enemy = preload("res://charge_enemy.tscn")
 
-var enemy_list = [wind, demon, genie, witch, skeleton]
+var enemy_list = [wind, demon, genie, witch, skeleton, charge_enemy]
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
