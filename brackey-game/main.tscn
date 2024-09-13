@@ -29,7 +29,7 @@ position = Vector2(354, 256)
 position = Vector2(387, 360)
 
 [node name="MobTimer" type="Timer" parent="."]
-wait_time = 4.0
+wait_time = 1.5
 
 [node name="MobPath" type="Path2D" parent="."]
 curve = SubResource("Curve2D_8h4hw")
