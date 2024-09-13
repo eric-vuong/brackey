@@ -72,6 +72,7 @@ func new_game():
 	# Reset core
 	$Core._ready()
 	$RainTileMap.hide()
+	$Player/Camera2D/NightEffect.hide()
 	# Reset shop
 	for s in get_tree().get_nodes_in_group("shop_items"):
 		#print(s)
@@ -125,11 +126,12 @@ func _on_day_night_timer_is_daytime(is_day: Variant) -> void:
 		for e in get_tree().get_nodes_in_group("enemy"):
 			e._burn()
 		$RainTileMap.hide()
+		$Player/Camera2D/NightEffect.hide()
 	else: # Start spawning enemies
 		Global.is_day = false
 		$MobTimer.start()
 		$RainTileMap.show()
-
+		$Player/Camera2D/NightEffect.show()
 # Triggered when player hits 0 hp
 func _on_player_gameover() -> void:
 	game_over()
