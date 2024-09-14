@@ -21,13 +21,15 @@ var enemy_list
 
 var spawn_time = 2
 
+var turret_list # Omit default turret
+
 #var enemy_list = [charge_enemy]
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$PauseMenu.parent = self
 	# Connect core hurt signal
 	$Core.connect("core_hurt", _core_hurt)
-	new_game()
+	turret_list = [$TurretSlot2, $TurretSlot3, $TurretSlot4, $TurretSlot5,$TurretSlot6,$TurretSlot7]
 	new_game()
 
 
@@ -61,7 +63,7 @@ func _process(delta: float) -> void:
 		
 # Stop mob spawning, day night, show score, stop player
 func game_over():
-	print("game over func")
+	print("GAME OVER")
 	$MobTimer.stop() # Stop mob spawning
 	$DayNightTimer.stop() # Stop time
 	$Core/CollisionShape2D.disabled = true # Stop core from being hit
@@ -73,7 +75,7 @@ func game_over():
 		t._ready()
 # Reset day counter and timer, clear enemies, clear towers, reset core hp, reset player and position
 func new_game():
-	print("game starting")
+	print("Game Starting")
 	$MobTimer.set_wait_time(1.5)
 	enemy_list = easy
 	# Mob timer should start when it becomes night
@@ -111,6 +113,7 @@ func new_game():
 	for t in get_tree().get_nodes_in_group("turret_slot"):
 		t._ready()
 	_update_score()
+	disable_turrets()
 	$RestartTimer.start()
 
 func open_shop():
@@ -148,7 +151,7 @@ func _on_mob_timer_timeout() -> void:
 		mob.connect("enemy_died", _update_score)
 		add_child(mob)
 		# ex tier 1 elites spawn on cycle 3 (day 4)
-		print("t",mob.tier,"c", Global.cycle_count, mob.health)
+		#print("t",mob.tier,"c", Global.cycle_count, mob.health)
 		if mob.tier == 1 and Global.cycle_count >= 3:
 			if randi() % 100 < Global.elite_chance:
 				mob.elite()
@@ -172,11 +175,14 @@ func _on_day_night_timer_is_daytime(is_day: Variant) -> void:
 	if is_day: # Kill enemies, show day popup
 		Global.is_day = true
 		$MobTimer.stop()
-		print("day signal EMITTED")
+		# Cycle 0 at end of day 1 (so first night finished is first time this signals)
+		print("Daytime signaled", Global.cycle_count)
 		for e in get_tree().get_nodes_in_group("enemy"):
 			e._burn()
 		$RainTileMap.hide()
 		$PlayerBody/PlayerArea/Camera2D/NightEffect.hide()
+		# Spawn new turret
+		enable_turret(Global.cycle_count)
 		# Make enemies harder
 		if Global.cycle_count == 0:
 			print("Medium enemies")
@@ -190,7 +196,7 @@ func _on_day_night_timer_is_daytime(is_day: Variant) -> void:
 			$MobTimer.set_wait_time(spawn_delay)
 		else:
 			$MobTimer.set_wait_time(1)
-		print("mob delay", $MobTimer.get_wait_time())
+		print("Mob spawn delay", $MobTimer.get_wait_time())
 		# They get faster over time
 		if Global.cycle_count >= 3:
 			if Global.spd_bonus < 20:
@@ -216,7 +222,19 @@ func _on_day_night_timer_is_daytime(is_day: Variant) -> void:
 			spawn_boss(false)
 		if Global.cycle_count == 5:
 			spawn_boss(true)
-		
+# Disable all turrets except turret 1.
+# Called on start of game
+# Each day 1 new turret slot will reveal
+func disable_turrets():
+	$TurretSlot2.enable_slot(false)
+	$TurretSlot3.enable_slot(false)
+	$TurretSlot4.enable_slot(false)
+	$TurretSlot5.enable_slot(false)
+	$TurretSlot6.enable_slot(false)
+	$TurretSlot7.enable_slot(false)
+func enable_turret(cycle):
+	if cycle < len(turret_list):
+		turret_list[cycle].enable_slot(true)
 # Triggered when player hits 0 hp
 func _on_player_body_gameover() -> void:
 	game_over()
@@ -242,7 +260,7 @@ func _on_day_night_timer_time_changed() -> void:
 
 
 func _on_restart_timer_timeout() -> void:
-	print("timer restart")
+	#print("timer restart")
 	for i in get_tree().get_nodes_in_group("items"):
 		i.queue_free()
 	# Kill all enemies

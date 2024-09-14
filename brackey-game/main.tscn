@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://b3ebp1bga3qoa" path="res://player_body.tscn" id="3_18i0j"]
 [ext_resource type="PackedScene" uid="uid://dt4842xoch7j3" path="res://day_night_timer.tscn" id="5_8q024"]
 [ext_resource type="PackedScene" uid="uid://c0ii4r4tb8bk1" path="res://pause_menu.tscn" id="6_axkk1"]
-[ext_resource type="PackedScene" uid="uid://cccvnvv4prnv4" path="res://rain_tile_map.tscn" id="7_el2r5"]
+[ext_resource type="PackedScene" path="res://rain_tile_map.tscn" id="7_el2r5"]
 [ext_resource type="PackedScene" uid="uid://goy66pj78olo" path="res://core.tscn" id="7_l08wi"]
 [ext_resource type="PackedScene" uid="uid://dw4h7jgv0npky" path="res://game_over.tscn" id="8_u6yxw"]
 [ext_resource type="PackedScene" uid="uid://c0fr7tencajh7" path="res://shop.tscn" id="9_oa4go"]
