@@ -36,6 +36,11 @@ func _process(delta: float) -> void:
 			open_shop()
 		elif shop_visible(): # Hitting key twice closes shop if open
 			close_shop()
+		# Handle turret placement
+		elif Global.active_tower != null: # and E was pressed
+			Global.active_tower.set_turret("aura") # Set tower to aura
+	if Input.is_action_just_pressed("q") and Global.active_tower != null:
+		Global.active_tower.set_turret("bullet")# Set to bullet tower
 		
 	# DEBUG
 	if Input.is_action_just_pressed("time"):
@@ -53,6 +58,9 @@ func game_over():
 	$Core/CollisionShape2D.disabled = true # Stop player from being hit
 	$GameOver.set_score()
 	$GameOver.show()
+	Global.active_tower = null
+	for t in get_tree().get_nodes_in_group("turret_slot"):
+		t._ready()
 # Reset day counter and timer, clear enemies, clear towers, reset core hp, reset player and position
 func new_game():
 	print("game starting")
@@ -82,6 +90,9 @@ func new_game():
 		i.queue_free()
 	update_money()
 	$HUD._ready()
+	Global.active_tower = null
+	for t in get_tree().get_nodes_in_group("turret_slot"):
+		t._ready()
 
 func open_shop():
 	$Shop.show()

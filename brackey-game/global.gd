@@ -16,6 +16,11 @@ var bullet_damage: int
 var pierce: int
 var fire_rate: float
 var multi_shot: int
+# Turrets
+var area_turret_dmg = 5
+var tower_bullet_dmg = 100
+var tower_pierce = 10
+var active_tower = null # The tower player is near enough to activate
 
 # Time
 var is_day: bool = true

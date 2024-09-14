@@ -1,18 +1,18 @@
 extends Area2D
 
-@export var bullet_scene = preload("res://bullet.tscn")
-
+@export var bullet_scene = preload("res://tower_bullet.tscn")
+var disabled = true
 var can_shoot = true
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	$AnimatedSprite2D.play()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if can_shoot:
+	if can_shoot and !disabled:
 		shoot()
 
 
@@ -37,7 +37,7 @@ func aim():
 	var nearest_d_squared: float = -1
 	if in_range:
 		for i in range (in_range.size()):
-			print(i)
+			#print(i)
 			if in_range[i].is_in_group("enemy"):
 				var d_squared = self.global_position.distance_squared_to(in_range[i].global_position)
 				if nearest_d_squared == -1 or d_squared <= nearest_d_squared:

@@ -1,20 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://dvxlfwsqtp0bd"]
-
-[ext_resource type="Texture2D" uid="uid://c8cbj631edooc" path="res://icon.svg" id="1_embjh"]
+[gd_scene load_steps=2 format=3 uid="uid://dvxlfwsqtp0bd"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5fgwe"]
 resource_local_to_scene = true
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("1_embjh")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
+animations = []
 
 [node name="BaseTurret" type="Area2D"]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_5fgwe")
+animation = &""

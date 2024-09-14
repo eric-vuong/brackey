@@ -54,9 +54,13 @@ func hit_animation():
 		$AnimatedSprite2D.play("default")
 
 func _on_area_entered(area: Area2D) -> void:
-	#print("enemy was hit")
+	print("enemy was hit", area)
 	if area.is_in_group("player_bullet"):
 		take_damage(Global.bullet_damage)
+	#elif area.is_in_group("tower_bullet"):
+	else:
+		print("by tower")
+		take_damage(Global.tower_bullet_dmg)
 	#$AnimatedSprite2D.play("hit")
 
 # Move toward target position

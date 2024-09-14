@@ -8,6 +8,7 @@ icon = ExtResource("1_mi38g")
 script = ExtResource("2_6du67")
 
 [node name="ModifierName" type="Label" parent="."]
+layout_mode = 0
 offset_left = 4.0
 offset_top = -30.0
 offset_right = 139.0
@@ -15,6 +16,7 @@ offset_bottom = -7.0
 text = "Random Modifier"
 
 [node name="Reset" type="Label" parent="."]
+layout_mode = 0
 offset_left = -1.0
 offset_top = 142.0
 offset_right = 157.0
@@ -22,6 +24,7 @@ offset_bottom = 165.0
 text = "Lasts until next day"
 
 [node name="Desc" type="Label" parent="."]
+layout_mode = 0
 offset_left = 155.0
 offset_top = 13.0
 offset_right = 322.0

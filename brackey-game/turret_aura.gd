@@ -1,5 +1,5 @@
 extends Area2D
-
+var disabled = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -12,9 +12,11 @@ func _process(delta: float) -> void:
 
 
 func _on_pulse_timer_timeout() -> void:
-	var inside_aura = get_overlapping_areas()
-	if inside_aura:
-		for area in inside_aura:
-			if area.is_in_group("enemy"):
-				print('turret aura damaging enemy')
-				area.take_damage(5)
+	if !disabled:
+		var inside_aura = get_overlapping_areas()
+		if inside_aura:
+			$AnimatedSprite2D.play("default")
+			for area in inside_aura:
+				if area.is_in_group("enemy"):
+					print('turret aura damaging enemy')
+					area.take_damage(Global.area_turret_dmg)
