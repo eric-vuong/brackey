@@ -38,7 +38,7 @@ func elite():
 		current_hp = health * 5
 	droprate = 1
 	points *= 2
-	print("Elite spawned")
+	speed += 10 # Add small speed bonus
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
