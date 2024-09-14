@@ -4,16 +4,18 @@ var CHARGE_WARMUP = 1
 var CHARGE_COOLDOWN = 3
 var CHARGE_SPEED = 1500
 var CHARGE_DURATION = 0.175
-var BASE_SPEED = 15
+var BASE_SPEED = 20
 var charge_direction
 var can_charge = true
 var is_charging = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	health = 200
+	$AnimatedSprite2D.play("default")
+	health = 300
 	speed = BASE_SPEED
 	target = "Player"
+	droprate = 1
 	super()
 
 
@@ -41,9 +43,11 @@ func pathing(delta):
 						charge_direction = self.global_position.direction_to(Global.player_pos)
 						$ChargeTimer.start(CHARGE_WARMUP)
 						$ChargeCooldownTimer.start(CHARGE_COOLDOWN)
+						$AnimatedSprite2D.play("charge")
 						return
 	else: #otherwise execute charge - speed is 0 or CHARGE_SPEED depending on stage of cast
 		position += charge_direction * speed * delta
+		
 		
 		
 
@@ -62,3 +66,4 @@ func _on_charge_duration_timeout() -> void:
 	print('charge finished')
 	is_charging = false
 	speed = BASE_SPEED
+	$AnimatedSprite2D.play("default")

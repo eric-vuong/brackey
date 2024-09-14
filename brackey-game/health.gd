@@ -5,6 +5,6 @@ func _ready() -> void:
 	level_max = 5
 	upgrade_cost = [2,4,6,8,10] # List of cost per level
 	currency = "blue"
-	description = "Reduces damage you can take"
+	description = "Reduces damage taken\n-15% per level"
 	base_stat = Global.player_defense
 	super()

@@ -19,7 +19,7 @@ func _process(delta: float) -> void:
 func shoot():
 	can_shoot = false
 	# Wait
-	$BulletTimer.set_wait_time(1)
+	$BulletTimer.set_wait_time(2)
 	$BulletTimer.start()
 	var enemy_position = aim()
 	if enemy_position:

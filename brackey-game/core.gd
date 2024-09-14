@@ -6,7 +6,7 @@ signal core_hurt # Hud will update health bar and show warning
 var is_hitable = true # Switches to false after being hit for a brief period
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	Global.core_pos = self.position
+	Global.core_pos = self.position + Vector2(0, -30)
 	# Core hp moved to global
 	
 	#core_hp = core_max

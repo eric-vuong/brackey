@@ -10,13 +10,18 @@ var demon = preload("res://demon.tscn")
 var genie = preload("res://genie.tscn")
 var witch = preload("res://witch.tscn")
 var skeleton = preload("res://skeleton.tscn")
+var mushroom = preload("res://mushroom.tscn")
 var charge_enemy = preload("res://charge_enemy.tscn")
 
-var enemy_list = [wind, demon, genie, witch, skeleton, charge_enemy]
+var enemy_list
+var easy = [skeleton, mushroom, wind]
+var med = [demon, genie, witch, skeleton, mushroom, wind]
+var hard = [demon, genie, witch, skeleton, mushroom, charge_enemy, wind]
+
+var spawn_time = 2
 #var enemy_list = [charge_enemy]
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
 	$PauseMenu.parent = self
 	# Connect core hurt signal
 	$Core.connect("core_hurt", _core_hurt)
@@ -65,6 +70,8 @@ func game_over():
 # Reset day counter and timer, clear enemies, clear towers, reset core hp, reset player and position
 func new_game():
 	print("game starting")
+	$MobTimer.set_wait_time(2)
+	enemy_list = easy
 	# Mob timer should start when it becomes night
 	$DayNightTimer._ready() # Resets start time
 	$DayNightTimer.start()
@@ -139,11 +146,30 @@ func _on_day_night_timer_is_daytime(is_day: Variant) -> void:
 			e._burn()
 		$RainTileMap.hide()
 		$PlayerBody/PlayerArea/Camera2D/NightEffect.hide()
+		# Make enemies harder
+		if Global.cycle_count == 0:
+			print("Medium enemies")
+			enemy_list = med
+		elif Global.cycle_count == 1:
+			print("Hard enemies")
+			enemy_list = hard
+		# Increase spawn rate
+		var spawn_delay = $MobTimer.get_wait_time() * 0.95
+		if spawn_delay >= 1:
+			$MobTimer.set_wait_time(spawn_delay)
+		else:
+			$MobTimer.set_wait_time(1)
+		print("mob delay", $MobTimer.get_wait_time())
 	else: # Start spawning enemies
 		Global.is_day = false
 		$MobTimer.start()
 		$RainTileMap.show()
 		$PlayerBody/PlayerArea/Camera2D/NightEffect.show()
+		
+		# Delete all uncollected items
+		for i in get_tree().get_nodes_in_group("items"):
+			i.queue_free()
+		
 # Triggered when player hits 0 hp
 func _on_player_body_gameover() -> void:
 	game_over()
@@ -161,3 +187,6 @@ func _core_hurt():
 func _on_day_night_timer_time_changed() -> void:
 	# Update time display
 	$HUD.update_time()
+	# HEAL PLAYER ON DAY START
+	if Global.is_day and !$PlayerBody.is_dead:
+		$PlayerBody.take_damage(-999)

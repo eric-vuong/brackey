@@ -18,16 +18,16 @@ offset_bottom = 23.0
 text = "Upgrades"
 
 [node name="MoveSpeed" parent="." instance=ExtResource("4_cjq3t")]
-position = Vector2(496, 202)
+position = Vector2(496, 204)
 
 [node name="MultiShot" parent="." instance=ExtResource("5_xhwry")]
-position = Vector2(288, 202)
+position = Vector2(288, 204)
 
 [node name="Health" parent="." instance=ExtResource("6_e8oy0")]
 position = Vector2(496, 68)
 
 [node name="Pierce" parent="." instance=ExtResource("7_w3lpy")]
-position = Vector2(80, 202)
+position = Vector2(80, 204)
 
 [node name="AttackSpeed" parent="." instance=ExtResource("3_mn1el")]
 position = Vector2(288, 68)

@@ -34,3 +34,9 @@ sprite_frames = SubResource("SpriteFrames_qyga3")
 [node name="CollisionShape2D" parent="." index="1"]
 position = Vector2(0, 3)
 shape = SubResource("RectangleShape2D_84w80")
+
+[node name="Hp" parent="." index="2"]
+offset_left = -37.0
+offset_top = 28.0
+offset_right = 36.0
+offset_bottom = 55.0

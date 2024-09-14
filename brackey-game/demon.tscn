@@ -41,6 +41,6 @@ shape = SubResource("RectangleShape2D_rtfdb")
 
 [node name="Hp" parent="." index="2"]
 offset_left = -37.0
-offset_top = 18.0
+offset_top = 30.0
 offset_right = 36.0
-offset_bottom = 45.0
+offset_bottom = 57.0

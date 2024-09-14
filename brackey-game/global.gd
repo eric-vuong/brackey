@@ -18,8 +18,8 @@ var fire_rate: float
 var multi_shot: int
 # Turrets
 var area_turret_dmg = 5
-var tower_bullet_dmg = 100
-var tower_pierce = 10
+var tower_bullet_dmg = 40
+var tower_pierce = 1
 var active_tower = null # The tower player is near enough to activate
 
 # Time
@@ -53,9 +53,9 @@ func _ready() -> void:
 	multi_shot = 1
 	can_shop = false
 	score = 0
-	yellow = 1000
-	red = 1000
-	blue = 1000
+	yellow = 0
+	red = 0
+	blue = 0
 	
 	core_hp = core_max_hp
 

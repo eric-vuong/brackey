@@ -11,7 +11,7 @@ var sprint_bonus = 1.5
 var screen_size
 var is_hitable = true
 var is_dead = false
-var spread = 0.15 # radians or 8.6 deg
+var spread = 0.30 # 0.15 radians or 8.6 deg
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	screen_size = get_viewport_rect().size
@@ -60,26 +60,32 @@ func _process(delta: float) -> void:
 			velocity = velocity.normalized() * Global.player_move_speed * sprint_bonus
 		else:
 			velocity = velocity.normalized() * Global.player_move_speed
-		$PlayerArea/AnimatedSprite2D.play()
-	else:
-		$PlayerArea/AnimatedSprite2D.stop()
+		#$PlayerArea/AnimatedSprite2D.play()
+	#else:
+		#$PlayerArea/AnimatedSprite2D.stop()
 	position += velocity * delta
 	#position = position.clamp(Vector2.ZERO, screen_size)
+
+	if velocity.y != 0: # Move down
+		pass
+		$PlayerArea/AnimatedSprite2D.animation = "default"
+	# show back when moving up
+	if velocity.y < 0:
+		pass
+		#$PlayerArea/AnimatedSprite2D.animation = "default"
+	#else:
+		#$PlayerArea/AnimatedSprite2D.animation = "default"
 	if velocity.x != 0:
 		pass
 		#$AnimatedSprite2D.animation = "walk"
 		#$AnimatedSprite2D.flip_v = false
 		# See the note below about boolean assignment.
 		#$AnimatedSprite2D.flip_h = velocity.x < 0
-	elif velocity.y != 0:
-		pass
-		#$AnimatedSprite2D.animation = "up"
-		#$AnimatedSprite2D.flip_v = velocity.y > 0
-	# show back when moving up
-	if velocity.y < 0:
-		$PlayerArea/AnimatedSprite2D.animation = "back"
-	else:
-		$PlayerArea/AnimatedSprite2D.animation = "default"
+		$PlayerArea/AnimatedSprite2D.animation = "right"
+		if velocity.x < 0: # Move left?
+			$PlayerArea/AnimatedSprite2D.flip_h = true
+		else:
+			$PlayerArea/AnimatedSprite2D.flip_h = false
 	# Take damage
 	if is_hitable:
 		var inside_player = $PlayerArea.get_overlapping_areas()
@@ -135,6 +141,8 @@ func take_damage(dmg):
 	if current_hp <= 0:
 		is_dead = true
 		gameover.emit()
+	elif current_hp > max_hp:
+		current_hp = max_hp
 		
 
 

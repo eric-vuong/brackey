@@ -2,7 +2,7 @@ extends Area2D
 var speed = 500
 @export var Bullet : PackedScene
 var direction : Vector2
-var lifetime = 2
+var lifetime = 1
 var penetration = 0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

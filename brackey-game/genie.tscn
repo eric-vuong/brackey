@@ -32,5 +32,7 @@ position = Vector2(1.5, -1)
 shape = SubResource("RectangleShape2D_qa6x2")
 
 [node name="Hp" parent="." index="2"]
-offset_top = 16.0
-offset_bottom = 43.0
+offset_left = -35.0
+offset_top = 26.0
+offset_right = 38.0
+offset_bottom = 53.0

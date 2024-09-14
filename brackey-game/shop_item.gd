@@ -46,13 +46,13 @@ func upgrade():
 	upgrade_level += 1
 	# UPGRADE SPECIFIC STAT
 	if item_name == "Attack":
-		Global.bullet_damage += 1
+		Global.bullet_damage += 2
 		$Name.set_text(item_name + ": " + str(Global.bullet_damage))
 	elif item_name == "Pierce":
 		Global.pierce += 1
 		$Name.set_text(item_name + ": " + str(Global.pierce))
 	elif item_name == "Attack Speed":
-		Global.fire_rate *= 0.9
+		Global.fire_rate *= 0.8
 		var fire_rate_rounded = round(Global.fire_rate * 100) * 0.01
 		$Name.set_text(item_name + ": " + str(fire_rate_rounded))
 	elif item_name == "Multishot":

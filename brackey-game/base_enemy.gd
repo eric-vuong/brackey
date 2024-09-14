@@ -6,7 +6,7 @@ var current_hp = 1
 var direction: Vector2
 var burning = false
 var drops = null
-var droprate = 5 # as in 1 in 5
+var droprate = 2 # as in 1 / droprate
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$Hp.max_value = health
@@ -89,4 +89,4 @@ func _burn():
 
 
 func _on_burn_timer_timeout() -> void:
-	take_damage(health*.25)
+	take_damage(5)
