@@ -2,7 +2,7 @@ extends Area2D
 var speed = 700
 @export var TowerBullet : PackedScene
 var direction : Vector2
-var lifetime = 2
+var lifetime = 0.3
 var penetration = 1
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

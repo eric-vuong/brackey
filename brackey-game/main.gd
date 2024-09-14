@@ -20,12 +20,14 @@ var hard = [demon, genie, witch, skeleton, mushroom, charge_enemy, wind]
 var enemy_list
 
 var spawn_time = 2
+
 #var enemy_list = [charge_enemy]
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$PauseMenu.parent = self
 	# Connect core hurt signal
 	$Core.connect("core_hurt", _core_hurt)
+	new_game()
 	new_game()
 
 
@@ -72,7 +74,7 @@ func game_over():
 # Reset day counter and timer, clear enemies, clear towers, reset core hp, reset player and position
 func new_game():
 	print("game starting")
-	$MobTimer.set_wait_time(2)
+	$MobTimer.set_wait_time(1.5)
 	enemy_list = easy
 	# Mob timer should start when it becomes night
 	$DayNightTimer._ready() # Resets start time
@@ -80,7 +82,9 @@ func new_game():
 	$GameOver/MarginContainer/VBoxContainer/Button.hide()
 	# Kill all enemies
 	for e in get_tree().get_nodes_in_group("enemy"):
-		e.take_damage(e.health)
+		#Disable drops
+		e.drops == null
+		e.take_damage(e.health * 100)
 	$Core/CollisionShape2D.disabled = false # Enable hitboxes
 	$Core/CollisionShape2D.disabled = false
 	# Reset global
@@ -96,14 +100,18 @@ func new_game():
 		#print(s)
 		s._ready()
 	# Handle money stuff
+	#print("free money", get_tree().get_nodes_in_group("items"))
+	
 	for i in get_tree().get_nodes_in_group("items"):
 		i.queue_free()
+		#call_deferred("queue_free", i)
 	update_money()
 	$HUD._ready()
 	Global.active_tower = null
 	for t in get_tree().get_nodes_in_group("turret_slot"):
 		t._ready()
 	_update_score()
+	$RestartTimer.start()
 
 func open_shop():
 	$Shop.show()
@@ -122,6 +130,7 @@ func spawn_money(currency, pos):
 		c = blue.instantiate()
 	c.global_position = pos
 	call_deferred("add_child", c)
+	#add_child(c)
 	#add_child(c)
 
 func update_money():
@@ -177,7 +186,7 @@ func _on_day_night_timer_is_daytime(is_day: Variant) -> void:
 			enemy_list = hard
 		# Increase spawn rate
 		var spawn_delay = $MobTimer.get_wait_time() * 0.9
-		if spawn_delay >= 0.5:
+		if spawn_delay >= 0.3:
 			$MobTimer.set_wait_time(spawn_delay)
 		else:
 			$MobTimer.set_wait_time(1)
@@ -230,3 +239,14 @@ func _on_day_night_timer_time_changed() -> void:
 	# HEAL PLAYER ON DAY START
 	#if Global.is_day and !$PlayerBody.is_dead:
 	#	$PlayerBody.take_damage(-999)
+
+
+func _on_restart_timer_timeout() -> void:
+	print("timer restart")
+	for i in get_tree().get_nodes_in_group("items"):
+		i.queue_free()
+	# Kill all enemies
+	for e in get_tree().get_nodes_in_group("enemy"):
+		#Disable drops
+		e.drops == null
+		e.take_damage(e.health * 100)

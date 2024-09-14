@@ -97,7 +97,7 @@ func take_damage(dmg):
 	if current_hp <= 0:
 		Global.score += points
 		# Spawn money
-		if randi() % droprate == 0:
+		if randi() % droprate == 0 and drops != null:
 			# Tell main to load money at this position
 			get_parent().spawn_money(drops, self.global_position)
 		enemy_died.emit()

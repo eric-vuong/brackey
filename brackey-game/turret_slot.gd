@@ -34,6 +34,13 @@ func set_turret(turret_type):
 	elif turret_type == "aura":
 		toggle_aura(false)
 	has_turret = true
+func enable_slot(is_active):
+	if !is_active:
+		hide()
+		$CollisionShape2D.disabled = true
+	else:
+		show()
+		$CollisionShape2D.disabled = false
 
 func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("player"):

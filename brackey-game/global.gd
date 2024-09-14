@@ -17,9 +17,9 @@ var pierce: int
 var fire_rate: float
 var multi_shot: int
 # Turrets
-var area_turret_dmg = 5
-var tower_bullet_dmg = 40
-var tower_pierce = 1
+var area_turret_dmg = 6
+var tower_bullet_dmg = 60
+var tower_pierce = 3
 var active_tower = null # The tower player is near enough to activate
 
 # Time

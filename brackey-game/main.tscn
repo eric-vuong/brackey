@@ -29,10 +29,10 @@ scale = Vector2(2, 2)
 position = Vector2(380, 149)
 
 [node name="TurretSlot2" parent="." instance=ExtResource("11_w02p8")]
-position = Vector2(81, 13)
+position = Vector2(142, 178)
 
 [node name="TurretSlot3" parent="." instance=ExtResource("11_w02p8")]
-position = Vector2(690, 15)
+position = Vector2(612, 181)
 
 [node name="PlayerBody" parent="." instance=ExtResource("3_18i0j")]
 position = Vector2(237, 294)
@@ -65,8 +65,25 @@ position = Vector2(0, -1)
 
 [node name="HUD" parent="." instance=ExtResource("10_hdhff")]
 
+[node name="TurretSlot4" parent="." instance=ExtResource("11_w02p8")]
+position = Vector2(226, -100)
+
+[node name="TurretSlot5" parent="." instance=ExtResource("11_w02p8")]
+position = Vector2(538, -99)
+
+[node name="TurretSlot6" parent="." instance=ExtResource("11_w02p8")]
+position = Vector2(-57, -40)
+
+[node name="TurretSlot7" parent="." instance=ExtResource("11_w02p8")]
+position = Vector2(816, -24)
+
+[node name="RestartTimer" type="Timer" parent="."]
+wait_time = 0.05
+one_shot = true
+
 [connection signal="gameover" from="PlayerBody" to="." method="_on_player_body_gameover"]
 [connection signal="gameover" from="Core" to="." method="_on_core_gameover"]
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
 [connection signal="is_daytime" from="DayNightTimer" to="." method="_on_day_night_timer_is_daytime"]
 [connection signal="time_changed" from="DayNightTimer" to="." method="_on_day_night_timer_time_changed"]
+[connection signal="timeout" from="RestartTimer" to="." method="_on_restart_timer_timeout"]
