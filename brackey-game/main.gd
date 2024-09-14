@@ -13,10 +13,11 @@ var skeleton = preload("res://skeleton.tscn")
 var mushroom = preload("res://mushroom.tscn")
 var charge_enemy = preload("res://charge_enemy.tscn")
 
-var enemy_list
+
 var easy = [skeleton, mushroom, wind]
 var med = [demon, genie, witch, skeleton, mushroom, wind]
 var hard = [demon, genie, witch, skeleton, mushroom, charge_enemy, wind]
+var enemy_list
 
 var spawn_time = 2
 #var enemy_list = [charge_enemy]
@@ -53,6 +54,7 @@ func _process(delta: float) -> void:
 	# DEBUG
 	if Input.is_action_just_pressed("gameoverdebug"):
 		$Core.take_damage(999)
+
 	
 		
 # Stop mob spawning, day night, show score, stop player
@@ -63,7 +65,7 @@ func game_over():
 	$Core/CollisionShape2D.disabled = true # Stop core from being hit
 	$Core/CollisionShape2D.disabled = true # Stop player from being hit
 	$GameOver.set_score()
-	$GameOver.show()
+	$GameOver/MarginContainer/VBoxContainer/Button.show()
 	Global.active_tower = null
 	for t in get_tree().get_nodes_in_group("turret_slot"):
 		t._ready()
@@ -75,10 +77,10 @@ func new_game():
 	# Mob timer should start when it becomes night
 	$DayNightTimer._ready() # Resets start time
 	$DayNightTimer.start()
-	$GameOver.hide()
+	$GameOver/MarginContainer/VBoxContainer/Button.hide()
 	# Kill all enemies
 	for e in get_tree().get_nodes_in_group("enemy"):
-		e.queue_free()
+		e.take_damage(e.health)
 	$Core/CollisionShape2D.disabled = false # Enable hitboxes
 	$Core/CollisionShape2D.disabled = false
 	# Reset global
@@ -101,6 +103,7 @@ func new_game():
 	Global.active_tower = null
 	for t in get_tree().get_nodes_in_group("turret_slot"):
 		t._ready()
+	_update_score()
 
 func open_shop():
 	$Shop.show()
@@ -129,15 +132,34 @@ func _on_mob_timer_timeout() -> void:
 	if !Global.is_day:
 		# Spawn random normal mob
 		var mob = enemy_list[randi() % len(enemy_list)].instantiate()
+
 		var mob_spawn_location = $MobPath/MobSpawnLocation
 		mob_spawn_location.progress_ratio = randf()
 		mob.position = mob_spawn_location.position
+		mob.connect("enemy_died", _update_score)
 		add_child(mob)
-
+		# ex tier 1 elites spawn on cycle 3 (day 4)
+		print("t",mob.tier,"c", Global.cycle_count, mob.health)
+		if mob.tier == 1 and Global.cycle_count >= 3:
+			if randi() % 100 < Global.elite_chance:
+				mob.elite()
+		elif mob.tier == 2 and Global.cycle_count >= 4:
+			if randi() % 100 < Global.elite_chance:
+				mob.elite()
+		elif mob.tier == 3 and Global.cycle_count >= 6:
+			if randi() % 100 < Global.elite_chance:
+				mob.elite()
+func spawn_boss(is_elite):
+	var boss = charge_enemy.instantiate()
+	if is_elite:
+		boss.elite()
+	var boss_spawn_location = $MobPath/MobSpawnLocation
+	boss_spawn_location.progress_ratio = randf()
+	boss.position = boss_spawn_location.position
+	boss.connect("enemy_died", _update_score)
+	add_child(boss)
 # Signals true/false when day night changes
 func _on_day_night_timer_is_daytime(is_day: Variant) -> void:
-	pass # Replace with function body.
-	
 	if is_day: # Kill enemies, show day popup
 		Global.is_day = true
 		$MobTimer.stop()
@@ -150,16 +172,24 @@ func _on_day_night_timer_is_daytime(is_day: Variant) -> void:
 		if Global.cycle_count == 0:
 			print("Medium enemies")
 			enemy_list = med
-		elif Global.cycle_count == 1:
+		elif Global.cycle_count == 2:
 			print("Hard enemies")
 			enemy_list = hard
 		# Increase spawn rate
-		var spawn_delay = $MobTimer.get_wait_time() * 0.95
-		if spawn_delay >= 1:
+		var spawn_delay = $MobTimer.get_wait_time() * 0.9
+		if spawn_delay >= 0.5:
 			$MobTimer.set_wait_time(spawn_delay)
 		else:
 			$MobTimer.set_wait_time(1)
 		print("mob delay", $MobTimer.get_wait_time())
+		# They get faster over time
+		if Global.cycle_count >= 3:
+			if Global.spd_bonus < 20:
+				Global.spd_bonus += 1
+			if Global.elite_chance == 0:
+				Global.elite_chance = 25
+			elif Global.elite_chance < 50:
+				Global.elite_chance += 5
 	else: # Start spawning enemies
 		Global.is_day = false
 		$MobTimer.start()
@@ -169,6 +199,11 @@ func _on_day_night_timer_is_daytime(is_day: Variant) -> void:
 		# Delete all uncollected items
 		for i in get_tree().get_nodes_in_group("items"):
 			i.queue_free()
+		# Spawn the boss on specific days. could add special FX or delay
+		if Global.cycle_count == 2:
+			spawn_boss(false)
+		if Global.cycle_count == 5:
+			spawn_boss(true)
 		
 # Triggered when player hits 0 hp
 func _on_player_body_gameover() -> void:
@@ -182,11 +217,13 @@ func _on_core_gameover() -> void:
 
 func _core_hurt():
 	$HUD.update_core()
+func _update_score():
+	$GameOver.set_score()
 
 
 func _on_day_night_timer_time_changed() -> void:
 	# Update time display
 	$HUD.update_time()
 	# HEAL PLAYER ON DAY START
-	if Global.is_day and !$PlayerBody.is_dead:
-		$PlayerBody.take_damage(-999)
+	#if Global.is_day and !$PlayerBody.is_dead:
+	#	$PlayerBody.take_damage(-999)

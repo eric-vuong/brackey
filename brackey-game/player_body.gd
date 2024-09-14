@@ -12,6 +12,7 @@ var screen_size
 var is_hitable = true
 var is_dead = false
 var spread = 0.30 # 0.15 radians or 8.6 deg
+var is_healing
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	screen_size = get_viewport_rect().size
@@ -21,6 +22,7 @@ func _ready() -> void:
 	global_position = Vector2(200,200)
 	is_dead = false
 	is_hitable = true
+	is_healing = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -53,6 +55,7 @@ func _process(delta: float) -> void:
 		is_sprinting = true
 	else:
 		is_sprinting = false
+	
 		
 
 	if velocity.length() > 0:
@@ -90,15 +93,20 @@ func _process(delta: float) -> void:
 	if is_hitable:
 		var inside_player = $PlayerArea.get_overlapping_areas()
 		if inside_player:
-			# Apply damage. flat for now
+			# Apply damage once
 			for enemy in inside_player:
 				take_damage(10)
+				break
 			is_hitable = false
 			$PlayerArea/DamageTimer.set_wait_time(1)
 			$PlayerArea/DamageTimer.start()
 	
 	#physics collisions
 	move_and_slide()
+	if Global.is_day and !is_dead and Global.can_shop:
+		$PlayerArea/HealTimer.set_paused(false)
+	else:
+		$PlayerArea/HealTimer.set_paused(true)
 
 func shoot():
 	if can_shoot:
@@ -136,7 +144,10 @@ func _on_bullet_timer_timeout() -> void:
 	#print("Player hit by enemy")
 	
 func take_damage(dmg):
-	current_hp -= (dmg * (100 - Global.player_defense) * 0.01)
+	if dmg < 0:
+		current_hp -= dmg # heal
+	else:
+		current_hp -= (dmg * (100 - Global.player_defense) * 0.01)
 	$PlayerArea/HpBar.value = current_hp
 	if current_hp <= 0:
 		is_dead = true
@@ -153,3 +164,7 @@ func _on_damage_timer_timeout() -> void:
 func _on_player_area_area_entered(area: Area2D) -> void:
 	pass # Replace with function body.
 	print("Player hit by enemy")
+
+
+func _on_heal_timer_timeout() -> void:
+	take_damage(-1)

@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dbu4vxsxk3e6" path="res://assets/PlayerCharacterHatPNG.png" id="2_7bgqo"]
 [ext_resource type="Texture2D" uid="uid://b0n21xmgmcbbq" path="res://assets/PlayerCharacter2.png" id="2_r85ch"]
 [ext_resource type="Texture2D" uid="uid://b2x72i4dmjhuf" path="res://assets/PCWalkingRight.png" id="3_exbke"]
-[ext_resource type="PackedScene" path="res://night_effect.tscn" id="4_xv0ww"]
+[ext_resource type="PackedScene" uid="uid://bharievwcnx1k" path="res://night_effect.tscn" id="4_xv0ww"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fy8px"]
 animations = [{
@@ -54,6 +54,7 @@ z_index = 1
 [node name="BulletTimer" type="Timer" parent="."]
 
 [node name="HpBar" type="ProgressBar" parent="."]
+z_index = 1
 offset_left = -23.0
 offset_top = 27.0
 offset_right = 24.0

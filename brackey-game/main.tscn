@@ -26,7 +26,7 @@ position = Vector2(-461, -986)
 scale = Vector2(2, 2)
 
 [node name="TurretSlot" parent="." instance=ExtResource("11_w02p8")]
-position = Vector2(380, 215)
+position = Vector2(380, 149)
 
 [node name="TurretSlot2" parent="." instance=ExtResource("11_w02p8")]
 position = Vector2(81, 13)
@@ -35,10 +35,10 @@ position = Vector2(81, 13)
 position = Vector2(690, 15)
 
 [node name="PlayerBody" parent="." instance=ExtResource("3_18i0j")]
-position = Vector2(229, 114)
+position = Vector2(237, 294)
 
 [node name="Core" parent="." instance=ExtResource("7_l08wi")]
-position = Vector2(379, 368)
+position = Vector2(379, 327)
 
 [node name="MobTimer" type="Timer" parent="."]
 wait_time = 2.0
@@ -50,13 +50,14 @@ curve = SubResource("Curve2D_8h4hw")
 
 [node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath"]
 position = Vector2(-404.893, 127.832)
-rotation = -1.56246
+rotation = -1.56245
 
 [node name="DayNightTimer" parent="." instance=ExtResource("5_8q024")]
 
 [node name="PauseMenu" parent="." instance=ExtResource("6_axkk1")]
 
 [node name="RainTileMap" parent="." instance=ExtResource("7_el2r5")]
+position = Vector2(0, -1)
 
 [node name="GameOver" parent="." instance=ExtResource("8_u6yxw")]
 

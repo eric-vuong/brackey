@@ -1,16 +1,21 @@
 extends Area2D
+signal enemy_died()
 @export var health = 100
 var current_hp = 1
 @export var target: String# Player or core
-@export var speed: int = 30
+var speed: int
 var direction: Vector2
 var burning = false
 var drops = null
 var droprate = 2 # as in 1 / droprate
+var tier: int # 1 for weakest, 3 strongest
+var points: int # tier, x2 if elite
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	
 	$Hp.max_value = health
 	$Hp.value = health
+	speed += Global.spd_bonus
 	current_hp = health
 	var target_types = ["Player", "Core"]
 	if target != "Player" and target != "Core":
@@ -19,6 +24,21 @@ func _ready() -> void:
 	# Set random drop type if not defined
 	if drops == null:
 		drops = ["yellow", "red", "blue"][randi() % 3]
+	points = tier
+# Double size and stats of this enemy
+func elite():
+	self.scale = Vector2(2,2) #double in size
+	if tier == 3:
+		$Hp.max_value = health * 5
+		$Hp.value = health * 5
+		current_hp = health * 5
+	else: # tier 1 and 2
+		$Hp.max_value = health * 5
+		$Hp.value = health * 5
+		current_hp = health * 5
+	droprate = 1
+	points *= 2
+	print("Elite spawned")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -76,11 +96,12 @@ func take_damage(dmg):
 	current_hp -= dmg
 	$Hp.value = current_hp
 	if current_hp <= 0:
-		Global.score += 1
+		Global.score += points
 		# Spawn money
 		if randi() % droprate == 0:
 			# Tell main to load money at this position
 			get_parent().spawn_money(drops, self.global_position)
+		enemy_died.emit()
 		queue_free()
 
 func _burn():

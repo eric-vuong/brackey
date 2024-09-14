@@ -15,8 +15,13 @@ debug_color = Color(0.808029, 0.413832, 0, 0.42)
 
 [node name="PlayerArea" parent="." instance=ExtResource("1_ujh7h")]
 
+[node name="HealTimer" type="Timer" parent="PlayerArea"]
+wait_time = 0.5
+autostart = true
+
 [connection signal="area_entered" from="PlayerArea" to="." method="_on_player_area_area_entered"]
 [connection signal="timeout" from="PlayerArea/BulletTimer" to="." method="_on_bullet_timer_timeout"]
 [connection signal="timeout" from="PlayerArea/DamageTimer" to="." method="_on_damage_timer_timeout"]
+[connection signal="timeout" from="PlayerArea/HealTimer" to="." method="_on_heal_timer_timeout"]
 
 [editable path="PlayerArea"]

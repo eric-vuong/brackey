@@ -6,4 +6,5 @@ func _ready() -> void:
 	health = 40
 	speed = 50
 	target = "Core"
+	tier = 1
 	super()

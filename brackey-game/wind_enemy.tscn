@@ -31,3 +31,7 @@ sprite_frames = SubResource("SpriteFrames_qat3n")
 position = Vector2(0, 0)
 skew = -0.23911
 shape = SubResource("CapsuleShape2D_s4s35")
+
+[node name="Hp" parent="." index="2"]
+offset_top = 25.0
+offset_bottom = 52.0

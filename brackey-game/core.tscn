@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bdjconmv4plwb" path="res://assets/PCHouse.png" id="2_ktvr0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8dlyo"]
-size = Vector2(109, 118)
+size = Vector2(217, 158)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fyi4h"]
 animations = [{
@@ -23,10 +23,11 @@ collision_mask = 3
 script = ExtResource("1_14gke")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 26)
+position = Vector2(-1.5, 31)
 shape = SubResource("RectangleShape2D_8dlyo")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_fyi4h")
 
 [node name="CoreHp" type="ProgressBar" parent="."]

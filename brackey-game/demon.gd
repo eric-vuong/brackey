@@ -7,4 +7,5 @@ func _ready() -> void:
 	speed = 80
 	target = "Core"
 	drops = "red"
+	tier = 2
 	super()

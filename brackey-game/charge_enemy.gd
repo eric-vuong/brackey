@@ -2,8 +2,8 @@ extends "res://base_enemy.gd"
 
 var CHARGE_WARMUP = 1
 var CHARGE_COOLDOWN = 3
-var CHARGE_SPEED = 1500
-var CHARGE_DURATION = 0.175
+var CHARGE_SPEED = 800
+var CHARGE_DURATION = 0.33
 var BASE_SPEED = 20
 var charge_direction
 var can_charge = true
@@ -12,10 +12,11 @@ var is_charging = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$AnimatedSprite2D.play("default")
-	health = 300
+	health = 800
 	speed = BASE_SPEED
 	target = "Player"
 	droprate = 1
+	tier = 3
 	super()
 
 

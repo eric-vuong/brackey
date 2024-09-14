@@ -7,7 +7,7 @@ var penetration = 0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	penetration = Global.pierce
-	if Global.bullet_damage > 16:
+	if Global.bullet_damage >= 20:
 		$AnimatedSprite2D.play("upgraded")
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

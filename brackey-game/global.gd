@@ -35,7 +35,12 @@ var yellow = 0
 var red = 0
 var blue = 0
 
-# Modifiers
+# Difficulty
+var elite_chance: int
+var hp_bonus: int # Not used
+var spd_bonus: int
+
+# Modifiers - not used
 var bullet_size_mod = 1
 var accuracy = 1
 var run_and_gun = false
@@ -59,6 +64,8 @@ func _ready() -> void:
 	
 	core_hp = core_max_hp
 
+	elite_chance = 0
+	spd_bonus = 0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
