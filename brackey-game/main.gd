@@ -190,6 +190,9 @@ func _on_day_night_timer_is_daytime(is_day: Variant) -> void:
 				Global.elite_chance = 25
 			elif Global.elite_chance < 50:
 				Global.elite_chance += 5
+		#print("cycle", Global.cycle_count)
+		if Global.cycle_count == 6: # ended day 7
+			$HUD.show_win()
 	else: # Start spawning enemies
 		Global.is_day = false
 		$MobTimer.start()

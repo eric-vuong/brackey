@@ -26,7 +26,7 @@ animations = [{
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dyv2e"]
 resource_local_to_scene = true
-size = Vector2(48, 57)
+size = Vector2(39, 56)
 
 [node name="Mushroom" instance=ExtResource("1_fc1tk")]
 script = ExtResource("2_escij")
@@ -36,7 +36,7 @@ scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_hp88p")
 
 [node name="CollisionShape2D" parent="." index="1"]
-position = Vector2(-1, 0.5)
+position = Vector2(-1.5, 1)
 shape = SubResource("RectangleShape2D_dyv2e")
 
 [node name="Hp" parent="." index="2"]

@@ -1,15 +1,15 @@
 [gd_scene load_steps=6 format=3 uid="uid://uo2ucidhc50q"]
 
 [ext_resource type="PackedScene" uid="uid://1s17c7oi7wic" path="res://base_enemy.tscn" id="1_fet3g"]
-[ext_resource type="Texture2D" uid="uid://codoh3oh5w43o" path="res://assets/placeholderwindenemy.png" id="2_goj0e"]
 [ext_resource type="Script" path="res://wind_enemy.gd" id="2_re2ha"]
+[ext_resource type="Texture2D" uid="uid://ci22r27g0y2eu" path="res://assets/wind ele.png" id="3_4up0n"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qat3n"]
 resource_local_to_scene = true
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_goj0e")
+"texture": ExtResource("3_4up0n")
 }],
 "loop": true,
 "name": &"default",
@@ -17,21 +17,24 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s4s35"]
-radius = 13.7562
-height = 51.4642
+radius = 22.2243
+height = 78.4892
 
 [node name="WindEnemy" instance=ExtResource("1_fet3g")]
 script = ExtResource("2_re2ha")
 
 [node name="AnimatedSprite2D" parent="." index="0"]
-scale = Vector2(0.25, 0.25)
+scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_qat3n")
+frame_progress = 0.316503
 
 [node name="CollisionShape2D" parent="." index="1"]
-position = Vector2(0, 0)
-skew = -0.23911
+position = Vector2(1, -2.38419e-07)
+skew = -0.111701
 shape = SubResource("CapsuleShape2D_s4s35")
 
 [node name="Hp" parent="." index="2"]
-offset_top = 25.0
-offset_bottom = 52.0
+offset_left = -35.0
+offset_top = 40.0
+offset_right = 38.0
+offset_bottom = 67.0

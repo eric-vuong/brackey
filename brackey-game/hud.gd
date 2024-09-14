@@ -8,6 +8,7 @@ func _ready() -> void:
 	$Time.set_text("Night in: " + str(Global.day_duration))
 	$Warning.hide()
 	$Date.set_text("Day " + str(Global.cycle_count + 1))
+	$Victory.hide()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -33,3 +34,9 @@ func update_time():
 	$Date.set_text("Day " + str(Global.cycle_count + 1))
 func _on_core_hurt_timeout() -> void:
 	$Warning.hide()
+func show_win():
+	$Victory.show()
+	$VictoryTimer.start()
+
+func _on_victory_timer_timeout() -> void:
+	$Victory.hide()

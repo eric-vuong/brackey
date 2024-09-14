@@ -27,7 +27,7 @@ animations = [{
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nu55n"]
 resource_local_to_scene = true
-size = Vector2(70, 80)
+size = Vector2(58, 77)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4s81n"]
 radius = 150.0
@@ -41,7 +41,7 @@ sprite_frames = SubResource("SpriteFrames_x3b7i")
 animation = &"charge"
 
 [node name="CollisionShape2D" parent="." index="1"]
-position = Vector2(1, 2)
+position = Vector2(1, 4.5)
 shape = SubResource("RectangleShape2D_nu55n")
 
 [node name="TargetRange" type="Area2D" parent="." index="4"]

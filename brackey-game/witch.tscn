@@ -22,7 +22,7 @@ animations = [{
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_84w80"]
 resource_local_to_scene = true
-size = Vector2(26, 50)
+size = Vector2(23, 50)
 
 [node name="Witch" instance=ExtResource("1_xauxg")]
 script = ExtResource("2_0emed")
@@ -32,7 +32,7 @@ scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_qyga3")
 
 [node name="CollisionShape2D" parent="." index="1"]
-position = Vector2(0, 3)
+position = Vector2(-0.5, 3)
 shape = SubResource("RectangleShape2D_84w80")
 
 [node name="Hp" parent="." index="2"]
