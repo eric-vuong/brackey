@@ -49,6 +49,7 @@ shape = SubResource("RectangleShape2D_83srx")
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="NightEffect" parent="Camera2D" instance=ExtResource("4_xv0ww")]
+z_index = 1
 
 [node name="BulletTimer" type="Timer" parent="."]
 
