@@ -62,7 +62,7 @@ func upgrade():
 		Global.player_defense += 15
 		$Name.set_text(item_name + ": " + str(Global.player_defense) + "%")
 	elif item_name == "Move Speed":
-		Global.player_move_speed += 5
+		Global.player_move_speed += 10
 		$Name.set_text(item_name + ": " + str(Global.player_move_speed))
 	else:
 		print("Error: Shop item", item_name, "does not exist")

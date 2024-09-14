@@ -29,13 +29,12 @@ func _ready() -> void:
 func elite():
 	self.scale = Vector2(2,2) #double in size
 	if tier == 3:
-		$Hp.max_value = health * 5
-		$Hp.value = health * 5
-		current_hp = health * 5
+		health *= 5
 	else: # tier 1 and 2
-		$Hp.max_value = health * 5
-		$Hp.value = health * 5
-		current_hp = health * 5
+		health *= 4
+	$Hp.max_value = health
+	$Hp.value = health 
+	current_hp = health
 	droprate = 1
 	points *= 2
 	speed += 10 # Add small speed bonus
@@ -110,4 +109,4 @@ func _burn():
 
 
 func _on_burn_timer_timeout() -> void:
-	take_damage(5)
+	take_damage(0.2 * health)
