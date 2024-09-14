@@ -1,11 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://cuucqgabqtgp6"]
+[gd_scene load_steps=13 format=4 uid="uid://cuucqgabqtgp6"]
 
 [ext_resource type="PackedScene" uid="uid://cpw5fiy31v8m6" path="res://map.tscn" id="1_dfmti"]
 [ext_resource type="Script" path="res://main.gd" id="1_eoepo"]
 [ext_resource type="PackedScene" uid="uid://b3ebp1bga3qoa" path="res://player_body.tscn" id="3_18i0j"]
 [ext_resource type="PackedScene" uid="uid://dt4842xoch7j3" path="res://day_night_timer.tscn" id="5_8q024"]
 [ext_resource type="PackedScene" uid="uid://c0ii4r4tb8bk1" path="res://pause_menu.tscn" id="6_axkk1"]
-[ext_resource type="PackedScene" path="res://rain_tile_map.tscn" id="7_el2r5"]
+[ext_resource type="PackedScene" uid="uid://cccvnvv4prnv4" path="res://rain_tile_map.tscn" id="7_el2r5"]
 [ext_resource type="PackedScene" uid="uid://goy66pj78olo" path="res://core.tscn" id="7_l08wi"]
 [ext_resource type="PackedScene" uid="uid://dw4h7jgv0npky" path="res://game_over.tscn" id="8_u6yxw"]
 [ext_resource type="PackedScene" uid="uid://c0fr7tencajh7" path="res://shop.tscn" id="9_oa4go"]
@@ -58,6 +58,7 @@ rotation = -1.56245
 
 [node name="RainTileMap" parent="." instance=ExtResource("7_el2r5")]
 position = Vector2(0, -1)
+tile_map_data = PackedByteArray("AAD+//7/AAAAAAAAAAD+////AAAAAAAAAAD+/wAAAAAAAAAAAAD+/wEAAAAAAAAAAAD+/wIAAAAAAAAAAAD///7/AAAAAAAAAAD/////AAAAAAAAAAD//wAAAAAAAAAAAAD//wEAAAAAAAAAAAD//wIAAAAAAAAAAAAAAP7/AAAAAAAAAAAAAP//AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAIAAAAAAAAAAAABAP7/AAAAAAAAAAABAP//AAAAAAAAAAABAAAAAAAAAAAAAAABAAEAAAAAAAAAAAABAAIAAAAAAAAAAAACAP7/AAAAAAAAAAACAP//AAAAAAAAAAACAAAAAAAAAAAAAAACAAEAAAAAAAAAAAACAAIAAAAAAAAAAAADAP7/AAAAAAAAAAADAP//AAAAAAAAAAADAAAAAAAAAAAAAAADAAEAAAAAAAAAAAADAAIAAAAAAAAAAAAEAAAAAAAAAAAAAAAEAAEAAAAAAAAAAAAEAAIAAAAAAAAAAAACAP3/AAAAAAAAAAABAP3/AAAAAAAAAAAAAP3/AAAAAAAAAAD///3/AAAAAAAAAAD+//3/AAAAAAAAAAD9//3/AAAAAAAAAAD8//3/AAAAAAAAAAD9//7/AAAAAAAAAAD9////AAAAAAAAAAD9/wAAAAAAAAAAAAD8//7/AAAAAAAAAAADAP3/AAAAAAAAAAA=")
 
 [node name="GameOver" parent="." instance=ExtResource("8_u6yxw")]
 
