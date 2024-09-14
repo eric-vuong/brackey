@@ -44,7 +44,7 @@ var multi_bonus = 0
 var bullet_damage_mod = 1
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	player_move_speed = 150
+	player_move_speed = 100
 	player_defense = 0
 	bullet_damage = 10
 	pierce = 0

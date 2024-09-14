@@ -2,10 +2,8 @@
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5fgwe"]
 resource_local_to_scene = true
-animations = []
 
 [node name="BaseTurret" type="Area2D"]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_5fgwe")
-animation = &""

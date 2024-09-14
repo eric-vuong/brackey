@@ -7,7 +7,7 @@ var can_shoot = true
 var autofire = false
 var is_sprinting = false
 var is_dodging = false
-var sprint_bonus = 1.4
+var sprint_bonus = 1.5
 var screen_size
 var is_hitable = true
 var is_dead = false
