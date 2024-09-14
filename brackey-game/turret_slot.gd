@@ -9,6 +9,7 @@ func _ready() -> void:
 	toggle_aura(true)
 	toggle_bullet(true)
 	has_turret = false
+	$Controls.hide()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -20,12 +21,14 @@ func toggle_aura(turned_off):
 		$AuraTurret.hide()
 	else:
 		$AuraTurret.show()
+		$Controls.hide()
 func toggle_bullet(turned_off):
 	$BulletTurret.disabled = turned_off
 	if turned_off:
 		$BulletTurret.hide()
 	else:
 		$BulletTurret.show()
+		$Controls.hide()
 func set_turret(turret_type):
 	if has_turret:
 		return
@@ -44,9 +47,12 @@ func enable_slot(is_active):
 
 func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("player"):
+		if !has_turret:
+			$Controls.show()
 		Global.active_tower = self
 
 
 func _on_area_exited(area: Area2D) -> void:
 	if area.is_in_group("player"):
+		$Controls.hide()
 		Global.active_tower = null

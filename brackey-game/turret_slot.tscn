@@ -25,5 +25,13 @@ position = Vector2(0, -10)
 [node name="BulletTurret" parent="." instance=ExtResource("4_qbc88")]
 position = Vector2(0, -8)
 
+[node name="Controls" type="Label" parent="."]
+offset_left = -76.0
+offset_top = 33.0
+offset_right = 78.0
+offset_bottom = 82.0
+text = "Q for Fireball Turret
+E for Aura Turret"
+
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]

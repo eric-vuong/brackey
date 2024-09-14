@@ -40,6 +40,14 @@ offset_bottom = 96.0
 [node name="DamageTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="E" type="Label" parent="."]
+offset_left = -35.0
+offset_top = -120.0
+offset_right = 37.0
+offset_bottom = -97.0
+text = "E to shop"
+horizontal_alignment = 1
+
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]
 [connection signal="timeout" from="DamageTimer" to="." method="_on_damage_timer_timeout"]

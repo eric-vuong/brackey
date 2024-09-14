@@ -7,6 +7,7 @@ var is_hitable = true # Switches to false after being hit for a brief period
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Global.core_pos = self.position + Vector2(0, -60)
+	$E.hide()
 	# Core hp moved to global
 	
 	#core_hp = core_max
@@ -43,6 +44,7 @@ func take_damage(dmg):
 func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("player"):
 		Global.can_shop = true
+		$E.show()
 
 
 func _on_damage_timer_timeout() -> void:
@@ -52,4 +54,5 @@ func _on_damage_timer_timeout() -> void:
 func _on_area_exited(area: Area2D) -> void:
 	if area.is_in_group("player"):
 		Global.can_shop = false
+		$E.hide()
 		owner.close_shop()
