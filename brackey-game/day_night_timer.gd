@@ -1,7 +1,8 @@
 extends Timer
 signal is_daytime(is_day)
-var DAY_DURATION = 25 #seconds
-var NIGHT_DURATION = 35
+signal time_changed()
+var DAY_DURATION = 30 #seconds
+var NIGHT_DURATION = 60
 var START_TIME = DAY_DURATION + NIGHT_DURATION
 var current_time = START_TIME
 var is_day = true
@@ -14,6 +15,7 @@ func _ready() -> void:
 	Global.night_duration = NIGHT_DURATION
 	current_time = START_TIME
 	cycle_count = 0
+	Global.cycle_count = 0
 	is_day = true
 	Global.is_day = true
 
@@ -31,15 +33,19 @@ func _on_timer_timeout() -> void:
 		current_time = START_TIME
 		is_day = not is_day
 		is_daytime.emit(is_day)
-		#Global.is_day = is_day # Set time in global
+		Global.is_day = is_day # Set time in global
 		print('is day ', is_day)
+
 	#at end of daytime change to night
 	elif int(current_time) == int(START_TIME - DAY_DURATION):
 		is_day = not is_day
 		is_daytime.emit(is_day)
+		Global.is_day = is_day
 		print('is day ', is_day)
 	
 	#increment the days passed count
 	if int(current_time) == int(START_TIME):
 		cycle_count = cycle_count + 1
+		Global.cycle_count += 1
 		print('starting day/night cycle # ', cycle_count)
+	time_changed.emit()

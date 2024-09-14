@@ -77,3 +77,4 @@ position = Vector2(645, 67)
 [connection signal="gameover" from="Core" to="." method="_on_core_gameover"]
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
 [connection signal="is_daytime" from="DayNightTimer" to="." method="_on_day_night_timer_is_daytime"]
+[connection signal="time_changed" from="DayNightTimer" to="." method="_on_day_night_timer_time_changed"]

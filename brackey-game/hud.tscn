@@ -64,11 +64,22 @@ grow_horizontal = 2
 grow_vertical = 0
 
 [node name="Time" type="Label" parent="."]
-offset_left = 530.0
-offset_top = 317.0
-offset_right = 595.0
-offset_bottom = 340.0
-text = "TODO"
+offset_left = 501.0
+offset_top = 316.0
+offset_right = 632.0
+offset_bottom = 342.0
+text = "default"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Date" type="Label" parent="."]
+offset_left = 501.0
+offset_top = 293.0
+offset_right = 632.0
+offset_bottom = 319.0
+text = "Day 1"
+horizontal_alignment = 1
+autowrap_mode = 3
 
 [node name="Warning" type="Label" parent="."]
 offset_left = 247.0

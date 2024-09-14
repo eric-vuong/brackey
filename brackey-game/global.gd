@@ -27,6 +27,7 @@ var is_day: bool = true
 var day_duration: int
 var night_duration: int
 var current_time: int
+var cycle_count: int
 
 # Scores
 var score = 0

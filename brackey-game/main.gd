@@ -41,10 +41,11 @@ func _process(delta: float) -> void:
 			Global.active_tower.set_turret("aura") # Set tower to aura
 	if Input.is_action_just_pressed("q") and Global.active_tower != null:
 		Global.active_tower.set_turret("bullet")# Set to bullet tower
-		
-	# DEBUG
+	# Skip to night
 	if Input.is_action_just_pressed("time"):
-		$DayNightTimer.current_time = 1
+		if Global.is_day and Global.current_time - 3 > Global.night_duration:
+			$DayNightTimer.current_time = Global.night_duration + 2
+	# DEBUG
 	if Input.is_action_just_pressed("gameoverdebug"):
 		$Core.take_damage(999)
 	
@@ -155,3 +156,8 @@ func _on_core_gameover() -> void:
 
 func _core_hurt():
 	$HUD.update_core()
+
+
+func _on_day_night_timer_time_changed() -> void:
+	# Update time display
+	$HUD.update_time()
