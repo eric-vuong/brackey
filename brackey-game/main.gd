@@ -133,8 +133,9 @@ func _on_day_night_timer_is_daytime(is_day: Variant) -> void:
 		$RainTileMap.show()
 		$PlayerBody/PlayerArea/Camera2D/NightEffect.show()
 # Triggered when player hits 0 hp
-func _on_player_gameover() -> void:
+func _on_player_body_gameover() -> void:
 	game_over()
+	
 
 
 func _on_core_gameover() -> void:
