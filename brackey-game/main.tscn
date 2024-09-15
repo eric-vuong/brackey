@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://b3ebp1bga3qoa" path="res://player_body.tscn" id="3_18i0j"]
 [ext_resource type="PackedScene" uid="uid://dt4842xoch7j3" path="res://day_night_timer.tscn" id="5_8q024"]
 [ext_resource type="PackedScene" uid="uid://c0ii4r4tb8bk1" path="res://pause_menu.tscn" id="6_axkk1"]
-[ext_resource type="PackedScene" path="res://rain_tile_map.tscn" id="7_el2r5"]
+[ext_resource type="PackedScene" uid="uid://cccvnvv4prnv4" path="res://rain_tile_map.tscn" id="7_el2r5"]
 [ext_resource type="PackedScene" uid="uid://goy66pj78olo" path="res://core.tscn" id="7_l08wi"]
 [ext_resource type="PackedScene" uid="uid://dw4h7jgv0npky" path="res://game_over.tscn" id="8_u6yxw"]
 [ext_resource type="PackedScene" uid="uid://c0fr7tencajh7" path="res://shop.tscn" id="9_oa4go"]
@@ -14,9 +14,9 @@
 
 [sub_resource type="Curve2D" id="Curve2D_8h4hw"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -546.004, 22.2099, 0, 0, 0, 0, -538.307, -227.2, 0, 0, 0, 0, -470.744, -281.342, 0, 0, 0, 0, -477.586, -437.556, 0, 0, 0, 0, -540.873, -532.527, 0, 0, 0, 0, -368.117, -709.155, 0, 0, 0, 0, -273.187, -741.108, 0, 0, 0, 0, -164.573, -837.854, 0, 0, 0, 0, 243.371, -841.405, 0, 0, 0, 0, 302.381, -905.31, 0, 0, 0, 0, 364.813, -837.854, 0, 0, 0, 0, 722.298, -827.203, 0, 0, 0, 0, 783.019, -773.949, 0, 0, 0, 0, 920.711, -764.185, 0, 0, 0, 0, 1131.95, -595.545, 0, 0, 0, 0, 1111.43, -449.982, 0, 0, 0, 0, 1066.95, -367.437, 0, 0, 0, 0, 1069.52, -260.928, 0, 0, 0, 0, 1122.54, -171.282, 0, 0, 0, 0, 1089.19, -98.5009, 0, 0, 0, 0, 1063.53, -78.9741)
+"points": PackedVector2Array(0, 0, 0, 0, -442, -6, 0, 0, 0, 0, -508, -102, 0, 0, 0, 0, -511, -328, 0, 0, 0, 0, -455, -415, 0, 0, 0, 0, -456, -613, 0, 0, 0, 0, -533, -745, 0, 0, 0, 0, -354, -881, 0, 0, 0, 0, -155, -1032, 0, 0, 0, 0, 197, -1030, 0, 0, 0, 0, 337, -1028, 0, 0, 0, 0, 408, -1111, 0, 0, 0, 0, 507, -1010, 0, 0, 0, 0, 868, -1011, 0, 0, 0, 0, 958, -959, 0, 0, 0, 0, 1109, -957, 0, 0, 0, 0, 1229, -841, 0, 0, 0, 0, 1320, -785, 0, 0, 0, 0, 1311, -656, 0, 0, 0, 0, 1246, -604, 0, 0, 0, 0, 1255, -389, 0, 0, 0, 0, 1334, -318, 0, 0, 0, 0, 1243, -241, 0, 0, 0, 0, 1233, -147, 0, 0, 0, 0, 1234, -96, 0, 0, 0, 0, 1237, -54)
 }
-point_count = 21
+point_count = 25
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_eoepo")
@@ -44,13 +44,11 @@ position = Vector2(379, 327)
 wait_time = 2.0
 
 [node name="MobPath" type="Path2D" parent="."]
-position = Vector2(62.4316, -137.023)
-scale = Vector2(1.16928, 1.12666)
 curve = SubResource("Curve2D_8h4hw")
 
 [node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath"]
-position = Vector2(-546.004, 22.2099)
-rotation = -1.53995
+position = Vector2(-442, -6)
+rotation = -2.17308
 
 [node name="DayNightTimer" parent="." instance=ExtResource("5_8q024")]
 
