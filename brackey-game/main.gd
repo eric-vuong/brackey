@@ -83,6 +83,8 @@ func game_over():
 # Reset day counter and timer, clear enemies, clear towers, reset core hp, reset player and position
 func new_game():
 	print("Game Starting")
+	$NightMusic.stop()
+	$Rain.stop()
 	$MobTimer.set_wait_time(1.5)
 	enemy_list = easy
 	# Mob timer should start when it becomes night
@@ -217,6 +219,7 @@ func _on_day_night_timer_is_daytime(is_day: Variant) -> void:
 		if Global.cycle_count == 6: # ended day 7
 			$HUD.show_win()
 	else: # Start spawning enemies
+		$Rain.play()
 		$NightMusic.play()
 		Global.is_day = false
 		$MobTimer.start()

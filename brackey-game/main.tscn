@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://cuucqgabqtgp6"]
+[gd_scene load_steps=15 format=4 uid="uid://cuucqgabqtgp6"]
 
 [ext_resource type="PackedScene" uid="uid://cpw5fiy31v8m6" path="res://map.tscn" id="1_dfmti"]
 [ext_resource type="Script" path="res://main.gd" id="1_eoepo"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://hgv1rjvbngwy" path="res://hud.tscn" id="10_hdhff"]
 [ext_resource type="PackedScene" uid="uid://dwb70npsly431" path="res://turret_slot.tscn" id="11_w02p8"]
 [ext_resource type="AudioStream" uid="uid://c5gwtgp7iakd8" path="res://sound/NightMusic.mp3" id="12_n5r05"]
+[ext_resource type="AudioStream" uid="uid://s1fyxmrwur2m" path="res://sound/Rainfall.mp3" id="13_wc7xo"]
 
 [sub_resource type="Curve2D" id="Curve2D_8h4hw"]
 _data = {
@@ -84,6 +85,10 @@ one_shot = true
 [node name="NightMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_n5r05")
 bus = &"Music"
+
+[node name="Rain" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_wc7xo")
+bus = &"Sound"
 
 [connection signal="gameover" from="PlayerBody" to="." method="_on_player_body_gameover"]
 [connection signal="gameover" from="Core" to="." method="_on_core_gameover"]
