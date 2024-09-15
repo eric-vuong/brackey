@@ -84,6 +84,7 @@ one_shot = true
 
 [node name="NightMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_n5r05")
+volume_db = 3.0
 bus = &"Music"
 
 [node name="Rain" type="AudioStreamPlayer" parent="."]
