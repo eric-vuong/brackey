@@ -60,7 +60,7 @@ func _ready() -> void:
 	score = 0
 	yellow = 0
 	red = 0
-	blue = 100
+	blue = 0
 	
 	core_hp = core_max_hp
 

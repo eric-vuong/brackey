@@ -34,8 +34,8 @@ collision_mask = 0
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_1ba4a")
-frame = 3
-frame_progress = 0.645913
+frame = 1
+frame_progress = 0.344679
 
 [node name="TurretAura" parent="." index="1" groups=["turret_aura"] instance=ExtResource("3_acw36")]
 show_behind_parent = true

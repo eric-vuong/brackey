@@ -37,6 +37,10 @@ items=""
 turret_bullet=""
 turret_slot=""
 
+[gui]
+
+theme/custom_font="res://RETRO_SPACE_INV.ttf"
+
 [input]
 
 move_right={

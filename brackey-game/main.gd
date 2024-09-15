@@ -261,7 +261,6 @@ func _update_score():
 func _on_day_night_timer_time_changed() -> void:
 	# Update time display
 	$HUD.update_time()
-	$HUD.update_icon()
 	
 	#fade in night
 	if Global.current_time >= Global.night_duration and Global.current_time <= Global.night_duration + NIGHT_FADE_IN_ADDITIONS.max():
