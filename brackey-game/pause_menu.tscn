@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://c0ii4r4tb8bk1"]
+[gd_scene load_steps=3 format=3 uid="uid://c0ii4r4tb8bk1"]
 
 [ext_resource type="Script" path="res://pause_menu.gd" id="1_r1k40"]
+[ext_resource type="Theme" uid="uid://cy4mlm1b4kigp" path="res://assets/new_theme.tres" id="2_upvfa"]
 
 [node name="PauseMenu" type="CanvasLayer"]
 process_mode = 2
@@ -19,6 +20,7 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_upvfa")
 
 [node name="MarginContainer" type="MarginContainer" parent="Control"]
 layout_mode = 1
@@ -60,6 +62,7 @@ text = "        Volume"
 
 [node name="HSlider" type="HSlider" parent="Control/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_upvfa")
 
 [connection signal="pressed" from="Control/MarginContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="Control/MarginContainer/VBoxContainer/NewGame" to="." method="_on_new_game_pressed"]

@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://c4qhphxraw14n"]
+[gd_scene load_steps=5 format=3 uid="uid://c4qhphxraw14n"]
 
 [ext_resource type="Texture2D" uid="uid://c3ung7oumpptx" path="res://assets/attackspeed.png" id="1_42x52"]
 [ext_resource type="Texture2D" uid="uid://c8cbj631edooc" path="res://icon.svg" id="1_kh0bl"]
 [ext_resource type="Script" path="res://shop_item.gd" id="2_eti8r"]
+[ext_resource type="Theme" uid="uid://cy4mlm1b4kigp" path="res://assets/new_theme.tres" id="3_3bbfu"]
 
 [node name="ShopItem" type="Sprite2D"]
 position = Vector2(340, 244)
@@ -14,6 +15,7 @@ offset_left = 52.0
 offset_top = 12.0
 offset_right = 127.0
 offset_bottom = 60.0
+theme = ExtResource("3_3bbfu")
 text = "Upgrade"
 
 [node name="Level" type="Label" parent="."]
