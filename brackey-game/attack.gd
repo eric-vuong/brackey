@@ -5,6 +5,6 @@ func _ready() -> void:
 	level_max = 10
 	upgrade_cost = [1,2,2,3,3,4,4,5,5,6] # List of cost per level
 	currency = "red"
-	description = "Damage done per attack\n+2 Per level"
+	description = "+2 Per level"
 	base_stat = Global.bullet_damage
 	super()

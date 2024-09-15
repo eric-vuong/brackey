@@ -23,6 +23,7 @@ func _ready() -> void:
 	is_dead = false
 	is_hitable = true
 	is_healing = false
+	$PlayerArea/AnimatedSprite2D.animation = "default"
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -63,32 +64,21 @@ func _process(delta: float) -> void:
 			velocity = velocity.normalized() * Global.player_move_speed * sprint_bonus
 		else:
 			velocity = velocity.normalized() * Global.player_move_speed
-		#$PlayerArea/AnimatedSprite2D.play()
-	#else:
-		#$PlayerArea/AnimatedSprite2D.stop()
 	position += velocity * delta
-	#position = position.clamp(Vector2.ZERO, screen_size)
 
-	if velocity.y != 0: # Move down
-		pass
-		$PlayerArea/AnimatedSprite2D.animation = "default"
-	# show back when moving up
-	if velocity.y < 0:
-		pass
-		#$PlayerArea/AnimatedSprite2D.animation = "default"
-	#else:
-		#$PlayerArea/AnimatedSprite2D.animation = "default"
 	if velocity.x != 0:
-		pass
-		#$AnimatedSprite2D.animation = "walk"
-		#$AnimatedSprite2D.flip_v = false
-		# See the note below about boolean assignment.
-		#$AnimatedSprite2D.flip_h = velocity.x < 0
 		$PlayerArea/AnimatedSprite2D.animation = "right"
-		if velocity.x < 0: # Move left?
+		if velocity.x < 0: # Move left
 			$PlayerArea/AnimatedSprite2D.flip_h = true
 		else:
 			$PlayerArea/AnimatedSprite2D.flip_h = false
+	else:
+		# moving straight up or down
+		if velocity.y > 0: # Move down
+		#pass
+			$PlayerArea/AnimatedSprite2D.animation = "default"
+		elif velocity.y < 0:
+			$PlayerArea/AnimatedSprite2D.animation = "back"
 	# Take damage
 	if is_hitable:
 		var inside_player = $PlayerArea.get_overlapping_areas()

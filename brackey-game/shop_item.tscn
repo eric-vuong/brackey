@@ -1652,10 +1652,10 @@ theme = ExtResource("3_3bbfu")
 text = "Upgrade"
 
 [node name="Level" type="Label" parent="."]
-offset_left = -44.0
-offset_top = 36.0
-offset_right = 46.0
-offset_bottom = 59.0
+offset_left = -46.0
+offset_top = 42.0
+offset_right = 44.0
+offset_bottom = 65.0
 text = "1/1"
 horizontal_alignment = 1
 
@@ -1676,10 +1676,9 @@ text = "x3"
 
 [node name="Description" type="Label" parent="."]
 offset_left = -44.0
-offset_top = 60.0
+offset_top = 63.0
 offset_right = 124.0
-offset_bottom = 131.0
-theme_override_font_sizes/font_size = 10
+offset_bottom = 134.0
 text = "desc"
 horizontal_alignment = 1
 autowrap_mode = 2

@@ -5,6 +5,6 @@ func _ready() -> void:
 	level_max = 3
 	upgrade_cost = [3,5,7] # List of cost per level
 	currency = "red"
-	description = "Attacks penetrate enemies\n+1 per level"
+	description = "+1 per level"
 	base_stat = Global.pierce
 	super()

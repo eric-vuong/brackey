@@ -5,6 +5,6 @@ func _ready() -> void:
 	level_max = 4
 	upgrade_cost = [3,5,7,10] # List of cost per level
 	currency = "yellow"
-	description = "Projectiles launched on attack\n+1 per level"
+	description = "+1 per level"
 	base_stat = Global.multi_shot
 	super()
