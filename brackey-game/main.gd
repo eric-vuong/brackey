@@ -269,6 +269,11 @@ func _on_day_night_timer_time_changed() -> void:
 	# Update time display
 	$HUD.update_time()
 	
+	if Global.is_day and $PlayerBody.current_hp < $PlayerBody.max_hp:
+		$HealthPotion.play("jumping")
+	else:
+		$HealthPotion.play("idle")
+	
 	# Play rain 1s before visual
 	if Global.current_time == Global.night_duration + 1:
 		$Rain.play()
