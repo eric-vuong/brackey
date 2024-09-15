@@ -265,9 +265,9 @@ func _update_score():
 func _on_day_night_timer_time_changed() -> void:
 	# Update time display
 	$HUD.update_time()
-	print("Global.current_time", Global.current_time)
+	
+	# Play rain 1s before visual
 	if Global.current_time == Global.night_duration + 1:
-		print("rain")
 		$Rain.play()
 	
 	#fade in night
