@@ -141,6 +141,7 @@ func take_damage(dmg):
 		current_hp -= dmg # heal
 	else:
 		current_hp -= (dmg * (100 - Global.player_defense) * 0.01)
+		$PlayerArea/Hurt.play()
 	$PlayerArea/HpBar.value = current_hp
 	if current_hp <= 0:
 		is_dead = true

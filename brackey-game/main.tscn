@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://cuucqgabqtgp6"]
+[gd_scene load_steps=27 format=4 uid="uid://cuucqgabqtgp6"]
 
 [ext_resource type="PackedScene" uid="uid://cpw5fiy31v8m6" path="res://map.tscn" id="1_dfmti"]
 [ext_resource type="Script" path="res://main.gd" id="1_eoepo"]
@@ -22,6 +22,8 @@
 [ext_resource type="Texture2D" uid="uid://dh4ds0xi7m4xb" path="res://assets/potion5.png" id="20_ur4lr"]
 [ext_resource type="Texture2D" uid="uid://bybgh4cdvoh24" path="res://assets/potion6.png" id="21_orvvg"]
 [ext_resource type="Texture2D" uid="uid://dyf4fi0qgggiy" path="res://assets/potion7.png" id="22_n7dln"]
+[ext_resource type="AudioStream" uid="uid://c3mou5fmo4aj1" path="res://sound/DayMusic.mp3" id="23_jayju"]
+[ext_resource type="AudioStream" uid="uid://l5bnf3bvep6w" path="res://sound/GameOver.mp3" id="24_g1dmu"]
 
 [sub_resource type="Curve2D" id="Curve2D_8h4hw"]
 _data = {
@@ -171,6 +173,16 @@ animation = &"jumping"
 autoplay = "idle"
 frame_progress = 0.547453
 speed_scale = 0.5
+
+[node name="DayMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("23_jayju")
+volume_db = -21.0
+bus = &"Music"
+
+[node name="GameOverSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("24_g1dmu")
+volume_db = -5.0
+bus = &"Sound"
 
 [connection signal="gameover" from="PlayerBody" to="." method="_on_player_body_gameover"]
 [connection signal="gameover" from="Core" to="." method="_on_core_gameover"]

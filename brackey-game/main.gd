@@ -17,8 +17,8 @@ var goblin = preload("res://goblin.tscn")
 
 
 var easy = [skeleton, mushroom, wind, goblin]
-var med = [demon, genie, witch, skeleton, mushroom, wind, air]
-var hard = [demon, genie, witch, skeleton, mushroom, charge_enemy, wind, air]
+var med = [demon, genie, witch, skeleton, mushroom, wind, air, goblin]
+var hard = [demon, genie, witch, skeleton, mushroom, charge_enemy, wind, air, goblin]
 var enemy_list
 
 #var spawn_time = 2
@@ -63,6 +63,7 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("time"):
 		if Global.is_day and Global.current_time - 3 > Global.night_duration:
 			$DayNightTimer.current_time = Global.night_duration + 2
+			$DayMusic.stop()
 	# DEBUG
 	if Input.is_action_just_pressed("gameoverdebug"):
 		pass
@@ -73,6 +74,9 @@ func _process(delta: float) -> void:
 # Stop mob spawning, day night, show score, stop player
 func game_over():
 	print("GAME OVER")
+	$GameOverSound.play()
+	$DayMusic.stop()
+	$NightMusic.stop()
 	$MobTimer.stop() # Stop mob spawning
 	$DayNightTimer.stop() # Stop time
 	$Core/CollisionShape2D.disabled = true # Stop core from being hit
@@ -85,6 +89,8 @@ func game_over():
 # Reset day counter and timer, clear enemies, clear towers, reset core hp, reset player and position
 func new_game():
 	print("Game Starting")
+	$DayMusic.stop()
+	$DayMusic.play()
 	$NightMusic.stop()
 	$Rain.stop()
 	$MobTimer.set_wait_time(1.5)
@@ -187,6 +193,7 @@ func spawn_boss(is_elite):
 func _on_day_night_timer_is_daytime(is_day: Variant) -> void:
 	if is_day: # Kill enemies, show day popup
 		Global.is_day = true
+		$DayMusic.play()
 		$MobTimer.stop()
 		# Cycle 0 at end of day 1 (so first night finished is first time this signals)
 		print("Daytime signaled", Global.cycle_count)

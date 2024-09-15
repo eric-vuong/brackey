@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bn0206n4aejgv"]
+[gd_scene load_steps=10 format=3 uid="uid://bn0206n4aejgv"]
 
 [ext_resource type="Texture2D" uid="uid://bwsyqp8ei0iml" path="res://assets/PCWalkingBackwardsHat.png" id="1_2xmxc"]
 [ext_resource type="Texture2D" uid="uid://dbu4vxsxk3e6" path="res://assets/PlayerCharacterHatPNG.png" id="2_7bgqo"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bharievwcnx1k" path="res://night_effect.tscn" id="4_xv0ww"]
 [ext_resource type="Theme" uid="uid://cy4mlm1b4kigp" path="res://assets/new_theme.tres" id="5_d82yd"]
 [ext_resource type="AudioStream" uid="uid://0lfigc364yeu" path="res://sound/Fireball 1 new.mp3" id="6_x0uho"]
+[ext_resource type="AudioStream" uid="uid://cs3bjtl6k6vr4" path="res://sound/PlayerDamage.mp3" id="7_0bxg6"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fy8px"]
 animations = [{
@@ -70,6 +71,11 @@ show_percentage = false
 stream = ExtResource("6_x0uho")
 volume_db = -21.0
 max_polyphony = 10
+bus = &"Sound"
+
+[node name="Hurt" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_0bxg6")
+max_polyphony = 2
 bus = &"Sound"
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
