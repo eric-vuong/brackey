@@ -34,7 +34,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_83srx"]
-size = Vector2(29, 46)
+size = Vector2(28, 46)
 
 [node name="PlayerArea" type="Area2D" groups=["player"]]
 collision_mask = 2
@@ -44,7 +44,7 @@ sprite_frames = SubResource("SpriteFrames_fy8px")
 animation = &"back"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["player"]]
-position = Vector2(0.5, 1)
+position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_83srx")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -57,9 +57,9 @@ z_index = 1
 [node name="HpBar" type="ProgressBar" parent="."]
 z_index = 1
 offset_left = -23.0
-offset_top = 27.0
+offset_top = 29.0
 offset_right = 22.0
-offset_bottom = 34.0
+offset_bottom = 36.0
 theme = ExtResource("5_d82yd")
 value = 100.0
 show_percentage = false

@@ -58,11 +58,25 @@ text = "Restart
 
 [node name="Volume" type="Label" parent="Control/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "        Volume"
+text = "Sound"
+horizontal_alignment = 1
 
-[node name="HSlider" type="HSlider" parent="Control/MarginContainer/VBoxContainer"]
+[node name="VolumeSlider" type="HSlider" parent="Control/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_upvfa")
+value = 50.0
+
+[node name="Music" type="Label" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Music"
+horizontal_alignment = 1
+
+[node name="MusicSlider" type="HSlider" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_upvfa")
+value = 50.0
 
 [connection signal="pressed" from="Control/MarginContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="Control/MarginContainer/VBoxContainer/NewGame" to="." method="_on_new_game_pressed"]
+[connection signal="value_changed" from="Control/MarginContainer/VBoxContainer/VolumeSlider" to="." method="_on_volume_slider_value_changed"]
+[connection signal="value_changed" from="Control/MarginContainer/VBoxContainer/MusicSlider" to="." method="_on_music_slider_value_changed"]

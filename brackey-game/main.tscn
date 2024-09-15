@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://cuucqgabqtgp6"]
+[gd_scene load_steps=14 format=4 uid="uid://cuucqgabqtgp6"]
 
 [ext_resource type="PackedScene" uid="uid://cpw5fiy31v8m6" path="res://map.tscn" id="1_dfmti"]
 [ext_resource type="Script" path="res://main.gd" id="1_eoepo"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://c0fr7tencajh7" path="res://shop.tscn" id="9_oa4go"]
 [ext_resource type="PackedScene" uid="uid://hgv1rjvbngwy" path="res://hud.tscn" id="10_hdhff"]
 [ext_resource type="PackedScene" uid="uid://dwb70npsly431" path="res://turret_slot.tscn" id="11_w02p8"]
+[ext_resource type="AudioStream" uid="uid://c5gwtgp7iakd8" path="res://sound/NightMusic.mp3" id="12_n5r05"]
 
 [sub_resource type="Curve2D" id="Curve2D_8h4hw"]
 _data = {
@@ -81,6 +82,10 @@ position = Vector2(816, -24)
 [node name="RestartTimer" type="Timer" parent="."]
 wait_time = 0.05
 one_shot = true
+
+[node name="NightMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_n5r05")
+bus = &"Music"
 
 [connection signal="gameover" from="PlayerBody" to="." method="_on_player_body_gameover"]
 [connection signal="gameover" from="Core" to="." method="_on_core_gameover"]

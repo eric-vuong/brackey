@@ -1,11 +1,15 @@
 extends CanvasLayer
 var parent = null
 var can_resume = false 
-
+var sound = AudioServer.get_bus_index("Sound")
+var music = AudioServer.get_bus_index("Music")
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
 	hide()
+	_on_music_slider_value_changed(0.5)
+	_on_volume_slider_value_changed(0.5)
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -29,3 +33,11 @@ func _on_resume_pressed() -> void:
 func _on_new_game_pressed() -> void:
 	resume()
 	owner.new_game()
+
+
+func _on_music_slider_value_changed(value: float) -> void:
+	AudioServer.set_bus_volume_db(music, linear_to_db(value))
+
+
+func _on_volume_slider_value_changed(value: float) -> void:
+	AudioServer.set_bus_volume_db(sound, linear_to_db(value))
