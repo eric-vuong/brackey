@@ -5,7 +5,6 @@ var sound = AudioServer.get_bus_index("Sound")
 var music = AudioServer.get_bus_index("Music")
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
 	hide()
 	_on_music_slider_value_changed(0.5)
 	_on_volume_slider_value_changed(0.5)
