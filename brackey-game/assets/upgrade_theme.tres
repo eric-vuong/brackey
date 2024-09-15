@@ -1,7 +1,7 @@
-[gd_resource type="Theme" load_steps=15 format=4 uid="uid://cy4mlm1b4kigp"]
+[gd_resource type="Theme" load_steps=15 format=4 uid="uid://cu7jqkcgcbwxv"]
 
-[ext_resource type="Texture2D" uid="uid://dpsh2smfowv25" path="res://assets/GUI.png" id="1_8n1ew"]
-[ext_resource type="Texture2D" uid="uid://bubjtjai8odtd" path="res://assets/slider_button.png" id="2_8xox5"]
+[ext_resource type="Texture2D" uid="uid://dpsh2smfowv25" path="res://assets/GUI.png" id="1_say71"]
+[ext_resource type="Texture2D" uid="uid://bubjtjai8odtd" path="res://assets/slider_button.png" id="2_iyfai"]
 
 [sub_resource type="Image" id="Image_bi02o"]
 data = {
@@ -1546,26 +1546,27 @@ expand_margin_right = 2.0
 expand_margin_bottom = 2.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_x11yp"]
-texture = ExtResource("1_8n1ew")
+texture = ExtResource("1_say71")
 region_rect = Rect2(113, 81, 30, 14)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k0cya"]
-texture = ExtResource("1_8n1ew")
+texture = ExtResource("1_say71")
 region_rect = Rect2(113, 113, 30, 14)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m2436"]
-texture = ExtResource("1_8n1ew")
+texture = ExtResource("1_say71")
 region_rect = Rect2(113, 98, 30, 13)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dwx2l"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_whm7e"]
-texture = ExtResource("1_8n1ew")
+texture = ExtResource("1_say71")
 region_rect = Rect2(135, 4, 45, 7)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xfflk"]
-texture = ExtResource("1_8n1ew")
-region_rect = Rect2(72, 13, 49, 7)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ktv4k"]
+texture = ExtResource("1_say71")
+texture_margin_right = 1.0
+region_rect = Rect2(5, 26, 43, 7)
 
 [resource]
 Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
@@ -1594,9 +1595,9 @@ Button/styles/normal = SubResource("StyleBoxTexture_k0cya")
 Button/styles/pressed = SubResource("StyleBoxTexture_m2436")
 HSlider/constants/center_grabber = 0
 HSlider/constants/grabber_offset = 0
-HSlider/icons/grabber = ExtResource("2_8xox5")
-HSlider/icons/grabber_disabled = ExtResource("2_8xox5")
-HSlider/icons/grabber_highlight = ExtResource("2_8xox5")
+HSlider/icons/grabber = ExtResource("2_iyfai")
+HSlider/icons/grabber_disabled = ExtResource("2_iyfai")
+HSlider/icons/grabber_highlight = ExtResource("2_iyfai")
 HSlider/icons/tick = null
 HSlider/styles/grabber_area = null
 HSlider/styles/grabber_area_highlight = null
@@ -1618,4 +1619,4 @@ ProgressBar/constants/outline_size = 0
 ProgressBar/font_sizes/font_size = 16
 ProgressBar/fonts/font = SubResource("FontFile_kdvgf")
 ProgressBar/styles/background = SubResource("StyleBoxTexture_whm7e")
-ProgressBar/styles/fill = SubResource("StyleBoxTexture_xfflk")
+ProgressBar/styles/fill = SubResource("StyleBoxTexture_ktv4k")

@@ -63,7 +63,8 @@ func _process(delta: float) -> void:
 			$DayNightTimer.current_time = Global.night_duration + 2
 	# DEBUG
 	if Input.is_action_just_pressed("gameoverdebug"):
-		$Core.take_damage(999)
+		pass
+		#$Core.take_damage(999)
 
 	
 		

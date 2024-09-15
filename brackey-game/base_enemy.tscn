@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://1s17c7oi7wic"]
+[gd_scene load_steps=6 format=3 uid="uid://1s17c7oi7wic"]
 
 [ext_resource type="Texture2D" uid="uid://c8cbj631edooc" path="res://icon.svg" id="1_edygs"]
 [ext_resource type="Script" path="res://base_enemy.gd" id="1_il4ef"]
+[ext_resource type="Theme" uid="uid://cy4mlm1b4kigp" path="res://assets/new_theme.tres" id="3_hhmou"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_cugq4"]
 resource_local_to_scene = true
@@ -41,9 +42,12 @@ shape = SubResource("RectangleShape2D_wsvgl")
 
 [node name="Hp" type="ProgressBar" parent="."]
 offset_left = -36.0
-offset_top = 68.0
+offset_top = 65.0
 offset_right = 37.0
-offset_bottom = 95.0
+offset_bottom = 77.0
+theme = ExtResource("3_hhmou")
+value = 100.0
+show_percentage = false
 
 [node name="BurnTimer" type="Timer" parent="."]
 wait_time = 0.5
