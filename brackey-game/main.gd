@@ -23,6 +23,12 @@ var spawn_time = 2
 
 var turret_list # Omit default turret
 
+const NIGHT_FADE_IN_ADDITIONS = [9,8,7,6,5,4,3,2,1,0]
+const NIGHT_FADE_IN_ALPHA = [0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1]
+const NIGHT_FADE_OUT_ADDITIONS = [9,8,7,6,5,4,3,2,1,0]
+const NIGHT_FADE_OUT_ALPHA = [1,0.9,0.8,0.7,0.6,0.5,0.4,0.3,0.2,0.1]
+
+
 #var enemy_list = [charge_enemy]
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -212,7 +218,6 @@ func _on_day_night_timer_is_daytime(is_day: Variant) -> void:
 		Global.is_day = false
 		$MobTimer.start()
 		$RainTileMap.show()
-		$PlayerBody/PlayerArea/Camera2D/NightEffect.show()
 		
 		# Delete all uncollected items
 		for i in get_tree().get_nodes_in_group("items"):
@@ -254,6 +259,24 @@ func _update_score():
 func _on_day_night_timer_time_changed() -> void:
 	# Update time display
 	$HUD.update_time()
+	
+	#fade in night
+	if Global.current_time >= Global.night_duration and Global.current_time <= Global.night_duration + NIGHT_FADE_IN_ADDITIONS.max():
+		$PlayerBody/PlayerArea/Camera2D/NightEffect.show()
+		for i in range(NIGHT_FADE_IN_ADDITIONS.size()):
+			if Global.current_time == Global.night_duration + NIGHT_FADE_IN_ADDITIONS[i]:
+				$PlayerBody/PlayerArea/Camera2D/NightEffect.modulate = Color(255,255,255,NIGHT_FADE_IN_ALPHA[i])
+				return
+				
+	#fade out night
+	if Global.current_time >= 0 and Global.current_time <= 0 + NIGHT_FADE_OUT_ADDITIONS.max():
+		for i in range(NIGHT_FADE_OUT_ADDITIONS.size()):
+			if Global.current_time == 0 + NIGHT_FADE_OUT_ADDITIONS[i]:
+				$PlayerBody/PlayerArea/Camera2D/NightEffect.modulate = Color(255,255,255,NIGHT_FADE_OUT_ALPHA[i])
+				return
+
+	#fade out_night
+
 	# HEAL PLAYER ON DAY START
 	#if Global.is_day and !$PlayerBody.is_dead:
 	#	$PlayerBody.take_damage(-999)
