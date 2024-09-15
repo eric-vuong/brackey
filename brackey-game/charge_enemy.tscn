@@ -44,10 +44,17 @@ animation = &"charge"
 position = Vector2(1, 4.5)
 shape = SubResource("RectangleShape2D_nu55n")
 
+[node name="Hp" parent="." index="2"]
+offset_left = -57.0
+offset_top = 49.0
+offset_right = 65.0
+offset_bottom = 67.0
+
 [node name="TargetRange" type="Area2D" parent="." index="4"]
 collision_layer = 0
 
 [node name="TargetRangeDetection" type="CollisionShape2D" parent="TargetRange" index="0"]
+visible = false
 shape = SubResource("CircleShape2D_4s81n")
 debug_color = Color(0.947358, 3.56168e-06, 0.583463, 0.42)
 

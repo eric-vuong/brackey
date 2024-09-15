@@ -63,7 +63,8 @@ func _process(delta: float) -> void:
 			$DayNightTimer.current_time = Global.night_duration + 2
 	# DEBUG
 	if Input.is_action_just_pressed("gameoverdebug"):
-		$Core.take_damage(999)
+		pass
+		#$Core.take_damage(999)
 
 	
 		
@@ -147,7 +148,8 @@ func update_money():
 	
 # temp mob spawning func
 func _on_mob_timer_timeout() -> void:
-	if !Global.is_day:
+	if !Global.is_day and Global.current_time > 5:
+		#print("Global time mob", Global.current_time)
 		# Spawn random normal mob
 		var mob = enemy_list[randi() % len(enemy_list)].instantiate()
 
