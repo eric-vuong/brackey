@@ -219,7 +219,7 @@ func _on_day_night_timer_is_daytime(is_day: Variant) -> void:
 		if Global.cycle_count == 6: # ended day 7
 			$HUD.show_win()
 	else: # Start spawning enemies
-		$Rain.play()
+		#$Rain.play()
 		$NightMusic.play()
 		Global.is_day = false
 		$MobTimer.start()
@@ -265,6 +265,10 @@ func _update_score():
 func _on_day_night_timer_time_changed() -> void:
 	# Update time display
 	$HUD.update_time()
+	print("Global.current_time", Global.current_time)
+	if Global.current_time == Global.night_duration + 1:
+		print("rain")
+		$Rain.play()
 	
 	#fade in night
 	if Global.current_time >= Global.night_duration and Global.current_time <= Global.night_duration + NIGHT_FADE_IN_ADDITIONS.max():
@@ -280,6 +284,7 @@ func _on_day_night_timer_time_changed() -> void:
 			if Global.current_time == 0 + NIGHT_FADE_OUT_ADDITIONS[i]:
 				$PlayerBody/PlayerArea/Camera2D/NightEffect.modulate = Color(255,255,255,NIGHT_FADE_OUT_ALPHA[i])
 				return
+
 
 	#fade out_night
 
