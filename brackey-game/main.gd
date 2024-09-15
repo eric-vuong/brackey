@@ -147,7 +147,8 @@ func update_money():
 	
 # temp mob spawning func
 func _on_mob_timer_timeout() -> void:
-	if !Global.is_day:
+	if !Global.is_day and Global.current_time > 5:
+		#print("Global time mob", Global.current_time)
 		# Spawn random normal mob
 		var mob = enemy_list[randi() % len(enemy_list)].instantiate()
 
