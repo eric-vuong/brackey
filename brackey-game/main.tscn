@@ -14,9 +14,9 @@
 
 [sub_resource type="Curve2D" id="Curve2D_8h4hw"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -404.893, 127.832, 0, 0, 0, 0, -397.378, -773.061, 0, 0, 0, 0, 986.117, -765.412, 0, 0, 0, 0, 1002.82, 76.8377)
+"points": PackedVector2Array(0, 0, 0, 0, -463.902, 46.1745, 0, 0, 0, 0, -463.902, -205.898, 0, 0, 0, 0, -420.286, -209.448, 0, 0, 0, 0, -416.865, -433.118, 0, 0, 0, 0, -470.744, -494.361, 0, 0, 0, 0, -331.342, -632.824, 0, 0, 0, 0, -273.187, -632.824, 0, 0, 0, 0, -171.415, -762.41, 0, 0, 0, 0, 234.818, -765.961, 0, 0, 0, 0, 298.105, -819.215, 0, 0, 0, 0, 362.247, -762.41, 0, 0, 0, 0, 732.561, -760.635, 0, 0, 0, 0, 732.561, -712.706, 0, 0, 0, 0, 869.397, -708.268, 0, 0, 0, 0, 1056.69, -584.894, 0, 0, 0, 0, 1039.59, -474.834, 0, 0, 0, 0, 1003.67, -437.556, 0, 0, 0, 0, 1007.09, -226.312, 0, 0, 0, 0, 1047.28, -168.62, 0, 0, 0, 0, 998.536, -92.2878, 0, 0, 0, 0, 1021.63, -50.5716)
 }
-point_count = 4
+point_count = 21
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_eoepo")
@@ -35,7 +35,7 @@ position = Vector2(142, 178)
 position = Vector2(612, 181)
 
 [node name="PlayerBody" parent="." instance=ExtResource("3_18i0j")]
-position = Vector2(237, 294)
+position = Vector2(212, 315)
 
 [node name="Core" parent="." instance=ExtResource("7_l08wi")]
 position = Vector2(379, 327)
@@ -49,8 +49,8 @@ scale = Vector2(1.16928, 1.12666)
 curve = SubResource("Curve2D_8h4hw")
 
 [node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath"]
-position = Vector2(-404.893, 127.832)
-rotation = -1.56245
+position = Vector2(-463.902, 46.1745)
+rotation = -1.5708
 
 [node name="DayNightTimer" parent="." instance=ExtResource("5_8q024")]
 
