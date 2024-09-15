@@ -9,6 +9,7 @@ func _ready() -> void:
 	$Warning.hide()
 	$Date.set_text("Day " + str(Global.cycle_count + 1))
 	$Victory.hide()
+	$NightIcon.hide()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -32,6 +33,17 @@ func update_time():
 	else:
 		$Time.set_text("Dawn in: " + str(Global.current_time))
 	$Date.set_text("Day " + str(Global.cycle_count + 1))
+	
+func update_icon():
+	if Global.is_day:
+		$NightIcon.hide()
+		if not $DayIcon.is_visible_in_tree():
+			$DayIcon.show()
+	else:
+		$DayIcon.hide()
+		if not $NightIcon.is_visible_in_tree():
+			$NightIcon.show()
+
 func _on_core_hurt_timeout() -> void:
 	$Warning.hide()
 func show_win():
