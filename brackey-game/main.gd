@@ -217,6 +217,7 @@ func _on_day_night_timer_is_daytime(is_day: Variant) -> void:
 		if Global.cycle_count == 6: # ended day 7
 			$HUD.show_win()
 	else: # Start spawning enemies
+		$NightMusic.play()
 		Global.is_day = false
 		$MobTimer.start()
 		$RainTileMap.show()

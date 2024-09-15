@@ -1,16 +1,17 @@
-[gd_scene load_steps=13 format=4 uid="uid://cuucqgabqtgp6"]
+[gd_scene load_steps=14 format=4 uid="uid://cuucqgabqtgp6"]
 
 [ext_resource type="PackedScene" uid="uid://cpw5fiy31v8m6" path="res://map.tscn" id="1_dfmti"]
 [ext_resource type="Script" path="res://main.gd" id="1_eoepo"]
 [ext_resource type="PackedScene" uid="uid://b3ebp1bga3qoa" path="res://player_body.tscn" id="3_18i0j"]
 [ext_resource type="PackedScene" uid="uid://dt4842xoch7j3" path="res://day_night_timer.tscn" id="5_8q024"]
 [ext_resource type="PackedScene" uid="uid://c0ii4r4tb8bk1" path="res://pause_menu.tscn" id="6_axkk1"]
-[ext_resource type="PackedScene" uid="uid://cccvnvv4prnv4" path="res://rain_tile_map.tscn" id="7_el2r5"]
+[ext_resource type="PackedScene" path="res://rain_tile_map.tscn" id="7_el2r5"]
 [ext_resource type="PackedScene" uid="uid://goy66pj78olo" path="res://core.tscn" id="7_l08wi"]
 [ext_resource type="PackedScene" uid="uid://dw4h7jgv0npky" path="res://game_over.tscn" id="8_u6yxw"]
 [ext_resource type="PackedScene" uid="uid://c0fr7tencajh7" path="res://shop.tscn" id="9_oa4go"]
 [ext_resource type="PackedScene" uid="uid://hgv1rjvbngwy" path="res://hud.tscn" id="10_hdhff"]
 [ext_resource type="PackedScene" uid="uid://dwb70npsly431" path="res://turret_slot.tscn" id="11_w02p8"]
+[ext_resource type="AudioStream" uid="uid://c5gwtgp7iakd8" path="res://sound/NightMusic.mp3" id="12_n5r05"]
 
 [sub_resource type="Curve2D" id="Curve2D_8h4hw"]
 _data = {
@@ -79,6 +80,10 @@ position = Vector2(816, -24)
 [node name="RestartTimer" type="Timer" parent="."]
 wait_time = 0.05
 one_shot = true
+
+[node name="NightMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_n5r05")
+bus = &"Music"
 
 [connection signal="gameover" from="PlayerBody" to="." method="_on_player_body_gameover"]
 [connection signal="gameover" from="Core" to="." method="_on_core_gameover"]

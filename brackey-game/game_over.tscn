@@ -19,9 +19,8 @@ grow_horizontal = 2
 layout_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
-visible = false
 layout_mode = 2
-text = "Score:
+text = "
 "
 horizontal_alignment = 1
 
