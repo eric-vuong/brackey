@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://deqxjol7ugpo5"]
+[gd_scene load_steps=9 format=3 uid="uid://deqxjol7ugpo5"]
 
 [ext_resource type="PackedScene" uid="uid://dvxlfwsqtp0bd" path="res://base_turret.tscn" id="1_ehqxm"]
 [ext_resource type="Script" path="res://bullet_turret.gd" id="2_57rvm"]
 [ext_resource type="Texture2D" uid="uid://noo73w3rocaj" path="res://assets/fire_tower.png" id="3_jl4wb"]
 [ext_resource type="Texture2D" uid="uid://chv56de3nnb3f" path="res://assets/fire_tower_up.png" id="4_wtw2e"]
 [ext_resource type="Texture2D" uid="uid://dlnhv15ofvr7s" path="res://assets/fire_tower_down.png" id="5_qngdv"]
+[ext_resource type="AudioStream" uid="uid://nv1b7utymyo3" path="res://sound/FIreball Turret.mp3" id="6_6yboa"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_him18"]
 resource_local_to_scene = true
@@ -44,5 +45,12 @@ autostart = true
 
 [node name="TurretRange" type="CollisionShape2D" parent="." index="2"]
 shape = SubResource("CircleShape2D_qvrkd")
+
+[node name="FireBall" type="AudioStreamPlayer2D" parent="." index="3"]
+stream = ExtResource("6_6yboa")
+volume_db = -12.0
+max_distance = 700.0
+max_polyphony = 2
+bus = &"Sound"
 
 [connection signal="timeout" from="BulletTimer" to="." method="_on_bullet_timer_timeout"]

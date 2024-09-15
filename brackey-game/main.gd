@@ -12,14 +12,16 @@ var witch = preload("res://witch.tscn")
 var skeleton = preload("res://skeleton.tscn")
 var mushroom = preload("res://mushroom.tscn")
 var charge_enemy = preload("res://charge_enemy.tscn")
+var air = preload("res://air.tscn")
+var goblin = preload("res://goblin.tscn")
 
 
-var easy = [skeleton, mushroom, wind]
-var med = [demon, genie, witch, skeleton, mushroom, wind]
-var hard = [demon, genie, witch, skeleton, mushroom, charge_enemy, wind]
+var easy = [skeleton, mushroom, wind, goblin]
+var med = [demon, genie, witch, skeleton, mushroom, wind, air]
+var hard = [demon, genie, witch, skeleton, mushroom, charge_enemy, wind, air]
 var enemy_list
 
-var spawn_time = 2
+#var spawn_time = 2
 
 var turret_list # Omit default turret
 
@@ -147,7 +149,8 @@ func spawn_money(currency, pos):
 
 func update_money():
 	$HUD.update_count()
-	
+func money_sound():
+	$Money.play()
 # temp mob spawning func
 func _on_mob_timer_timeout() -> void:
 	if !Global.is_day and Global.current_time > 5:
@@ -265,11 +268,6 @@ func _update_score():
 func _on_day_night_timer_time_changed() -> void:
 	# Update time display
 	$HUD.update_time()
-	
-	if Global.is_day and $PlayerBody.current_hp < $PlayerBody.max_hp:
-		$HealthPotion.play('jumping')
-	else:
-		$HealthPotion.play('idle')
 	
 	# Play rain 1s before visual
 	if Global.current_time == Global.night_duration + 1:

@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://rlgctdv3ekpw"]
+
+[ext_resource type="PackedScene" uid="uid://1s17c7oi7wic" path="res://base_enemy.tscn" id="1_os3hs"]
+[ext_resource type="Script" path="res://goblin.gd" id="2_uoqyn"]
+[ext_resource type="Texture2D" uid="uid://dp1d84ys7glwq" path="res://assets/goblin.png" id="3_rvyk0"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vldyl"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_rvyk0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jwwb4"]
+radius = 11.5972
+height = 55.6017
+
+[node name="Goblin" instance=ExtResource("1_os3hs")]
+script = ExtResource("2_uoqyn")
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_vldyl")
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(0, 2)
+rotation = -0.645772
+shape = SubResource("CapsuleShape2D_jwwb4")

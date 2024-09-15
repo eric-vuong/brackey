@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://cuucqgabqtgp6"]
+[gd_scene load_steps=16 format=4 uid="uid://cuucqgabqtgp6"]
 
 [ext_resource type="PackedScene" uid="uid://cpw5fiy31v8m6" path="res://map.tscn" id="1_dfmti"]
 [ext_resource type="Script" path="res://main.gd" id="1_eoepo"]
@@ -13,78 +13,13 @@
 [ext_resource type="PackedScene" uid="uid://dwb70npsly431" path="res://turret_slot.tscn" id="11_w02p8"]
 [ext_resource type="AudioStream" uid="uid://c5gwtgp7iakd8" path="res://sound/NightMusic.mp3" id="12_n5r05"]
 [ext_resource type="AudioStream" uid="uid://s1fyxmrwur2m" path="res://sound/Rainfall.mp3" id="13_wc7xo"]
-[ext_resource type="Texture2D" uid="uid://crolgquqauatk" path="res://assets/potion0.png" id="14_sf8oh"]
-[ext_resource type="Texture2D" uid="uid://cjqs2gtp3t38y" path="res://assets/potion1.png" id="15_ptel3"]
-[ext_resource type="Texture2D" uid="uid://jvr50ocn27on" path="res://assets/potion2.png" id="16_o361d"]
-[ext_resource type="Texture2D" uid="uid://1kwtxfd2vwo2" path="res://assets/potion3.png" id="17_1bd5d"]
-[ext_resource type="Texture2D" uid="uid://bbr0ym75fnlo0" path="res://assets/potion4.png" id="18_apjmi"]
-[ext_resource type="Texture2D" uid="uid://dh4ds0xi7m4xb" path="res://assets/potion5.png" id="19_fwo0r"]
-[ext_resource type="Texture2D" uid="uid://bybgh4cdvoh24" path="res://assets/potion6.png" id="20_52kfh"]
-[ext_resource type="Texture2D" uid="uid://dyf4fi0qgggiy" path="res://assets/potion7.png" id="21_qcj08"]
+[ext_resource type="AudioStream" uid="uid://kmap8b0wm60q" path="res://sound/Loot.mp3" id="14_24r24"]
 
 [sub_resource type="Curve2D" id="Curve2D_8h4hw"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -442, -6, 0, 0, 0, 0, -508, -102, 0, 0, 0, 0, -511, -328, 0, 0, 0, 0, -455, -415, 0, 0, 0, 0, -456, -613, 0, 0, 0, 0, -533, -745, 0, 0, 0, 0, -354, -881, 0, 0, 0, 0, -155, -1032, 0, 0, 0, 0, 197, -1030, 0, 0, 0, 0, 337, -1028, 0, 0, 0, 0, 408, -1111, 0, 0, 0, 0, 507, -1010, 0, 0, 0, 0, 868, -1011, 0, 0, 0, 0, 958, -959, 0, 0, 0, 0, 1109, -957, 0, 0, 0, 0, 1229, -841, 0, 0, 0, 0, 1320, -785, 0, 0, 0, 0, 1311, -656, 0, 0, 0, 0, 1246, -604, 0, 0, 0, 0, 1255, -389, 0, 0, 0, 0, 1334, -318, 0, 0, 0, 0, 1243, -241, 0, 0, 0, 0, 1233, -147, 0, 0, 0, 0, 1234, -96, 0, 0, 0, 0, 1237, -54)
 }
 point_count = 25
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_sx7t0"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("14_sf8oh")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 10.0,
-"texture": ExtResource("14_sf8oh")
-}, {
-"duration": 1.0,
-"texture": ExtResource("15_ptel3")
-}, {
-"duration": 1.0,
-"texture": ExtResource("16_o361d")
-}, {
-"duration": 1.1,
-"texture": ExtResource("17_1bd5d")
-}, {
-"duration": 1.2,
-"texture": ExtResource("18_apjmi")
-}, {
-"duration": 1.3,
-"texture": ExtResource("19_fwo0r")
-}, {
-"duration": 1.8,
-"texture": ExtResource("20_52kfh")
-}, {
-"duration": 2.3,
-"texture": ExtResource("21_qcj08")
-}, {
-"duration": 1.8,
-"texture": ExtResource("20_52kfh")
-}, {
-"duration": 1.3,
-"texture": ExtResource("19_fwo0r")
-}, {
-"duration": 1.0,
-"texture": ExtResource("18_apjmi")
-}, {
-"duration": 1.0,
-"texture": ExtResource("17_1bd5d")
-}, {
-"duration": 1.0,
-"texture": ExtResource("16_o361d")
-}, {
-"duration": 1.0,
-"texture": ExtResource("15_ptel3")
-}],
-"loop": true,
-"name": &"jumping",
-"speed": 30.0
-}]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_eoepo")
@@ -157,12 +92,11 @@ bus = &"Music"
 stream = ExtResource("13_wc7xo")
 bus = &"Sound"
 
-[node name="HealthPotion" type="AnimatedSprite2D" parent="."]
-position = Vector2(343, 418)
-sprite_frames = SubResource("SpriteFrames_sx7t0")
-animation = &"idle"
-autoplay = "idle"
-speed_scale = 0.5
+[node name="Money" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_24r24")
+volume_db = -13.0
+max_polyphony = 10
+bus = &"Sound"
 
 [connection signal="gameover" from="PlayerBody" to="." method="_on_player_body_gameover"]
 [connection signal="gameover" from="Core" to="." method="_on_core_gameover"]

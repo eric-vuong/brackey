@@ -21,6 +21,7 @@ func toggle_aura(turned_off):
 		$AuraTurret.hide()
 	else:
 		$AuraTurret.show()
+		$AuraTurret/TurretAura/AuraPulse.play()
 		$Controls.hide()
 func toggle_bullet(turned_off):
 	$BulletTurret.disabled = turned_off
@@ -28,6 +29,7 @@ func toggle_bullet(turned_off):
 		$BulletTurret.hide()
 	else:
 		$BulletTurret.show()
+		$BulletTurret/FireBall.play()
 		$Controls.hide()
 func set_turret(turret_type):
 	if has_turret:

@@ -20,6 +20,7 @@ func _on_area_entered(area: Area2D) -> void:
 	elif currency_type == "blue":
 		Global.blue += 1
 	get_parent().update_money()
+	get_parent().money_sound()
 	queue_free()
 func remove():
 	queue_free()

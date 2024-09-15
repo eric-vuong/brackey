@@ -29,6 +29,7 @@ func create_bullet(enemy_position):
 	var b = bullet_scene.instantiate()
 	get_tree().root.add_child(b)
 	b.start_direction(self.global_position, self.global_position.direction_to(enemy_position))
+	$FireBall.play()
 	
 func aim():
 	var in_range = get_overlapping_areas()

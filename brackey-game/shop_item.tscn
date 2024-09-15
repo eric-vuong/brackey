@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://c4qhphxraw14n"]
+[gd_scene load_steps=21 format=4 uid="uid://c4qhphxraw14n"]
 
 [ext_resource type="Texture2D" uid="uid://c3ung7oumpptx" path="res://assets/attackspeed.png" id="1_42x52"]
 [ext_resource type="Texture2D" uid="uid://c8cbj631edooc" path="res://icon.svg" id="1_kh0bl"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dpsh2smfowv25" path="res://assets/GUI.png" id="3_0cd68"]
 [ext_resource type="Theme" uid="uid://cy4mlm1b4kigp" path="res://assets/new_theme.tres" id="3_3bbfu"]
 [ext_resource type="Texture2D" uid="uid://bubjtjai8odtd" path="res://assets/slider_button.png" id="4_pjbyn"]
+[ext_resource type="AudioStream" uid="uid://kmap8b0wm60q" path="res://sound/Loot.mp3" id="7_v1p6j"]
 
 [sub_resource type="Image" id="Image_bi02o"]
 data = {
@@ -1686,6 +1687,12 @@ autowrap_mode = 2
 [node name="Currency" type="Sprite2D" parent="."]
 position = Vector2(76, -12)
 texture = ExtResource("1_kh0bl")
+
+[node name="Purchased" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_v1p6j")
+volume_db = -13.0
+max_polyphony = 10
+bus = &"Sound"
 
 [connection signal="button_down" from="Upgrade" to="." method="_on_upgrade_button_down"]
 [connection signal="pressed" from="Upgrade" to="." method="_on_upgrade_pressed"]

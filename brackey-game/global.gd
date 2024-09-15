@@ -31,9 +31,9 @@ var cycle_count: int
 
 # Scores
 var score = 0
-var yellow = 0
-var red = 0
-var blue = 0
+var yellow: int
+var red: int
+var blue: int
 
 # Difficulty
 var elite_chance: int

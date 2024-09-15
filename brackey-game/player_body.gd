@@ -119,6 +119,9 @@ func shoot():
 				create_bullet(spread*shots - spread*0.5)
 				create_bullet(-spread*shots + spread*0.5)
 				shots -= 1
+		# Play sound
+		$PlayerArea/BulletSound.play()
+		
 
 func create_bullet(offset):
 	var b = bullet_scene.instantiate()

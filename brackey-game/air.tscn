@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://dunogm6w6xlte"]
+
+[ext_resource type="PackedScene" uid="uid://1s17c7oi7wic" path="res://base_enemy.tscn" id="1_uj71w"]
+[ext_resource type="Script" path="res://air.gd" id="2_n7eui"]
+[ext_resource type="Texture2D" uid="uid://c7nidhq8qekdd" path="res://assets/air elemental.png" id="3_w2bwm"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_amdli"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_w2bwm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sr2jr"]
+radius = 8.90212
+height = 35.6085
+
+[node name="Air" instance=ExtResource("1_uj71w")]
+script = ExtResource("2_n7eui")
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_amdli")
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(-3, 8)
+rotation = -0.366519
+shape = SubResource("CapsuleShape2D_sr2jr")

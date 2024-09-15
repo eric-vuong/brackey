@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://s7synujurf8w"]
+[gd_scene load_steps=6 format=3 uid="uid://s7synujurf8w"]
 
 [ext_resource type="Texture2D" uid="uid://1i0nxq4sb7g5" path="res://assets/aura_small.png" id="1_1wp0u"]
 [ext_resource type="Texture2D" uid="uid://gjyvru4lvpbg" path="res://assets/aura_big.png" id="2_xatge"]
+[ext_resource type="AudioStream" uid="uid://ch7vcsnb0v16h" path="res://sound/AOEPulse.mp3" id="3_7ur7l"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7gw22"]
 resource_local_to_scene = true
@@ -37,3 +38,10 @@ frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_c71t4")
+
+[node name="AuraPulse" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_7ur7l")
+volume_db = -6.0
+max_distance = 500.0
+max_polyphony = 2
+bus = &"Sound"
