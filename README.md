@@ -1,4 +1,4 @@
 # brackey
 Brackeys Game Jam - Sep 2024
 
-Tower defense where you build defenses during the day and fight attacking enemies during the night.
+Top-down shooter where you build defenses and upgrade during the day and fight enemies at night.
