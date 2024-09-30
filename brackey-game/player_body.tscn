@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bn0206n4aejgv" path="res://player_area.tscn" id="1_ujh7h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yde1s"]
+size = Vector2(20, 42)
 
 [node name="PlayerBody" type="CharacterBody2D"]
 motion_mode = 1
