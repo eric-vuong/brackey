@@ -66,6 +66,7 @@ func _process(delta: float) -> void:
 			$DayMusic.stop()
 	# DEBUG
 	if Input.is_action_just_pressed("gameoverdebug"):
+		
 		pass
 		#$Core.take_damage(999)
 
