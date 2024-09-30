@@ -13,6 +13,7 @@ var points: int # tier, x2 if elite
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$AnimatedSprite2D.play()
+	health += Global.hp_bonus
 	$Hp.max_value = health
 	$Hp.value = health
 	speed += Global.spd_bonus
@@ -29,15 +30,15 @@ func _ready() -> void:
 func elite():
 	self.scale = Vector2(2,2) #double in size
 	if tier == 3:
-		health *= 5
+		health *= 8 # Base health of 6400, about 11s to kill at max power
 	else: # tier 1 and 2
-		health *= 4
+		health *= 8
 	$Hp.max_value = health
 	$Hp.value = health 
 	current_hp = health
 	droprate = 1
 	points *= 2
-	speed += 10 # Add small speed bonus
+	speed *= 1.25 # Add 25% more speed
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

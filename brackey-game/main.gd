@@ -220,12 +220,16 @@ func _on_day_night_timer_is_daytime(is_day: Variant) -> void:
 		print("Mob spawn delay", $MobTimer.get_wait_time())
 		# They get faster over time
 		if Global.cycle_count >= 3:
+			# Bonus speed per day after 3
 			if Global.spd_bonus < 20:
-				Global.spd_bonus += 1
+				Global.spd_bonus += 2
 			if Global.elite_chance == 0:
-				Global.elite_chance = 25
+				Global.elite_chance = 20
 			elif Global.elite_chance < 50:
-				Global.elite_chance += 5
+				Global.elite_chance += 3
+			Global.hp_bonus += 5 # No limit to hp gain
+			if Global.hp_bonus > 50: # After 10 days of this
+				Global.hp_bonus += 15 # Make it 20 after day 14
 		#print("cycle", Global.cycle_count)
 		if Global.cycle_count == 6: # ended day 7
 			$HUD.show_win()

@@ -6,4 +6,5 @@ func _ready() -> void:
 	speed = 30
 	target = "Player"
 	tier = 1
+	droprate = 3
 	super()

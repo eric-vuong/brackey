@@ -5,4 +5,5 @@ func _ready():
 	speed = 80
 	target = "Core"
 	tier = 1
+	droprate = 3
 	super() # Calls base class ready
