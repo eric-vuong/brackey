@@ -3,7 +3,7 @@ extends Area2D
 @export var ice_scene = preload("res://tower_ice.tscn")
 var disabled = false
 var can_shoot = true
-var shoot_cooldown = 2
+var shoot_cooldown = 1
 var spread = 0.30
 
 # Called when the node enters the scene tree for the first time.

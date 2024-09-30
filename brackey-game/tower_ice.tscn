@@ -30,8 +30,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="TowerIce" type="Area2D"]
-collision_layer = 128
+[node name="TowerIce" type="Area2D" groups=["turret_ice"]]
+collision_layer = 256
 collision_mask = 2
 script = ExtResource("1_7lopw")
 
@@ -39,7 +39,7 @@ script = ExtResource("1_7lopw")
 shape = SubResource("CapsuleShape2D_6vyi0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.25, 0.25)
+scale = Vector2(0.15625, 0.201563)
 sprite_frames = SubResource("SpriteFrames_j4qpg")
 animation = &"upgraded"
 
