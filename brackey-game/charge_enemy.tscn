@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://77xm0phc17xq"]
+[gd_scene load_steps=10 format=3 uid="uid://77xm0phc17xq"]
 
 [ext_resource type="PackedScene" uid="uid://1s17c7oi7wic" path="res://base_enemy.tscn" id="1_uc0r0"]
 [ext_resource type="Script" path="res://charge_enemy.gd" id="2_52dhc"]
 [ext_resource type="Texture2D" uid="uid://wpqahefc3ime" path="res://assets/BullStareEnemy2.png" id="3_5gdmd"]
 [ext_resource type="Texture2D" uid="uid://b47odi3suyks2" path="res://assets/BullStareEnemy.png" id="4_5rww4"]
+[ext_resource type="Texture2D" uid="uid://dwx01owbodwxj" path="res://assets/bull1.png" id="5_n3i77"]
+[ext_resource type="Texture2D" uid="uid://cob5q1cbhaqgq" path="res://assets/bull2.png" id="6_nfa83"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_x3b7i"]
 resource_local_to_scene = true
@@ -19,10 +21,19 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("4_5rww4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_n3i77")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_5rww4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_nfa83")
 }],
 "loop": true,
 "name": &"default",
-"speed": 5.0
+"speed": 3.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nu55n"]
@@ -38,7 +49,7 @@ script = ExtResource("2_52dhc")
 [node name="AnimatedSprite2D" parent="." index="0"]
 scale = Vector2(0.75, 0.75)
 sprite_frames = SubResource("SpriteFrames_x3b7i")
-animation = &"charge"
+frame_progress = 0.728474
 
 [node name="CollisionShape2D" parent="." index="1"]
 position = Vector2(1, 4.5)
