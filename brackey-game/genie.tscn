@@ -1,10 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://13uy6euh5xtg"]
+[gd_scene load_steps=6 format=3 uid="uid://13uy6euh5xtg"]
 
 [ext_resource type="PackedScene" uid="uid://1s17c7oi7wic" path="res://base_enemy.tscn" id="1_fd33x"]
 [ext_resource type="Script" path="res://genie.gd" id="2_fl6op"]
 [ext_resource type="Texture2D" uid="uid://bwpi5edy6nltl" path="res://assets/genie.png" id="3_palq5"]
-[ext_resource type="Texture2D" uid="uid://bopyv6ichls3d" path="res://assets/genie1.png" id="4_3rjt5"]
-[ext_resource type="Texture2D" uid="uid://bscnp7pt7okf1" path="res://assets/genie2.png" id="5_xabiy"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6uijq"]
 resource_local_to_scene = true
@@ -12,19 +10,10 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("3_palq5")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_3rjt5")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_palq5")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_xabiy")
 }],
 "loop": true,
 "name": &"default",
-"speed": 3.0
+"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qa6x2"]
@@ -37,7 +26,6 @@ script = ExtResource("2_fl6op")
 [node name="AnimatedSprite2D" parent="." index="0"]
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_6uijq")
-frame_progress = 0.681386
 
 [node name="CollisionShape2D" parent="." index="1"]
 position = Vector2(3, -1)

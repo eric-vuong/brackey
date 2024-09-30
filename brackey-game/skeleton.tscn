@@ -1,10 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://hty4n1fqrri8"]
+[gd_scene load_steps=6 format=3 uid="uid://hty4n1fqrri8"]
 
 [ext_resource type="PackedScene" uid="uid://1s17c7oi7wic" path="res://base_enemy.tscn" id="1_lltvj"]
 [ext_resource type="Script" path="res://skeleton.gd" id="2_wdh3l"]
 [ext_resource type="Texture2D" uid="uid://deaxhx532e7av" path="res://assets/skeleton.png" id="3_frk12"]
-[ext_resource type="Texture2D" uid="uid://nbfe7ndsku5c" path="res://assets/skeleton1.png" id="4_b6xxd"]
-[ext_resource type="Texture2D" uid="uid://cw3pf6ikgk2kc" path="res://assets/skeleton2.png" id="5_hrhkv"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_l45yq"]
 resource_local_to_scene = true
@@ -12,19 +10,10 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("3_frk12")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_b6xxd")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_frk12")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_hrhkv")
 }],
 "loop": true,
 "name": &"default",
-"speed": 3.0
+"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vudgp"]
@@ -37,7 +26,6 @@ script = ExtResource("2_wdh3l")
 [node name="AnimatedSprite2D" parent="." index="0"]
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_l45yq")
-frame_progress = 0.327102
 
 [node name="CollisionShape2D" parent="." index="1"]
 position = Vector2(3.5, 1.5)
