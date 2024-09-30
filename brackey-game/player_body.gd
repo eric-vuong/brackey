@@ -72,8 +72,10 @@ func _process(delta: float) -> void:
 			velocity = velocity.normalized() * Global.player_move_speed
 	position += velocity * delta
 
+	# Animate if moving 
 	if velocity.x != 0:
 		$PlayerArea/AnimatedSprite2D.animation = "right"
+		$PlayerArea/AnimatedSprite2D.play()
 		if velocity.x < 0: # Move left
 			$PlayerArea/AnimatedSprite2D.flip_h = true
 		else:
@@ -82,9 +84,15 @@ func _process(delta: float) -> void:
 		# moving straight up or down
 		if velocity.y > 0: # Move down
 		#pass
-			$PlayerArea/AnimatedSprite2D.animation = "default"
+			$PlayerArea/AnimatedSprite2D.animation = "walk_forward"
+			$PlayerArea/AnimatedSprite2D.play()
 		elif velocity.y < 0:
 			$PlayerArea/AnimatedSprite2D.animation = "back"
+			$PlayerArea/AnimatedSprite2D.play()
+			
+	# Not moving
+	if velocity.x == 0 and velocity.y == 0:
+		$PlayerArea/AnimatedSprite2D.stop()
 	# Take damage
 	if is_hitable:
 		var inside_player = $PlayerArea.get_overlapping_areas()

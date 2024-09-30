@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cktsoeaq5hnbc"]
+[gd_scene load_steps=8 format=3 uid="uid://cktsoeaq5hnbc"]
 
 [ext_resource type="PackedScene" uid="uid://1s17c7oi7wic" path="res://base_enemy.tscn" id="1_rfkua"]
 [ext_resource type="Script" path="res://demon.gd" id="2_vvsu3"]
 [ext_resource type="Texture2D" uid="uid://bmn1dvkcilc8j" path="res://assets/demon.png" id="2_xb0kg"]
+[ext_resource type="Texture2D" uid="uid://dxt0t3jedty28" path="res://assets/demon1.png" id="4_p8e2m"]
+[ext_resource type="Texture2D" uid="uid://clpqr8d52rxll" path="res://assets/demon2.png" id="5_dlm3f"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_rhxgt"]
 resource_local_to_scene = true
@@ -10,10 +12,19 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_xb0kg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_p8e2m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_xb0kg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_dlm3f")
 }],
 "loop": true,
 "name": &"default",
-"speed": 5.0
+"speed": 3.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -34,6 +45,7 @@ script = ExtResource("2_vvsu3")
 [node name="AnimatedSprite2D" parent="." index="0"]
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_rhxgt")
+frame_progress = 0.902833
 
 [node name="CollisionShape2D" parent="." index="1"]
 position = Vector2(-1, 3.375)
