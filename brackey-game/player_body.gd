@@ -33,6 +33,12 @@ func _process(delta: float) -> void:
 	Global.player_pos = self.global_position
 	var velocity = Vector2.ZERO # The player's movement vector.
 	
+	# Manual Y sort
+	if self.global_position.y >= 418:
+		$PlayerArea/AnimatedSprite2D.z_index = 1
+	else:
+		$PlayerArea/AnimatedSprite2D.z_index = 0
+	
 	if Input.is_action_pressed("shoot") or autofire:
 		if !is_sprinting and !is_dodging:
 			shoot()
