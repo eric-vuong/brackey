@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://b6po1auckanjl"]
+[gd_scene load_steps=7 format=3 uid="uid://b6po1auckanjl"]
 
 [ext_resource type="PackedScene" uid="uid://1s17c7oi7wic" path="res://base_enemy.tscn" id="1_os3hs"]
 [ext_resource type="Script" path="res://goblin.gd" id="2_uoqyn"]
 [ext_resource type="Texture2D" uid="uid://dp1d84ys7glwq" path="res://assets/goblin.png" id="3_rvyk0"]
+[ext_resource type="Texture2D" uid="uid://n58vofa1vjr" path="res://assets/goblin1.png" id="4_61tvc"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vldyl"]
 resource_local_to_scene = true
@@ -10,10 +11,13 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("3_rvyk0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_61tvc")
 }],
 "loop": true,
 "name": &"default",
-"speed": 5.0
+"speed": 3.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jwwb4"]
@@ -26,6 +30,7 @@ script = ExtResource("2_uoqyn")
 [node name="AnimatedSprite2D" parent="." index="0"]
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_vldyl")
+frame_progress = 0.135924
 
 [node name="CollisionShape2D" parent="." index="1"]
 position = Vector2(0, 2)
