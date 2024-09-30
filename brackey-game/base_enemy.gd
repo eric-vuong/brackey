@@ -11,6 +11,7 @@ var droprate = 2 # as in 1 / droprate
 var tier: int # 1 for weakest, 3 strongest
 var points: int # tier, x2 if elite
 # Called when the node enters the scene tree for the first time.
+
 func _ready() -> void:
 	$AnimatedSprite2D.play()
 	$Hp.max_value = health
