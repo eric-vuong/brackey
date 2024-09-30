@@ -16,6 +16,9 @@ debug_color = Color(0.808029, 0.413832, 0, 0.42)
 
 [node name="PlayerArea" parent="." instance=ExtResource("1_ujh7h")]
 
+[node name="AnimatedSprite2D" parent="PlayerArea" index="0"]
+frame_progress = 0.0
+
 [node name="HealTimer" type="Timer" parent="PlayerArea"]
 wait_time = 0.5
 autostart = true
