@@ -10,6 +10,10 @@ var drops = null
 var droprate = 2 # as in 1 / droprate
 var tier: int # 1 for weakest, 3 strongest
 var points: int # tier, x2 if elite
+var slowed = false
+var slow_ratio = 0.5
+var slow_duration = 0.5
+var slow_duration_remaining: float
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$AnimatedSprite2D.play()
@@ -50,6 +54,14 @@ func _process(delta: float) -> void:
 	#if check_if_hit():
 		#print("we've been hit")
 		#apply_hits()
+		
+	# Slow_duration_remaining
+	if slowed:
+		slow_duration_remaining = slow_duration_remaining - delta
+		if slow_duration_remaining <= 0:
+			slowed = false
+			speed = speed / slow_ratio
+		
 	
 
 
@@ -77,10 +89,16 @@ func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("player_bullet"):
 		take_damage(Global.bullet_damage)
 	#elif area.is_in_group("tower_bullet"):
-	else:
+	elif area.is_in_group("turret_bullet"):
 		#print("by tower")
 		take_damage(Global.tower_bullet_dmg)
 	#$AnimatedSprite2D.play("hit")
+	elif area.is_in_group("turret_ice"):
+		take_damage(Global.tower_bullet_dmg/20)
+		slow_duration_remaining = slow_duration
+		if not slowed:
+			slowed = true
+			speed = speed * slow_ratio
 
 # Move toward target position
 func pathing(delta):

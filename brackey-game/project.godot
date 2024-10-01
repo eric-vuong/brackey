@@ -36,6 +36,7 @@ player=""
 items=""
 turret_bullet=""
 turret_slot=""
+turret_ice=""
 
 [gui]
 
@@ -149,6 +150,7 @@ debugtime={
 2d_physics/layer_6="item"
 2d_physics/layer_7="turret_placement"
 2d_physics/layer_8="tower_bullet"
+2d_physics/layer_9="tower_ice"
 
 [rendering]
 

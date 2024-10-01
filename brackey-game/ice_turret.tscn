@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://px257kbnck20"]
+
+[ext_resource type="PackedScene" uid="uid://dvxlfwsqtp0bd" path="res://base_turret.tscn" id="1_ebiki"]
+[ext_resource type="Script" path="res://ice_turret.gd" id="2_86exf"]
+[ext_resource type="Texture2D" uid="uid://c8cbj631edooc" path="res://icon.svg" id="3_86sie"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r7o0r"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_86sie")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5v6ul"]
+radius = 180.0
+
+[node name="IceTurret" instance=ExtResource("1_ebiki")]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("2_86exf")
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_r7o0r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+shape = SubResource("CircleShape2D_5v6ul")
+
+[node name="BulletTimer" type="Timer" parent="." index="2"]
+
+[connection signal="timeout" from="BulletTimer" to="." method="_on_bullet_timer_timeout"]
