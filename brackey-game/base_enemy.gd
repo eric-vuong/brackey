@@ -1,6 +1,6 @@
 extends Area2D
 signal enemy_died()
-@export var health = 100
+@export var health = 100 # Max health. Increased over time
 var current_hp = 1
 @export var target: String# Player or core
 var speed: int
@@ -30,15 +30,17 @@ func _ready() -> void:
 func elite():
 	self.scale = Vector2(2,2) #double in size
 	if tier == 3:
-		health *= 8 # Base health of 6400, about 11s to kill at max power
+		health = health * 8 # Base health of 6400, about 11s to kill at max power
+		points = points * 2 # x4 points total
 	else: # tier 1 and 2
-		health *= 8
+		health = health * 8
 	$Hp.max_value = health
 	$Hp.value = health 
 	current_hp = health
 	droprate = 1
-	points *= 2
-	speed *= 1.25 # Add 25% more speed
+	points = points * 2
+	speed = speed * 1.25 # Add 25% more speed
+	#print(health, speed)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
