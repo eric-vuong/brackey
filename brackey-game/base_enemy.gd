@@ -1,6 +1,6 @@
 extends Area2D
 signal enemy_died()
-@export var health = 100
+@export var health = 100 # Max health. Increased over time
 var current_hp = 1
 @export var target: String# Player or core
 var speed: int
@@ -17,6 +17,7 @@ var slow_duration_remaining: float
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$AnimatedSprite2D.play()
+	health += Global.hp_bonus
 	$Hp.max_value = health
 	$Hp.value = health
 	speed += Global.spd_bonus
@@ -33,15 +34,17 @@ func _ready() -> void:
 func elite():
 	self.scale = Vector2(2,2) #double in size
 	if tier == 3:
-		health *= 5
+		health = health * 8 # Base health of 6400, about 11s to kill at max power
+		points = points * 2 # x4 points total
 	else: # tier 1 and 2
-		health *= 4
+		health = health * 8
 	$Hp.max_value = health
 	$Hp.value = health 
 	current_hp = health
 	droprate = 1
-	points *= 2
-	speed += 10 # Add small speed bonus
+	points = points * 2
+	speed = speed * 1.25 # Add 25% more speed
+	#print(health, speed)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

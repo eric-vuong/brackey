@@ -37,7 +37,7 @@ var blue: int
 
 # Difficulty
 var elite_chance: int
-var hp_bonus: int # Not used
+var hp_bonus: int
 var spd_bonus: int
 
 # Modifiers - not used
@@ -66,6 +66,7 @@ func _ready() -> void:
 
 	elite_chance = 0
 	spd_bonus = 0
+	hp_bonus = 0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

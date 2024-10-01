@@ -19,6 +19,7 @@ var goblin = preload("res://goblin.tscn")
 var easy = [skeleton, mushroom, wind, goblin]
 var med = [demon, genie, witch, skeleton, mushroom, wind, air, goblin]
 var hard = [demon, genie, witch, skeleton, mushroom, charge_enemy, wind, air, goblin]
+var tier2 = [demon, genie, witch, air]
 var enemy_list
 
 #var spawn_time = 2
@@ -183,13 +184,28 @@ func _on_mob_timer_timeout() -> void:
 				mob.elite()
 func spawn_boss(is_elite):
 	var boss = charge_enemy.instantiate()
+	add_child(boss)
 	if is_elite:
 		boss.elite()
 	var boss_spawn_location = $MobPath/MobSpawnLocation
 	boss_spawn_location.progress_ratio = randf()
 	boss.position = boss_spawn_location.position
 	boss.connect("enemy_died", _update_score)
-	add_child(boss)
+	
+func spawn_elite(elite_to_spawn):
+	var elite
+	if len(elite_to_spawn) > 1:
+		elite_to_spawn.shuffle()
+		elite = elite_to_spawn[0].instantiate()
+	else:
+		elite = elite_to_spawn.instantiate()
+	add_child(elite)
+	elite.elite()
+	var elite_spawn_location = $MobPath/MobSpawnLocation
+	elite_spawn_location.progress_ratio = randf()
+	elite.position = elite_spawn_location.position
+	elite.connect("enemy_died", _update_score)
+	
 # Signals true/false when day night changes
 func _on_day_night_timer_is_daytime(is_day: Variant) -> void:
 	if is_day: # Kill enemies, show day popup
@@ -206,26 +222,30 @@ func _on_day_night_timer_is_daytime(is_day: Variant) -> void:
 		enable_turret(Global.cycle_count)
 		# Make enemies harder
 		if Global.cycle_count == 0:
-			print("Medium enemies")
+			print("Medium enemies spawning")
 			enemy_list = med
 		elif Global.cycle_count == 2:
-			print("Hard enemies")
+			print("Hard enemies spawning")
 			enemy_list = hard
 		# Increase spawn rate
 		var spawn_delay = $MobTimer.get_wait_time() * 0.9
-		if spawn_delay >= 0.3:
+		if spawn_delay >= 0.3: # 
 			$MobTimer.set_wait_time(spawn_delay)
-		else:
-			$MobTimer.set_wait_time(1)
+		#else:
+			#$MobTimer.set_wait_time(1)
 		print("Mob spawn delay", $MobTimer.get_wait_time())
 		# They get faster over time
 		if Global.cycle_count >= 3:
+			# Bonus speed per day after 3
 			if Global.spd_bonus < 20:
-				Global.spd_bonus += 1
+				Global.spd_bonus += 2
 			if Global.elite_chance == 0:
-				Global.elite_chance = 25
+				Global.elite_chance = 20
 			elif Global.elite_chance < 50:
-				Global.elite_chance += 5
+				Global.elite_chance += 3
+			Global.hp_bonus += 10 # No limit to hp gain
+			if Global.hp_bonus > 100: # After 10 days of this
+				Global.hp_bonus += 15 # Make it 25 after day 14
 		#print("cycle", Global.cycle_count)
 		if Global.cycle_count == 6: # ended day 7
 			$HUD.show_win()
@@ -240,9 +260,18 @@ func _on_day_night_timer_is_daytime(is_day: Variant) -> void:
 		for i in get_tree().get_nodes_in_group("items"):
 			i.queue_free()
 		# Spawn the boss on specific days. could add special FX or delay
+		if Global.cycle_count == 0:
+			pass
+			#spawn_elite(easy)
 		if Global.cycle_count == 2:
 			spawn_boss(false)
+		if Global.cycle_count == 3:
+			spawn_elite(easy)
+		if Global.cycle_count == 4:
+			spawn_elite(tier2)
 		if Global.cycle_count == 5:
+			spawn_boss(true)
+		if Global.cycle_count == 6:
 			spawn_boss(true)
 # Disable all turrets except turret 1.
 # Called on start of game
