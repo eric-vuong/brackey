@@ -8,6 +8,7 @@ func _ready() -> void:
 	
 	toggle_aura(true)
 	toggle_bullet(true)
+	toggle_ice(true)
 	has_turret = false
 	$Controls.hide()
 
@@ -31,6 +32,14 @@ func toggle_bullet(turned_off):
 		$BulletTurret.show()
 		$BulletTurret/FireBall.play()
 		$Controls.hide()
+func toggle_ice(turned_off):
+	$IceTurret.disabled = turned_off
+	if turned_off:
+		$IceTurret.hide()
+	else:
+		$IceTurret.show()
+		#$BulletTurret/FireBall.play()
+		$Controls.hide()
 func set_turret(turret_type):
 	if has_turret:
 		return
@@ -38,6 +47,8 @@ func set_turret(turret_type):
 		toggle_bullet(false)
 	elif turret_type == "aura":
 		toggle_aura(false)
+	elif turret_type == 'ice':
+		toggle_ice(false)
 	has_turret = true
 func enable_slot(is_active):
 	if !is_active:

@@ -1,7 +1,7 @@
 extends Area2D
 
 @export var ice_scene = preload("res://tower_ice.tscn")
-var disabled = false
+var disabled = true
 var can_shoot = true
 var shoot_cooldown = 1
 var spread = 0.30
