@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://dwb70npsly431"]
+[gd_scene load_steps=7 format=3 uid="uid://dwb70npsly431"]
 
 [ext_resource type="Script" path="res://turret_slot.gd" id="1_i4t0d"]
 [ext_resource type="Texture2D" uid="uid://bdwcb8n6wk0up" path="res://assets/tower_platform.png" id="1_jsff4"]
 [ext_resource type="PackedScene" uid="uid://b8vbijega7f7t" path="res://aura_turret.tscn" id="3_prikh"]
 [ext_resource type="PackedScene" uid="uid://deqxjol7ugpo5" path="res://bullet_turret.tscn" id="4_qbc88"]
+[ext_resource type="PackedScene" uid="uid://px257kbnck20" path="res://ice_turret.tscn" id="5_ci55r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_18rmc"]
 size = Vector2(73, 82)
@@ -25,13 +26,16 @@ position = Vector2(0, -10)
 [node name="BulletTurret" parent="." instance=ExtResource("4_qbc88")]
 position = Vector2(0, -8)
 
+[node name="IceTurret" parent="." instance=ExtResource("5_ci55r")]
+
 [node name="Controls" type="Label" parent="."]
 offset_left = -76.0
 offset_top = 33.0
 offset_right = 78.0
 offset_bottom = 82.0
 text = "Q for Fireball Turret
-E for Aura Turret"
+E for Aura Turret
+F for Ice Turret"
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]

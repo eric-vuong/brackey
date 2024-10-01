@@ -59,6 +59,9 @@ func _process(delta: float) -> void:
 			Global.active_tower.set_turret("aura") # Set tower to aura
 	if Input.is_action_just_pressed("q") and Global.active_tower != null:
 		Global.active_tower.set_turret("bullet")# Set to bullet tower
+	if Input.is_action_just_pressed("set_ice_turret") and Global.active_tower != null:
+		Global.active_tower.set_turret("ice")
+		
 	# Skip to night
 	if Input.is_action_just_pressed("time"):
 		if Global.is_day and Global.current_time - 3 > Global.night_duration:
