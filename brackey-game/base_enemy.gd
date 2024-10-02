@@ -90,7 +90,12 @@ func hit_animation():
 func _on_area_entered(area: Area2D) -> void:
 	#print("enemy was hit", area)
 	if area.is_in_group("player_bullet"):
-		take_damage(Global.bullet_damage)
+		take_damage(Global.bullet_damage + Global.bullet_damage_boost)
+		if Global.slowing_shot == true:
+			slow_duration_remaining = slow_duration
+			if not slowed:
+				slowed = true
+				speed = speed * slow_ratio
 	#elif area.is_in_group("tower_bullet"):
 	elif area.is_in_group("turret_bullet"):
 		#print("by tower")

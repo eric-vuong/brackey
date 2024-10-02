@@ -40,14 +40,16 @@ var elite_chance: int
 var hp_bonus: int
 var spd_bonus: int
 
-# Modifiers - not used
+# Modifiers
 var bullet_size_mod = 1
-var accuracy = 1
+#var accuracy = 1
+var rapid_fire_mod = 1
 var run_and_gun = false
-var reverse_shots = false
-var life_time_mod = 1
+var return_shots = false
+#var life_time_mod = 1
 var multi_bonus = 0
-var bullet_damage_mod = 1
+var bullet_damage_boost = 0
+var slowing_shot = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	player_move_speed = 100
@@ -67,6 +69,7 @@ func _ready() -> void:
 	elite_chance = 0
 	spd_bonus = 0
 	hp_bonus = 0
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

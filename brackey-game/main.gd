@@ -136,7 +136,9 @@ func new_game():
 		t._ready()
 	_update_score()
 	disable_turrets()
+	$Shop._ready()
 	$RestartTimer.start()
+	
 
 func open_shop():
 	$Shop.show()
@@ -215,6 +217,10 @@ func _on_day_night_timer_is_daytime(is_day: Variant) -> void:
 		Global.is_day = true
 		$DayMusic.play()
 		$MobTimer.stop()
+		# Reset bonuses
+		$Shop.reset_bonus()
+		$Shop.hide_bonus(false)
+		
 		# Cycle 0 at end of day 1 (so first night finished is first time this signals)
 		print("Daytime signaled", Global.cycle_count)
 		for e in get_tree().get_nodes_in_group("enemy"):
