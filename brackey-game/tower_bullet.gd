@@ -8,11 +8,18 @@ var penetration = 1
 func _ready() -> void:
 	penetration = Global.tower_pierce
 	#if Global.bullet_damage > 16:
-	#	$AnimatedSprite2D.play("upgraded")
+	
 	pass
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	position += direction * speed * delta
+func play_default():
+	$AnimatedSprite2D.play("default")
+func upgrade():
+	$AnimatedSprite2D.play("upgraded")
+	penetration = Global.tower_pierce2
+	add_to_group("turret_bullet2")
+	remove_from_group("turret_bullet")
 	
 func start_direction(pos, dir):
 	position = pos

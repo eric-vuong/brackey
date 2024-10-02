@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://deqxjol7ugpo5"]
+[gd_scene load_steps=12 format=3 uid="uid://deqxjol7ugpo5"]
 
 [ext_resource type="PackedScene" uid="uid://dvxlfwsqtp0bd" path="res://base_turret.tscn" id="1_ehqxm"]
 [ext_resource type="Script" path="res://bullet_turret.gd" id="2_57rvm"]
@@ -6,6 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://chv56de3nnb3f" path="res://assets/fire_tower_up.png" id="4_wtw2e"]
 [ext_resource type="Texture2D" uid="uid://dlnhv15ofvr7s" path="res://assets/fire_tower_down.png" id="5_qngdv"]
 [ext_resource type="AudioStream" uid="uid://nv1b7utymyo3" path="res://sound/FIreball Turret.mp3" id="6_6yboa"]
+[ext_resource type="Texture2D" uid="uid://b34bm710nj15r" path="res://assets/fire_tower_upgraded.png" id="6_nrxon"]
+[ext_resource type="Texture2D" uid="uid://ldmeoegixu74" path="res://assets/fire_tower_upgraded_down.png" id="7_lxd7e"]
+[ext_resource type="Texture2D" uid="uid://djyclksoionwu" path="res://assets/fire_tower_upgraded_up.png" id="8_awbgk"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_him18"]
 resource_local_to_scene = true
@@ -26,6 +29,23 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_nrxon")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_lxd7e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_nrxon")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_awbgk")
+}],
+"loop": true,
+"name": &"upgraded",
+"speed": 3.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qvrkd"]
@@ -38,6 +58,9 @@ script = ExtResource("2_57rvm")
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_him18")
+animation = &"upgraded"
+frame = 2
+frame_progress = 0.47818
 
 [node name="BulletTimer" type="Timer" parent="." index="1"]
 wait_time = 2.0

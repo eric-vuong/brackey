@@ -1,11 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://b8vbijega7f7t"]
+[gd_scene load_steps=11 format=3 uid="uid://b8vbijega7f7t"]
 
 [ext_resource type="PackedScene" uid="uid://dvxlfwsqtp0bd" path="res://base_turret.tscn" id="1_lw5ns"]
 [ext_resource type="PackedScene" uid="uid://s7synujurf8w" path="res://base_aura.tscn" id="3_acw36"]
 [ext_resource type="Texture2D" uid="uid://daovc0u8vkuts" path="res://assets/orb_tower.png" id="4_r23fr"]
 [ext_resource type="Script" path="res://turret_aura.gd" id="4_xdbmv"]
 [ext_resource type="Texture2D" uid="uid://uhryif4m227e" path="res://assets/orb_tower_down.png" id="5_k1ptr"]
+[ext_resource type="Texture2D" uid="uid://dayx6tbkt70wc" path="res://assets/orb_tower_upgraded.png" id="5_q5oaj"]
 [ext_resource type="Texture2D" uid="uid://b2qmvvibaxxlg" path="res://assets/orb_tower_up.png" id="6_32qu1"]
+[ext_resource type="Texture2D" uid="uid://dgq4y0jevyn6u" path="res://assets/orb_tower_down_upgraded.png" id="6_hkd4t"]
+[ext_resource type="Texture2D" uid="uid://bux3gabppmdt6" path="res://assets/orb_tower_up_upgraded.png" id="7_wwyta"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1ba4a"]
 resource_local_to_scene = true
@@ -26,6 +29,23 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_q5oaj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_hkd4t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_q5oaj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_wwyta")
+}],
+"loop": true,
+"name": &"upgraded",
+"speed": 3.0
 }]
 
 [node name="AuraTurret" instance=ExtResource("1_lw5ns")]
@@ -34,8 +54,8 @@ collision_mask = 0
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_1ba4a")
-frame = 1
-frame_progress = 0.344679
+animation = &"upgraded"
+frame_progress = 0.554237
 
 [node name="TurretAura" parent="." index="1" groups=["turret_aura"] instance=ExtResource("3_acw36")]
 show_behind_parent = true
