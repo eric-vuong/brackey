@@ -13,6 +13,7 @@ var is_hitable = true
 var is_dead = false
 var spread = 0.30 # 0.15 radians or 8.6 deg
 var is_healing
+var not_moving: bool
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	screen_size = get_viewport_rect().size
@@ -23,6 +24,7 @@ func _ready() -> void:
 	is_dead = false
 	is_hitable = true
 	is_healing = false
+	not_moving = true
 	$PlayerArea/AnimatedSprite2D.animation = "default"
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -40,7 +42,7 @@ func _process(delta: float) -> void:
 		$PlayerArea/AnimatedSprite2D.z_index = 0
 	
 	if Input.is_action_pressed("shoot") or autofire:
-		if !is_sprinting and !is_dodging:
+		if (!is_sprinting or Global.run_and_gun) and !is_dodging:
 			shoot()
 	if Input.is_action_just_pressed("autofire"):
 		autofire = !autofire
@@ -93,6 +95,9 @@ func _process(delta: float) -> void:
 	# Not moving
 	if velocity.x == 0 and velocity.y == 0:
 		$PlayerArea/AnimatedSprite2D.stop()
+		not_moving = true
+	else:
+		not_moving = false
 	# Take damage
 	if is_hitable:
 		var inside_player = $PlayerArea.get_overlapping_areas()
@@ -115,11 +120,14 @@ func _process(delta: float) -> void:
 func shoot():
 	if can_shoot:
 		can_shoot = false
-		# Wait
-		$PlayerArea/BulletTimer.set_wait_time(Global.fire_rate)
+		# Wait between shots
+		if not_moving and Global.rapid_fire_mod != 1: # Handle rapid fire when not moving
+			$PlayerArea/BulletTimer.set_wait_time(Global.fire_rate * Global.rapid_fire_mod)
+		else:
+			$PlayerArea/BulletTimer.set_wait_time(Global.fire_rate)
 		$PlayerArea/BulletTimer.start()
 		# Fire odd number of bullets
-		var shots = Global.multi_shot
+		var shots = Global.multi_shot + Global.multi_bonus
 		if shots % 2 == 1: # odd
 			create_bullet(0) # fire straight
 			shots = (shots - 1) * 0.5
