@@ -109,6 +109,12 @@ func _process(delta: float) -> void:
 			is_hitable = false
 			$PlayerArea/DamageTimer.set_wait_time(1)
 			$PlayerArea/DamageTimer.start()
+			
+	#
+	if Global.is_day and current_hp < max_hp and not $HealNotification.visible:
+		$HealNotification.show()
+	elif (not Global.is_day or current_hp >= max_hp) and $HealNotification.visible:
+		$HealNotification.hide()
 	
 	#physics collisions
 	move_and_slide()
