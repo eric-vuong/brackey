@@ -1,10 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://dwb70npsly431"]
+[gd_scene load_steps=12 format=3 uid="uid://dwb70npsly431"]
 
 [ext_resource type="Script" path="res://turret_slot.gd" id="1_i4t0d"]
 [ext_resource type="Texture2D" uid="uid://bdwcb8n6wk0up" path="res://assets/tower_platform.png" id="1_jsff4"]
 [ext_resource type="PackedScene" uid="uid://b8vbijega7f7t" path="res://aura_turret.tscn" id="3_prikh"]
 [ext_resource type="PackedScene" uid="uid://deqxjol7ugpo5" path="res://bullet_turret.tscn" id="4_qbc88"]
 [ext_resource type="PackedScene" uid="uid://px257kbnck20" path="res://ice_turret.tscn" id="5_ci55r"]
+[ext_resource type="Theme" uid="uid://cy4mlm1b4kigp" path="res://assets/new_theme.tres" id="6_ijvql"]
+[ext_resource type="Texture2D" uid="uid://ljwwbtwugvlc" path="res://assets/yellow.png" id="7_xcsid"]
+[ext_resource type="Texture2D" uid="uid://blqjvl4k2cxoe" path="res://assets/red.png" id="8_up55b"]
+[ext_resource type="Texture2D" uid="uid://c5i2u4ct2sk4m" path="res://assets/blue.png" id="9_qkjd4"]
+[ext_resource type="AudioStream" uid="uid://kmap8b0wm60q" path="res://sound/Loot.mp3" id="10_3lyut"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_18rmc"]
 size = Vector2(73, 82)
@@ -21,21 +26,50 @@ shape = SubResource("RectangleShape2D_18rmc")
 texture = ExtResource("1_jsff4")
 
 [node name="AuraTurret" parent="." instance=ExtResource("3_prikh")]
-position = Vector2(0, -10)
+position = Vector2(0, -15)
 
 [node name="BulletTurret" parent="." instance=ExtResource("4_qbc88")]
-position = Vector2(0, -8)
+position = Vector2(0, -13)
 
 [node name="IceTurret" parent="." instance=ExtResource("5_ci55r")]
+position = Vector2(0, -15)
 
 [node name="Controls" type="Label" parent="."]
 offset_left = -76.0
 offset_top = 33.0
 offset_right = 78.0
 offset_bottom = 82.0
+theme = ExtResource("6_ijvql")
 text = "Q for Fireball Turret
 E for Aura Turret
 F for Ice Turret"
+
+[node name="Upgrade" type="Label" parent="."]
+offset_left = -50.0
+offset_top = 38.0
+offset_right = 44.0
+offset_bottom = 69.0
+theme = ExtResource("6_ijvql")
+text = "U: Upgrade
+x10"
+
+[node name="Yellow" type="Sprite2D" parent="."]
+position = Vector2(0, 68)
+texture = ExtResource("7_xcsid")
+
+[node name="Red" type="Sprite2D" parent="."]
+position = Vector2(0, 68)
+texture = ExtResource("8_up55b")
+
+[node name="Blue" type="Sprite2D" parent="."]
+position = Vector2(0, 67)
+texture = ExtResource("9_qkjd4")
+
+[node name="Money" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_3lyut")
+volume_db = -13.0
+max_polyphony = 10
+bus = &"Sound"
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]

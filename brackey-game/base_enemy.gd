@@ -12,7 +12,7 @@ var tier: int # 1 for weakest, 3 strongest
 var points: int # tier, x2 if elite
 var slowed = false
 var slow_ratio = 0.5
-var slow_duration = 0.5
+var slow_duration = 1
 var slow_duration_remaining: float
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -98,11 +98,18 @@ func _on_area_entered(area: Area2D) -> void:
 				speed = speed * slow_ratio
 	#elif area.is_in_group("tower_bullet"):
 	elif area.is_in_group("turret_bullet"):
-		#print("by tower")
 		take_damage(Global.tower_bullet_dmg)
+	elif area.is_in_group("turret_bullet2"):
+		take_damage(Global.tower_bullet_dmg2)
 	#$AnimatedSprite2D.play("hit")
 	elif area.is_in_group("turret_ice"):
-		take_damage(Global.tower_bullet_dmg/20)
+		take_damage(Global.ice_dmg)
+		slow_duration_remaining = slow_duration
+		if not slowed:
+			slowed = true
+			speed = speed * slow_ratio
+	elif area.is_in_group("turret_ice2"):
+		take_damage(Global.ice_dmg2)
 		slow_duration_remaining = slow_duration
 		if not slowed:
 			slowed = true

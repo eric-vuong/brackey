@@ -3,8 +3,9 @@ extends Area2D
 @export var ice_scene = preload("res://tower_ice.tscn")
 var disabled = true
 var can_shoot = true
-var shoot_cooldown = 1
+var shoot_cooldown = 1.5
 var spread = 0.30
+var upgraded = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -15,8 +16,12 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if can_shoot and !disabled:
 		shoot()
-
-
+func upgrade():
+	$AnimatedSprite2D.play("upgraded")
+	upgraded = true
+func degrade():
+	$AnimatedSprite2D.play("default")
+	upgraded = false
 func shoot():
 	can_shoot = false
 	# Wait
@@ -27,6 +32,8 @@ func shoot():
 	var enemy_position = aim()
 	# Multishot
 	var shots = 3
+	if upgraded:
+		shots = 5
 	if enemy_position:
 		create_bullet(enemy_position,0) #straight
 		shots = (shots - 1) * 0.5
@@ -60,7 +67,9 @@ func create_bullet(enemy_position,offset):
 	var b = ice_scene.instantiate()
 	get_tree().root.add_child(b)
 	b.start_direction(self.global_position, self.global_position.direction_to(enemy_position).rotated(offset))
-	# $FireBall.play()
+	if upgraded:
+		b.upgrade()
+
 	
 
 func _on_bullet_timer_timeout() -> void:
