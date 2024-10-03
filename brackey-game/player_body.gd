@@ -56,10 +56,10 @@ func _process(delta: float) -> void:
 			velocity.y += 1
 		if Input.is_action_pressed("move_up"):
 			velocity.y -= 1
-	if Input.is_action_just_pressed("dodge"):
+	#if Input.is_action_just_pressed("dodge"):
 		#print("dodge")
 		#is_dodging = true
-		pass
+		#pass
 	if Input.is_action_pressed("dash"):
 		is_sprinting = true
 	else:
