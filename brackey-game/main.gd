@@ -82,6 +82,7 @@ func _process(delta: float) -> void:
 # Stop mob spawning, day night, show score, stop player
 func game_over():
 	print("GAME OVER")
+	$PlayerBody/PlayerArea/AnimatedSprite2D.hide()
 	$GameOverSound.play()
 	$DayMusic.stop()
 	$NightMusic.stop()
@@ -97,6 +98,7 @@ func game_over():
 # Reset day counter and timer, clear enemies, clear towers, reset core hp, reset player and position
 func new_game():
 	print("Game Starting")
+	$PlayerBody/PlayerArea/AnimatedSprite2D.show()
 	$DayMusic.stop()
 	$DayMusic.play()
 	$NightMusic.stop()
