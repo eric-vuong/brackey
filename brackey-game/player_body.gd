@@ -62,8 +62,10 @@ func _process(delta: float) -> void:
 		#pass
 	if Input.is_action_pressed("dash"):
 		is_sprinting = true
+		$PlayerArea/AnimatedSprite2D.set_speed_scale(1.5)
 	else:
 		is_sprinting = false
+		$PlayerArea/AnimatedSprite2D.set_speed_scale(1)
 	
 		
 
