@@ -137,6 +137,7 @@ func new_game():
 	Global.active_tower = null
 	for t in get_tree().get_nodes_in_group("turret_slot"):
 		t._ready()
+		
 	_update_score()
 	disable_turrets()
 	$Shop._ready()
@@ -289,12 +290,13 @@ func _on_day_night_timer_is_daytime(is_day: Variant) -> void:
 # Called on start of game
 # Each day 1 new turret slot will reveal
 func disable_turrets():
-	$TurretSlot2.enable_slot(false)
-	$TurretSlot3.enable_slot(false)
-	$TurretSlot4.enable_slot(false)
-	$TurretSlot5.enable_slot(false)
-	$TurretSlot6.enable_slot(false)
-	$TurretSlot7.enable_slot(false)
+	var turret_on = false
+	$TurretSlot2.enable_slot(turret_on)
+	$TurretSlot3.enable_slot(turret_on)
+	$TurretSlot4.enable_slot(turret_on)
+	$TurretSlot5.enable_slot(turret_on)
+	$TurretSlot6.enable_slot(turret_on)
+	$TurretSlot7.enable_slot(turret_on)
 func enable_turret(cycle):
 	if cycle < len(turret_list):
 		turret_list[cycle].enable_slot(true)

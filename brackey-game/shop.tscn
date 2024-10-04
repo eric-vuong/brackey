@@ -48,7 +48,6 @@ position = Vector2(288, 78)
 position = Vector2(80, 78)
 
 [node name="Button" type="Button" parent="."]
-visible = false
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -61,10 +60,10 @@ offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("9_02j3b")
-text = "Power Up"
+text = "Mystery
+Potion"
 
 [node name="BonusCost" type="Label" parent="."]
-visible = false
 offset_left = 377.0
 offset_top = 304.0
 offset_right = 499.0
@@ -78,22 +77,20 @@ offset_top = 309.0
 offset_right = 260.0
 offset_bottom = 363.0
 theme = ExtResource("9_02j3b")
-text = "lasts 1 night"
+text = "Random bonus
+lasts 1 night"
 
 [node name="Yellow" type="Sprite2D" parent="."]
-visible = false
 z_index = 10
 position = Vector2(434, 338)
 texture = ExtResource("10_4cpe5")
 
 [node name="Red" type="Sprite2D" parent="."]
-visible = false
 z_index = 10
 position = Vector2(393, 338)
 texture = ExtResource("11_nnqw8")
 
 [node name="Blue" type="Sprite2D" parent="."]
-visible = false
 z_index = 10
 position = Vector2(473, 337)
 texture = ExtResource("12_ps4r0")
