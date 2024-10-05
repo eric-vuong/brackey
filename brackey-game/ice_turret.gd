@@ -29,12 +29,14 @@ func shoot():
 	$BulletTimer.start()
 	
 	
+	
 	var enemy_position = aim()
 	# Multishot
 	var shots = 3
 	if upgraded:
 		shots = 5
 	if enemy_position:
+		$IceShard.play()
 		create_bullet(enemy_position,0) #straight
 		shots = (shots - 1) * 0.5
 		while shots > 0:

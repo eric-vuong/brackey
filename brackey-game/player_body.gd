@@ -42,7 +42,7 @@ func _process(delta: float) -> void:
 	if self.global_position.y >= 418:
 		$PlayerArea/AnimatedSprite2D.z_index = 1
 	# Lower center tower
-	elif self.global_position.y > 155 and self.global_position.y < 200 and self.global_position.x > left_line and self.global_position.x < right_line:
+	elif self.global_position.y > 155 and self.global_position.y < 219 and self.global_position.x > left_line and self.global_position.x < right_line:
 		$PlayerArea/AnimatedSprite2D.z_index = 1
 	# Lower side towers
 	elif self.global_position.y > 184 and (self.global_position.x < left_line or self.global_position.x > right_line):
