@@ -1,6 +1,7 @@
 extends CharacterBody2D
 signal gameover
 @export var bullet_scene = preload("res://bullet.tscn")
+@export var healing_particle = preload("res://healing_particle.tscn")
 @export var max_hp = 40
 var current_hp: int
 var can_shoot = true
@@ -16,6 +17,8 @@ var is_healing
 var not_moving: bool
 var left_line = 172
 var right_line = 576
+const HEAL_PARTICLE_SPAWN_DELAY = 0.33
+var heal_particle_timer = 0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	screen_size = get_viewport_rect().size
@@ -130,18 +133,33 @@ func _process(delta: float) -> void:
 			$PlayerArea/DamageTimer.set_wait_time(1)
 			$PlayerArea/DamageTimer.start()
 			
-	#
-	if Global.is_day and current_hp < max_hp and not $HealNotification.visible:
+	# Heal Notification
+	if Global.is_day and current_hp < max_hp and not $HealNotification.visible and not is_healing:
 		$HealNotification.show()
-	elif (not Global.is_day or current_hp >= max_hp) and $HealNotification.visible:
+	elif (not Global.is_day or current_hp >= max_hp or Global.can_shop) and $HealNotification.visible:
 		$HealNotification.hide()
+	
+	#Healing particles
+	if is_healing:
+		if heal_particle_timer >= HEAL_PARTICLE_SPAWN_DELAY:
+			var p = healing_particle.instantiate()
+			add_child(p)
+			heal_particle_timer = 0
+		else:
+			heal_particle_timer = heal_particle_timer + delta
+	elif heal_particle_timer != 0:
+		heal_particle_timer = 0
 	
 	#physics collisions
 	move_and_slide()
-	if Global.is_day and !is_dead and Global.can_shop:
+	
+	# Healing
+	if Global.is_day and !is_dead and Global.can_shop and current_hp < max_hp:
 		$PlayerArea/HealTimer.set_paused(false)
+		is_healing = true
 	else:
 		$PlayerArea/HealTimer.set_paused(true)
+		is_healing = false
 
 func shoot():
 	if can_shoot:
