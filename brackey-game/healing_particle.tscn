@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://b1gypgpcemyua"]
+
+[ext_resource type="Script" path="res://healing_particle.gd" id="1_0p2cd"]
+[ext_resource type="Texture2D" uid="uid://c0fodruyy8eeu" path="res://assets/healparticle.png" id="1_rcenn"]
+
+[node name="HealingParticle" type="Sprite2D"]
+z_index = 3
+texture = ExtResource("1_rcenn")
+script = ExtResource("1_0p2cd")
+
+[node name="ChangeDirectionTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="ChangeDirectionTimer" to="." method="_on_change_direction_timer_timeout"]
