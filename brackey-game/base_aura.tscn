@@ -55,7 +55,7 @@ shape = SubResource("CircleShape2D_c71t4")
 
 [node name="AuraPulse" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_7ur7l")
-volume_db = -6.0
-max_distance = 500.0
+volume_db = -4.0
+max_distance = 800.0
 max_polyphony = 2
 bus = &"Sound"

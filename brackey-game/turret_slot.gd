@@ -50,6 +50,7 @@ func toggle_ice(turned_off):
 	else:
 		active_turret = "ice"
 		$IceTurret.degrade()
+		$IceTurret/IceShard.play()
 		$IceTurret.show()
 		$Controls.hide()
 func set_turret(turret_type):

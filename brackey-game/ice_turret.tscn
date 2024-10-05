@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://px257kbnck20"]
+[gd_scene load_steps=12 format=3 uid="uid://px257kbnck20"]
 
 [ext_resource type="PackedScene" uid="uid://dvxlfwsqtp0bd" path="res://base_turret.tscn" id="1_ebiki"]
 [ext_resource type="Script" path="res://ice_turret.gd" id="2_86exf"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dacoumgmtaaci" path="res://assets/ice2 tower.png" id="6_f851t"]
 [ext_resource type="Texture2D" uid="uid://clmc3xe03l5iy" path="res://assets/ice2 tower down.png" id="7_pnwwl"]
 [ext_resource type="Texture2D" uid="uid://p7i1jytxy6mo" path="res://assets/ice2 tower up.png" id="8_2bnij"]
+[ext_resource type="AudioStream" uid="uid://bwvfavfld3fkv" path="res://sound/temp_ice.wav" id="9_nx0o3"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_r7o0r"]
 resource_local_to_scene = true
@@ -64,5 +65,12 @@ frame_progress = 0.705615
 shape = SubResource("CircleShape2D_5v6ul")
 
 [node name="BulletTimer" type="Timer" parent="." index="2"]
+
+[node name="IceShard" type="AudioStreamPlayer2D" parent="." index="3"]
+stream = ExtResource("9_nx0o3")
+volume_db = 2.0
+pitch_scale = 1.7
+max_distance = 800.0
+bus = &"Sound"
 
 [connection signal="timeout" from="BulletTimer" to="." method="_on_bullet_timer_timeout"]

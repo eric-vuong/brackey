@@ -29,6 +29,7 @@ func shoot():
 	$BulletTimer.start()
 	var enemy_position = aim()
 	if enemy_position:
+		$FireBall.play()
 		create_bullet(enemy_position)
 
 func create_bullet(enemy_position):

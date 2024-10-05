@@ -30,15 +30,6 @@ script = ExtResource("1_eoepo")
 position = Vector2(-461, -986)
 scale = Vector2(2, 2)
 
-[node name="TurretSlot" parent="." instance=ExtResource("11_w02p8")]
-position = Vector2(380, 149)
-
-[node name="TurretSlot2" parent="." instance=ExtResource("11_w02p8")]
-position = Vector2(142, 178)
-
-[node name="TurretSlot3" parent="." instance=ExtResource("11_w02p8")]
-position = Vector2(612, 181)
-
 [node name="PlayerBody" parent="." instance=ExtResource("3_18i0j")]
 position = Vector2(212, 315)
 
@@ -58,6 +49,7 @@ rotation = -2.17308
 [node name="DayNightTimer" parent="." instance=ExtResource("5_8q024")]
 
 [node name="PauseMenu" parent="." instance=ExtResource("6_axkk1")]
+visible = false
 
 [node name="RainTileMap" parent="." instance=ExtResource("7_el2r5")]
 position = Vector2(0, -1)
@@ -66,8 +58,18 @@ tile_map_data = PackedByteArray("AAD+//7/AAAAAAAAAAD+////AAAAAAAAAAD+/wAAAAAAAAA
 [node name="GameOver" parent="." instance=ExtResource("8_u6yxw")]
 
 [node name="Shop" parent="." instance=ExtResource("9_oa4go")]
+visible = false
 
 [node name="HUD" parent="." instance=ExtResource("10_hdhff")]
+
+[node name="TurretSlot" parent="." instance=ExtResource("11_w02p8")]
+position = Vector2(380, 149)
+
+[node name="TurretSlot2" parent="." instance=ExtResource("11_w02p8")]
+position = Vector2(142, 178)
+
+[node name="TurretSlot3" parent="." instance=ExtResource("11_w02p8")]
+position = Vector2(612, 181)
 
 [node name="TurretSlot4" parent="." instance=ExtResource("11_w02p8")]
 position = Vector2(226, -100)
@@ -79,7 +81,7 @@ position = Vector2(538, -99)
 position = Vector2(-57, -40)
 
 [node name="TurretSlot7" parent="." instance=ExtResource("11_w02p8")]
-position = Vector2(816, -24)
+position = Vector2(816, -40)
 
 [node name="RestartTimer" type="Timer" parent="."]
 wait_time = 0.05
@@ -92,6 +94,7 @@ bus = &"Music"
 
 [node name="Rain" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("13_wc7xo")
+volume_db = 1.0
 bus = &"Sound"
 
 [node name="Money" type="AudioStreamPlayer" parent="."]

@@ -14,6 +14,8 @@ var is_dead = false
 var spread = 0.30 # 0.15 radians or 8.6 deg
 var is_healing
 var not_moving: bool
+var left_line = 172
+var right_line = 576
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	screen_size = get_viewport_rect().size
@@ -36,10 +38,26 @@ func _process(delta: float) -> void:
 	var velocity = Vector2.ZERO # The player's movement vector.
 	
 	# Manual Y sort
+	# Base
 	if self.global_position.y >= 418:
+		$PlayerArea/AnimatedSprite2D.z_index = 1
+	# Lower center tower
+	elif self.global_position.y > 155 and self.global_position.y < 219 and self.global_position.x > left_line and self.global_position.x < right_line:
+		$PlayerArea/AnimatedSprite2D.z_index = 1
+	# Lower side towers
+	elif self.global_position.y > 184 and (self.global_position.x < left_line or self.global_position.x > right_line):
+		$PlayerArea/AnimatedSprite2D.z_index = 1
+	# Upper center towers
+	elif self.global_position.y > -94 and self.global_position.y < -50 and self.global_position.x > left_line and self.global_position.x < right_line:
+		$PlayerArea/AnimatedSprite2D.z_index = 1
+	# Upper side towers
+	elif self.global_position.y > -34 and self.global_position.y < 50 and (self.global_position.x < left_line or self.global_position.x > right_line):
 		$PlayerArea/AnimatedSprite2D.z_index = 1
 	else:
 		$PlayerArea/AnimatedSprite2D.z_index = 0
+	
+	
+	
 	
 	if Input.is_action_pressed("shoot") or autofire:
 		if (!is_sprinting or Global.run_and_gun) and !is_dodging:
@@ -62,8 +80,10 @@ func _process(delta: float) -> void:
 		#pass
 	if Input.is_action_pressed("dash"):
 		is_sprinting = true
+		$PlayerArea/AnimatedSprite2D.set_speed_scale(1.5)
 	else:
 		is_sprinting = false
+		$PlayerArea/AnimatedSprite2D.set_speed_scale(1)
 	
 		
 
