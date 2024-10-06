@@ -69,7 +69,7 @@ offset_top = 304.0
 offset_right = 499.0
 offset_bottom = 358.0
 theme = ExtResource("9_02j3b")
-text = "X10 x10 x10"
+text = "X5  x5  x5"
 
 [node name="BonusLabel" type="Label" parent="."]
 offset_left = 126.0

@@ -2,7 +2,7 @@ extends "res://base_enemy.gd"
 
 var CHARGE_WARMUP = 1
 var CHARGE_COOLDOWN = 4
-var CHARGE_SPEED = 800
+var CHARGE_SPEED = 750
 var CHARGE_DURATION = 0.4
 var BASE_SPEED = 40
 var charge_direction
