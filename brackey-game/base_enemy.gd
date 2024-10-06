@@ -34,7 +34,7 @@ func _ready() -> void:
 func elite():
 	self.scale = Vector2(2,2) #double in size
 	if tier == 3:
-		health = health * 8 # Base health of 6400, about 11s to kill at max power
+		health = health * 6 # 8x800 = Base health 6400, about 11s to kill at max power
 		points = points * 2 # x4 points total
 	else: # tier 1 and 2
 		health = health * 8
