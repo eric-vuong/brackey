@@ -17,10 +17,10 @@ func _process(delta: float) -> void:
 
 
 func _on_button_pressed() -> void:
-	if Global.yellow >= 10 and Global.red >= 10 and Global.blue >= 10:
-		Global.red -= 10
-		Global.blue -= 10
-		Global.yellow -= 10
+	if Global.yellow >= 5 and Global.red >= 5 and Global.blue >= 5:
+		Global.red -= 5
+		Global.blue -= 5
+		Global.yellow -= 5
 		get_tree().current_scene.update_money()
 	else:
 		return
@@ -45,7 +45,7 @@ func _on_button_pressed() -> void:
 		Global.bullet_size_mod = 4
 		bonus_desc = "Fire bigger and stronger shots"
 	elif bonus == "Rapid Fire":
-		Global.rapid_fire_mod = 0.7
+		Global.rapid_fire_mod = 0.6
 		bonus_desc = "Shoot faster when not moving"
 	elif bonus == "Boomerang":
 		Global.return_shots = true

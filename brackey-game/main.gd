@@ -243,7 +243,7 @@ func _on_day_night_timer_is_daytime(is_day: Variant) -> void:
 			print("Hard enemies spawning")
 			enemy_list = hard
 		# Increase spawn rate
-		var spawn_delay = $MobTimer.get_wait_time() * 0.9
+		var spawn_delay = $MobTimer.get_wait_time() * 0.95
 		if spawn_delay >= 0.3: # 
 			$MobTimer.set_wait_time(spawn_delay)
 		#else:
