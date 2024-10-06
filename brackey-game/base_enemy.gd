@@ -37,9 +37,9 @@ func elite():
 		health = health * 5 # 8x800 = Base health 6400, about 11s to kill at max power
 		points = points * 2 # x4 points total
 	elif tier == 2: # tier 2
-		health = health * 6
+		health = health * 5
 	elif tier == 1:
-		health = health * 7
+		health = health * 5
 	$Hp.max_value = health
 	$Hp.value = health 
 	current_hp = health
