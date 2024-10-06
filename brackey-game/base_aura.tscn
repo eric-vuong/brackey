@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://s7synujurf8w"]
+[gd_scene load_steps=8 format=3 uid="uid://s7synujurf8w"]
 
 [ext_resource type="Texture2D" uid="uid://1i0nxq4sb7g5" path="res://assets/aura_small.png" id="1_1wp0u"]
 [ext_resource type="Texture2D" uid="uid://gjyvru4lvpbg" path="res://assets/aura_big.png" id="2_xatge"]
+[ext_resource type="Texture2D" uid="uid://bg078gsuegtrw" path="res://assets/aura_small_upgraded.png" id="3_6uy5o"]
 [ext_resource type="AudioStream" uid="uid://ch7vcsnb0v16h" path="res://sound/AOEPulse.mp3" id="3_7ur7l"]
+[ext_resource type="Texture2D" uid="uid://c36hrftlowkiy" path="res://assets/aura_big_upgraded.png" id="4_rg4oh"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7gw22"]
 resource_local_to_scene = true
@@ -20,6 +22,20 @@ animations = [{
 "loop": false,
 "name": &"default",
 "speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_6uy5o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_rg4oh")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"upgraded",
+"speed": 8.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c71t4"]
@@ -33,15 +49,13 @@ collision_mask = 0
 self_modulate = Color(1, 1, 1, 0.498039)
 scale = Vector2(10, 10)
 sprite_frames = SubResource("SpriteFrames_7gw22")
-frame = 2
-frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_c71t4")
 
 [node name="AuraPulse" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_7ur7l")
-volume_db = -6.0
-max_distance = 500.0
+volume_db = -4.0
+max_distance = 800.0
 max_polyphony = 2
 bus = &"Sound"

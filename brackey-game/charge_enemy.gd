@@ -1,10 +1,10 @@
 extends "res://base_enemy.gd"
 
 var CHARGE_WARMUP = 1
-var CHARGE_COOLDOWN = 3
-var CHARGE_SPEED = 800
-var CHARGE_DURATION = 0.33
-var BASE_SPEED = 20
+var CHARGE_COOLDOWN = 4
+var CHARGE_SPEED = 750
+var CHARGE_DURATION = 0.4
+var BASE_SPEED = 40
 var charge_direction
 var can_charge = true
 var is_charging = false
@@ -18,6 +18,8 @@ func _ready() -> void:
 	droprate = 1
 	tier = 3
 	super()
+	# Revert charge range being doubled
+	$TargetRange/TargetRangeDetection.scale = Vector2(1,1)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -48,8 +50,7 @@ func pathing(delta):
 						return
 	else: #otherwise execute charge - speed is 0 or CHARGE_SPEED depending on stage of cast
 		position += charge_direction * speed * delta
-		
-		
+
 		
 
 func _on_charge_timer_timeout() -> void:

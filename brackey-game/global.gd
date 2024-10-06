@@ -17,9 +17,16 @@ var pierce: int
 var fire_rate: float
 var multi_shot: int
 # Turrets
-var area_turret_dmg = 8
-var tower_bullet_dmg = 70
-var tower_pierce = 3
+var area_turret_dmg = 10
+var area_turret_dmg2 = 25
+var tower_bullet_dmg = 100
+var tower_bullet_dmg2 = 250
+var tower_pierce = 0
+var tower_pierce2 = 1
+var ice_dmg = 10
+var ice_dmg2 = 25
+var ice_pierce = 1
+var ice_pierce2 = 2
 var active_tower = null # The tower player is near enough to activate
 
 # Time
@@ -37,17 +44,19 @@ var blue: int
 
 # Difficulty
 var elite_chance: int
-var hp_bonus: int # Not used
+var hp_bonus: int
 var spd_bonus: int
 
-# Modifiers - not used
+# Modifiers
 var bullet_size_mod = 1
-var accuracy = 1
+#var accuracy = 1
+var rapid_fire_mod = 1
 var run_and_gun = false
-var reverse_shots = false
-var life_time_mod = 1
+var return_shots = false
+#var life_time_mod = 1
 var multi_bonus = 0
-var bullet_damage_mod = 1
+var bullet_damage_boost = 0
+var slowing_shot = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	player_move_speed = 100
@@ -66,6 +75,8 @@ func _ready() -> void:
 
 	elite_chance = 0
 	spd_bonus = 0
+	hp_bonus = 0
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

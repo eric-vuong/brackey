@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://dcjlcjgnmd5rc"]
+
+[ext_resource type="Script" path="res://tower_ice.gd" id="1_7lopw"]
+[ext_resource type="Texture2D" uid="uid://cbxxd40xok77f" path="res://assets/ice bolt.png" id="2_eied4"]
+[ext_resource type="Texture2D" uid="uid://bynr8d7eravtb" path="res://assets/ice bolt2.png" id="3_dw1wq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4nult"]
+size = Vector2(7, 19)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j4qpg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_eied4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_dw1wq")
+}],
+"loop": true,
+"name": &"upgraded",
+"speed": 5.0
+}]
+
+[node name="TowerIce" type="Area2D" groups=["turret_ice"]]
+rotation = 0.785398
+collision_layer = 256
+collision_mask = 2
+script = ExtResource("1_7lopw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2.62132, -2.37868)
+rotation = 0.785398
+shape = SubResource("RectangleShape2D_4nult")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." groups=["turret_ice"]]
+position = Vector2(1, 0)
+rotation = 0.785398
+sprite_frames = SubResource("SpriteFrames_j4qpg")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,6 +1,6 @@
 extends Area2D
 signal enemy_died()
-@export var health = 100
+@export var health = 100 # Max health. Increased over time
 var current_hp = 1
 @export var target: String# Player or core
 var speed: int
@@ -10,9 +10,14 @@ var drops = null
 var droprate = 2 # as in 1 / droprate
 var tier: int # 1 for weakest, 3 strongest
 var points: int # tier, x2 if elite
+var slowed = false
+var slow_ratio = 0.5
+var slow_duration = 1
+var slow_duration_remaining: float
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$AnimatedSprite2D.play()
+	health += Global.hp_bonus
 	$Hp.max_value = health
 	$Hp.value = health
 	speed += Global.spd_bonus
@@ -29,15 +34,19 @@ func _ready() -> void:
 func elite():
 	self.scale = Vector2(2,2) #double in size
 	if tier == 3:
-		health *= 5
-	else: # tier 1 and 2
-		health *= 4
+		health = health * 5 # 8x800 = Base health 6400, about 11s to kill at max power
+		points = points * 2 # x4 points total
+	elif tier == 2: # tier 2
+		health = health * 5
+	elif tier == 1:
+		health = health * 5
 	$Hp.max_value = health
 	$Hp.value = health 
 	current_hp = health
 	droprate = 1
-	points *= 2
-	speed += 10 # Add small speed bonus
+	points = points * 2
+	speed = speed * 1.25 # Add 25% more speed
+	#print(health, speed)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -50,6 +59,14 @@ func _process(delta: float) -> void:
 	#if check_if_hit():
 		#print("we've been hit")
 		#apply_hits()
+		
+	# Slow_duration_remaining
+	if slowed:
+		slow_duration_remaining = slow_duration_remaining - delta
+		if slow_duration_remaining <= 0:
+			slowed = false
+			speed = speed / slow_ratio
+		
 	
 
 
@@ -75,12 +92,30 @@ func hit_animation():
 func _on_area_entered(area: Area2D) -> void:
 	#print("enemy was hit", area)
 	if area.is_in_group("player_bullet"):
-		take_damage(Global.bullet_damage)
+		take_damage(Global.bullet_damage + Global.bullet_damage_boost)
+		if Global.slowing_shot == true:
+			slow_duration_remaining = slow_duration
+			if not slowed:
+				slowed = true
+				speed = speed * slow_ratio
 	#elif area.is_in_group("tower_bullet"):
-	else:
-		#print("by tower")
+	elif area.is_in_group("turret_bullet"):
 		take_damage(Global.tower_bullet_dmg)
+	elif area.is_in_group("turret_bullet2"):
+		take_damage(Global.tower_bullet_dmg2)
 	#$AnimatedSprite2D.play("hit")
+	elif area.is_in_group("turret_ice"):
+		take_damage(Global.ice_dmg)
+		slow_duration_remaining = slow_duration
+		if not slowed:
+			slowed = true
+			speed = speed * slow_ratio
+	elif area.is_in_group("turret_ice2"):
+		take_damage(Global.ice_dmg2)
+		slow_duration_remaining = slow_duration
+		if not slowed:
+			slowed = true
+			speed = speed * slow_ratio
 
 # Move toward target position
 func pathing(delta):

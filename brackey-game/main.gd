@@ -19,6 +19,7 @@ var goblin = preload("res://goblin.tscn")
 var easy = [skeleton, mushroom, wind, goblin]
 var med = [demon, genie, witch, skeleton, mushroom, wind, air, goblin]
 var hard = [demon, genie, witch, skeleton, mushroom, charge_enemy, wind, air, goblin]
+var tier2 = [demon, genie, witch, air]
 var enemy_list
 
 #var spawn_time = 2
@@ -56,9 +57,15 @@ func _process(delta: float) -> void:
 			close_shop()
 		# Handle turret placement
 		elif Global.active_tower != null: # and E was pressed
+			#Global.active_tower.upgrade()
 			Global.active_tower.set_turret("aura") # Set tower to aura
 	if Input.is_action_just_pressed("q") and Global.active_tower != null:
 		Global.active_tower.set_turret("bullet")# Set to bullet tower
+	if Input.is_action_just_pressed("set_ice_turret") and Global.active_tower != null:
+		Global.active_tower.set_turret("ice")
+	if Input.is_action_just_pressed("u") and Global.active_tower != null:
+		Global.active_tower.upgrade()
+		
 	# Skip to night
 	if Input.is_action_just_pressed("time"):
 		if Global.is_day and Global.current_time - 3 > Global.night_duration:
@@ -75,6 +82,7 @@ func _process(delta: float) -> void:
 # Stop mob spawning, day night, show score, stop player
 func game_over():
 	print("GAME OVER")
+	$PlayerBody/PlayerArea/AnimatedSprite2D.hide()
 	$GameOverSound.play()
 	$DayMusic.stop()
 	$NightMusic.stop()
@@ -90,6 +98,7 @@ func game_over():
 # Reset day counter and timer, clear enemies, clear towers, reset core hp, reset player and position
 func new_game():
 	print("Game Starting")
+	$PlayerBody/PlayerArea/AnimatedSprite2D.show()
 	$DayMusic.stop()
 	$DayMusic.play()
 	$NightMusic.stop()
@@ -130,9 +139,12 @@ func new_game():
 	Global.active_tower = null
 	for t in get_tree().get_nodes_in_group("turret_slot"):
 		t._ready()
+		
 	_update_score()
 	disable_turrets()
+	$Shop._ready()
 	$RestartTimer.start()
+	
 
 func open_shop():
 	$Shop.show()
@@ -183,19 +195,38 @@ func _on_mob_timer_timeout() -> void:
 				mob.elite()
 func spawn_boss(is_elite):
 	var boss = charge_enemy.instantiate()
+	add_child(boss)
 	if is_elite:
 		boss.elite()
 	var boss_spawn_location = $MobPath/MobSpawnLocation
 	boss_spawn_location.progress_ratio = randf()
 	boss.position = boss_spawn_location.position
 	boss.connect("enemy_died", _update_score)
-	add_child(boss)
+	
+func spawn_elite(elite_to_spawn):
+	var elite
+	if len(elite_to_spawn) > 1:
+		elite_to_spawn.shuffle()
+		elite = elite_to_spawn[0].instantiate()
+	else:
+		elite = elite_to_spawn.instantiate()
+	add_child(elite)
+	elite.elite()
+	var elite_spawn_location = $MobPath/MobSpawnLocation
+	elite_spawn_location.progress_ratio = randf()
+	elite.position = elite_spawn_location.position
+	elite.connect("enemy_died", _update_score)
+	
 # Signals true/false when day night changes
 func _on_day_night_timer_is_daytime(is_day: Variant) -> void:
 	if is_day: # Kill enemies, show day popup
 		Global.is_day = true
 		$DayMusic.play()
 		$MobTimer.stop()
+		# Reset bonuses
+		$Shop.reset_bonus()
+		$Shop.hide_bonus(false)
+		
 		# Cycle 0 at end of day 1 (so first night finished is first time this signals)
 		print("Daytime signaled", Global.cycle_count)
 		for e in get_tree().get_nodes_in_group("enemy"):
@@ -206,26 +237,30 @@ func _on_day_night_timer_is_daytime(is_day: Variant) -> void:
 		enable_turret(Global.cycle_count)
 		# Make enemies harder
 		if Global.cycle_count == 0:
-			print("Medium enemies")
+			print("Medium enemies spawning")
 			enemy_list = med
 		elif Global.cycle_count == 2:
-			print("Hard enemies")
+			print("Hard enemies spawning")
 			enemy_list = hard
 		# Increase spawn rate
-		var spawn_delay = $MobTimer.get_wait_time() * 0.9
-		if spawn_delay >= 0.3:
+		var spawn_delay = $MobTimer.get_wait_time() * 0.95
+		if spawn_delay >= 0.3: # 
 			$MobTimer.set_wait_time(spawn_delay)
-		else:
-			$MobTimer.set_wait_time(1)
+		#else:
+			#$MobTimer.set_wait_time(1)
 		print("Mob spawn delay", $MobTimer.get_wait_time())
 		# They get faster over time
 		if Global.cycle_count >= 3:
+			# Bonus speed per day after 3
 			if Global.spd_bonus < 20:
-				Global.spd_bonus += 1
+				Global.spd_bonus += 2
 			if Global.elite_chance == 0:
-				Global.elite_chance = 25
+				Global.elite_chance = 20
 			elif Global.elite_chance < 50:
-				Global.elite_chance += 5
+				Global.elite_chance += 3
+			Global.hp_bonus += 10 # No limit to hp gain
+			if Global.hp_bonus > 100: # After 10 days of this
+				Global.hp_bonus += 15 # Make it 25 after day 14
 		#print("cycle", Global.cycle_count)
 		if Global.cycle_count == 6: # ended day 7
 			$HUD.show_win()
@@ -240,20 +275,30 @@ func _on_day_night_timer_is_daytime(is_day: Variant) -> void:
 		for i in get_tree().get_nodes_in_group("items"):
 			i.queue_free()
 		# Spawn the boss on specific days. could add special FX or delay
+		if Global.cycle_count == 0:
+			pass
+			#spawn_elite(easy)
 		if Global.cycle_count == 2:
 			spawn_boss(false)
+		if Global.cycle_count == 3:
+			spawn_elite(easy)
+		if Global.cycle_count == 4:
+			spawn_elite(tier2)
 		if Global.cycle_count == 5:
+			spawn_boss(true)
+		if Global.cycle_count == 6:
 			spawn_boss(true)
 # Disable all turrets except turret 1.
 # Called on start of game
 # Each day 1 new turret slot will reveal
 func disable_turrets():
-	$TurretSlot2.enable_slot(false)
-	$TurretSlot3.enable_slot(false)
-	$TurretSlot4.enable_slot(false)
-	$TurretSlot5.enable_slot(false)
-	$TurretSlot6.enable_slot(false)
-	$TurretSlot7.enable_slot(false)
+	var turret_on = false
+	$TurretSlot2.enable_slot(turret_on)
+	$TurretSlot3.enable_slot(turret_on)
+	$TurretSlot4.enable_slot(turret_on)
+	$TurretSlot5.enable_slot(turret_on)
+	$TurretSlot6.enable_slot(turret_on)
+	$TurretSlot7.enable_slot(turret_on)
 func enable_turret(cycle):
 	if cycle < len(turret_list):
 		turret_list[cycle].enable_slot(true)
@@ -276,11 +321,6 @@ func _update_score():
 func _on_day_night_timer_time_changed() -> void:
 	# Update time display
 	$HUD.update_time()
-	
-	if Global.is_day and $PlayerBody.current_hp < $PlayerBody.max_hp:
-		$HealthPotion.play("jumping")
-	else:
-		$HealthPotion.play("idle")
 	
 	# Play rain 1s before visual
 	if Global.current_time == Global.night_duration + 1:

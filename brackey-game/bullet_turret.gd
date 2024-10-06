@@ -3,19 +3,25 @@ extends Area2D
 @export var bullet_scene = preload("res://tower_bullet.tscn")
 var disabled = true
 var can_shoot = true
+var upgraded = false
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$AnimatedSprite2D.play()
+	$AnimatedSprite2D.play("default")
+	upgraded = false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if can_shoot and !disabled:
 		shoot()
-
-
+func upgrade():
+	$AnimatedSprite2D.play("upgraded")
+	upgraded = true
+func degrade():
+	$AnimatedSprite2D.play("default")
+	upgraded = false
 func shoot():
 	can_shoot = false
 	# Wait
@@ -23,13 +29,17 @@ func shoot():
 	$BulletTimer.start()
 	var enemy_position = aim()
 	if enemy_position:
+		$FireBall.play()
 		create_bullet(enemy_position)
 
 func create_bullet(enemy_position):
 	var b = bullet_scene.instantiate()
 	get_tree().root.add_child(b)
 	b.start_direction(self.global_position, self.global_position.direction_to(enemy_position))
-	$FireBall.play()
+	if upgraded:
+		b.upgrade()
+	else:
+		b.play_default()
 	
 func aim():
 	var in_range = get_overlapping_areas()
