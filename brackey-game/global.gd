@@ -17,14 +17,14 @@ var pierce: int
 var fire_rate: float
 var multi_shot: int
 # Turrets
-var area_turret_dmg = 8
+var area_turret_dmg = 10
 var area_turret_dmg2 = 25
-var tower_bullet_dmg = 80
+var tower_bullet_dmg = 100
 var tower_bullet_dmg2 = 250
 var tower_pierce = 0
 var tower_pierce2 = 1
 var ice_dmg = 10
-var ice_dmg2 = 20
+var ice_dmg2 = 25
 var ice_pierce = 1
 var ice_pierce2 = 2
 var active_tower = null # The tower player is near enough to activate
